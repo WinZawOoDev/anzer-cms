@@ -3,7 +3,7 @@
 const fs = require('fs-extra');
 const path = require('path');
 const mime = require('mime-types');
-const { categories, authors, articles, global, about } = require('../data/data.json');
+const { categories, authors, articles, global, about } = require('../seed_data/data.json');
 
 async function seedExampleApp() {
   const shouldImportSeedData = await isFirstRun();
@@ -67,7 +67,7 @@ function getFileSizeInBytes(filePath) {
 }
 
 function getFileData(fileName) {
-  const filePath = path.join('data', 'uploads', fileName);
+  const filePath = path.join('seed_data', 'uploads', fileName);
   // Parse the file metadata
   const size = getFileSizeInBytes(filePath);
   const ext = fileName.split('.').pop();
