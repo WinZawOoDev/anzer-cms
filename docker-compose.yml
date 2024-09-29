@@ -1,0 +1,86 @@
+version: "3"
+services:
+  frontend:
+    container_name: nextjs
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+      target: development # Use the 'development' stage from Dockerfile for development
+    ports:
+      - 3000:3000
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+      - /app/.next
+    command: npm run dev
+  backend:
+    container_name: strapi
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    env_file: ./backend/.env
+    environment:
+      DATABASE_CLIENT: postgres
+      DATABASE_HOST: strapi-db
+      DATABASE_PORT: 5432
+      DATABASE_NAME: anzer-cms
+      DATABASE_USERNAME: anzer-admin
+      DATABASE_PASSWORD: anzer-admin
+      # JWT_SECRET: ${JWT_SECRET}
+      # ADMIN_JWT_SECRET: ${ADMIN_JWT_SECRET}
+      # APP_KEYS: ${APP_KEYS}
+      NODE_ENV: development
+    volumes:
+      - ./backend/config:/opt/app/config
+      - ./backend/src:/opt/app/src
+      - ./backend/package.json:/opt/package.json
+      - ./backend/yarn.lock:/opt/yarn.lock
+      - ./backend/.env:/opt/app/.env
+      - ./backend/public/uploads:/opt/app/public/uploads
+    ports:
+      - 1337:1337
+    networks:
+      - strapi
+    depends_on:
+      - strapi-db
+
+  strapi-db:
+    container_name: strapiDB
+    platform: linux/amd64 #for platform error on Apple M1 chips
+    restart: unless-stopped
+    image: postgres:14.0-alpine
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: postgres
+    volumes:
+      # - strapi-data:/var/lib/postgresql/data/ #using a volume
+      - /var/sshr-v2/postgresql/data:/var/lib/postgresql/data/ # if you want to use a bind folder
+
+    ports:
+      - "5432:5432"
+    networks:
+      - strapi
+  pgadmin:
+    image: dpage/pgadmin4
+    user: "${UID}:${GID}"
+    restart: always
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=admin@anzer.com
+      - PGADMIN_DEFAULT_PASSWORD=postgres
+      - PGADMIN_CONFIG_MASTER_PASSWORD_REQUIRED=False
+    ports:
+      - 5050:80
+    volumes:
+      - /strapi-data/pgadmin:/var/lib/pgadmin
+    networks:
+      - strapi
+
+volumes:
+  strapi-data:
+
+networks:
+  strapi:
+    name: Strapi
+    driver: bridge
