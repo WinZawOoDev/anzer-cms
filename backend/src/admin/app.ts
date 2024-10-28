@@ -30,6 +30,12 @@ export default {
       // 'zh-Hans',
       // 'zh',
     ],
+    translations: {
+      en: {
+        "Auth.form.welcome.title": "Welcome to Anzer CMS",
+        "Auth.form.welcome.subtitle": "Log in to your account",
+      },
+    }
   },
   bootstrap(app: StrapiApp) {
     console.log(app);
