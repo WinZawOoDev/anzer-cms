@@ -5,6 +5,7 @@ import { Menu } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import logoSvg from "@/assets/imgs/logo.svg";
+
 const navItems = [
   { name: "Home", href: "/" },
   { name: "About Us", href: "/about" },

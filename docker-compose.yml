@@ -57,7 +57,7 @@ services:
       POSTGRES_DB: postgres
     volumes:
       # - strapi-data:/var/lib/postgresql/data/ #using a volume
-      - /var/sshr-v2/postgresql/data:/var/lib/postgresql/data/ # if you want to use a bind folder
+      - /var/anzer-cms/postgresql/data:/var/lib/postgresql/data/ # if you want to use a bind folder
 
     ports:
       - "5432:5432"
