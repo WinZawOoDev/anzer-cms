@@ -1,13 +1,13 @@
 import { CarouselDemo } from "@/components/common/carousel-demo";
 import { Button } from "@/components/ui/button";
+import WhyAnzer from "./components/home/why-anzer";
+import BannerSlider from "./components/home/banner-slider";
 
 export default function Home() {
   return (
-    <div className="">
-      {/* <h1 className="text-7xl font-extrabold">Hello World from Anzer</h1> */}
-      {/* <CarouselDemo /> */}
-      {/* <Button>Click me</Button> */}
-      <p>Hello World</p>
+    <div className="space-y-8 md:space-y-16">
+      <BannerSlider />
+      <WhyAnzer />
     </div>
   );
 }
