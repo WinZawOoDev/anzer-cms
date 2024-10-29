@@ -1,9 +1,18 @@
 import { Button } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
 import { PropsWithChildren } from "react";
 
-const ButtonRed: React.FC<PropsWithChildren> = ({ children }) => {
+const ButtonRed: React.FC<PropsWithChildren<{ className?: string }>> = ({
+  children,
+  className,
+}) => {
   return (
-    <Button className="bg-main text-white hover:bg-main hover:opacity-85 transition-all">
+    <Button
+      className={cn(
+        "bg-main text-white hover:bg-main hover:opacity-85 transition-all",
+        className
+      )}
+    >
       {children}
     </Button>
   );
