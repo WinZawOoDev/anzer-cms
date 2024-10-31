@@ -8,8 +8,11 @@ const HistoryAnzer = () => {
     <div className="bg-grey text-white py-10 md:py-16">
       <div className="container px-5">
         <div className="flex flex-col md:flex-row items-center md:items-start gap-8">
-          <div className="md:w-1/2 space-y-6">
-            <SectionTitle label="  History of ANZER IT Healthcare Asia" />
+          <div className="w-full md:w-1/2 space-y-6">
+            <SectionTitle
+              label="History of ANZER IT Healthcare Asia"
+              className="text-3xl md:text-5xl text-left"
+            />
 
             <p className="text-base indent-10">
               ANZER IT Healthcare Asia, founded in 1984 and headquartered in
@@ -27,7 +30,7 @@ const HistoryAnzer = () => {
               alt="Healthcare professionals working"
               //   width={600}
               //   height={400}
-              className="w-full h-full object-cover rounded-3xl"
+              className="w-full h-full object-cover rounded-3xl aspect-video"
             />
           </div>
         </div>
