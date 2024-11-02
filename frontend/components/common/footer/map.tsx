@@ -33,17 +33,17 @@ const markers = [
 const Map = () => {
     return (
         <ComposableMap
-            width={900}
-            height={500}
+            width={800}
+            height={400}
             style={{
                 // backgroundColor: '#e0e0e0',
-                borderEndEndRadius: '700px'
+                borderEndEndRadius: '500px'
             }}
             projection="geoAzimuthalEqualArea"
             projectionConfig={{
                 rotate: [58, 20, 0],
-                center: [0, 3],
-                scale: 350
+                center: [-5, -5],
+                scale: 270
             }}
         >
             <Geographies geography={geoUrl}>
