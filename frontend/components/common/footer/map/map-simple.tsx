@@ -37,13 +37,14 @@ const Map = () => {
             height={400}
             style={{
                 // backgroundColor: '#e0e0e0',
-                borderEndEndRadius: '500px'
+                // borderEndEndRadius: '500px',
+                maxHeight: '20em'
             }}
             projection="geoAzimuthalEqualArea"
             projectionConfig={{
-                rotate: [58, 20, 0],
-                center: [-5, -5],
-                scale: 270
+                rotate: [50, 10, 20],
+                center: [0, -10],
+                scale: 310
             }}
         >
             <Geographies geography={geoUrl}>

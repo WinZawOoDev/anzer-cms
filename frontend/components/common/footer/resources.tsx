@@ -16,9 +16,9 @@ export default function Resources() {
             <ul className='my-2'>
                 {
                     resources.map(resource => (
-                        <li key={resource.id} className='px-10 py-1'>
+                        <li key={resource.id} className='px-10'>
                             <Link className='flex items-center text-sm font-medium hover:text-white' href={resource.href}>
-                                <Minus className='text-gray-300 w-4' />
+                                <Minus className='text-gray-300 w-3' />
                                 <span className='inline-block ml-3 text-gray-300'>{resource.name}</span>
                             </Link>
                         </li>
