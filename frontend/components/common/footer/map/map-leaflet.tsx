@@ -11,12 +11,12 @@ import { MapContainer, Marker, Popup, TileLayer } from 'react-leaflet'
 
 const latitude = 16.871311;
 const longitude = 96.199379;
-const zoom = 16;
+const zoom = 5;
 
 const customMarkerIcon = L.icon({
-    iconUrl: `data:image/svg+xml;utf8,${encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" width="30" height="35" viewBox="0 0 24 24" fill="none" stroke="#D01B23" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-map-pin"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"/><circle cx="12" cy="10" r="3"/></svg>
+    iconUrl: `data:image/svg+xml;utf8,${encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" height="32" width="24" viewBox="0 0 384 512"><!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path fill="#ee172c" d="M215.7 499.2C267 435 384 279.4 384 192C384 86 298 0 192 0S0 86 0 192c0 87.4 117 243 168.3 307.2c12.3 15.3 35.1 15.3 47.4 0zM192 128a64 64 0 1 1 0 128 64 64 0 1 1 0-128z"/></svg>
   `)}`,
-    iconSize: [32, 32],
+    iconSize: [35, 35],
     iconAnchor: [16, 32],
     popupAnchor: [0, -28],
 });
@@ -33,7 +33,7 @@ export default function MapLeaflet() {
             scrollWheelZoom={false}
             style={{
                 height: '300px',
-                borderRadius: '2px',
+                borderRadius: '5px',
             }}
         >
             <TileLayer

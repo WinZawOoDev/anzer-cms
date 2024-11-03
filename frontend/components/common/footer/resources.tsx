@@ -12,14 +12,14 @@ const resources = [
 export default function Resources() {
     return (
         <div className='h-1/2 text-gray-200'>
-            <span className='font-semibold text-lg'>Resources</span>
+            <span className='font-bold sm:font-semibold text-sm sm:text-lg'>Resources</span>
             <ul className='my-2'>
                 {
                     resources.map(resource => (
                         <li key={resource.id} className='px-10'>
-                            <Link className='flex items-center text-sm font-medium hover:text-white' href={resource.href}>
+                            <Link className='flex items-center text-sm font-medium' href={resource.href}>
                                 <Minus className='text-gray-300 w-3' />
-                                <span className='inline-block ml-3 text-gray-300'>{resource.name}</span>
+                                <span className='inline-block ml-3 text-gray-300 hover:text-white'>{resource.name}</span>
                             </Link>
                         </li>
                     ))
