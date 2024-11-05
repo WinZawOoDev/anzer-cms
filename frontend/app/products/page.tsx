@@ -1,3 +1,6 @@
+import DiagramOne from "../components/diagrams/diagram-one";
+import DiagramThree from "../components/diagrams/diagram-three";
+import DiagramTwo from "../components/diagrams/diagram-two";
 import BannerSlider from "../components/home/banner-slider";
 import EssentialModules from "../components/products/essential-modules";
 import HighInter from "../components/products/high-inter";
@@ -8,6 +11,9 @@ const ProductPage = () => {
       <EssentialModules />
       <HighInter />
       <BannerSlider />
+      <DiagramOne />
+      <DiagramTwo />
+      <DiagramThree />
     </div>
   );
 };
