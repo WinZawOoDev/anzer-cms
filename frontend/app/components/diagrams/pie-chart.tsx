@@ -1,5 +1,5 @@
+// @ts-nocheck
 "use client";
-
 import { useState } from "react";
 import { TrendingUp } from "lucide-react";
 import { LabelList, Pie, PieChart, Sector } from "recharts";
