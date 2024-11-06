@@ -7,7 +7,7 @@ const DiagramOne = () => {
   const Nodes = [
     "Consultant Dashboard",
     "Radiologist Dashboard",
-    " Pathologist Dashboard",
+    "Pathologist Dashboard",
     "Microbiologist Dashboard",
     "Clinical MO Dashboard",
   ];
