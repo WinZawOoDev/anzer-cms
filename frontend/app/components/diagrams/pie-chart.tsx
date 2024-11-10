@@ -1,54 +1,70 @@
-// @ts-nocheck
 "use client";
-import { useState } from "react";
-import { TrendingUp } from "lucide-react";
+
+import { useEffect, useState } from "react";
 import { LabelList, Pie, PieChart, Sector } from "recharts";
 
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
-import {
-  ChartContainer,
-  ChartTooltip,
-  ChartTooltipContent,
-} from "@/components/ui/chart";
+import { Card, CardContent, CardHeader } from "@/components/ui/card";
+import { ChartContainer } from "@/components/ui/chart";
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
 import SectionTitle from "../common/sec-ttl";
+import { useMediaQuery } from "usehooks-ts";
+import { Button } from "@/components/ui/button";
 
 const chartData = [
-  { browser: "chrome", visitors: 300, fill: "var(--color-chrome)" },
-  { browser: "safari", visitors: 300, fill: "var(--color-safari)" },
-  { browser: "firefox", visitors: 300, fill: "var(--color-firefox)" },
+  {
+    category: "clinicalManagement",
+    visitors: 300,
+    fill: "#949430",
+  },
+  {
+    category: "managementPerspective",
+    visitors: 300,
+    fill: "#209b74",
+  },
+  {
+    category: "patientEngagement",
+    visitors: 300,
+    fill: "#4c2db3",
+  },
 ];
 
 const chartConfig = {
   visitors: {
     label: "Visitors",
   },
-  chrome: {
-    label: "Chrome",
+  clinicalManagement: {
+    label: "Clinical Management",
     color: "hsl(var(--chart-1))",
   },
-  safari: {
-    label: "Safari",
+  managementPerspective: {
+    label: "Management Perspective",
     color: "hsl(var(--chart-2))",
   },
-  firefox: {
-    label: "Firefox",
+  patientEngagement: {
+    label: "Patient Engagement",
     color: "hsl(var(--chart-3))",
   },
 };
 
-const renderActiveShape = (props) => {
+const buttons = {
+  clinicalManagement: [
+    "Specialized Dashboards",
+    "Moblie Apps",
+    "Document Manager",
+  ],
+  managementPerspective: [
+    "Financial Management",
+    "Management Dashboard",
+    "Report Generator",
+  ],
+  patientEngagement: ["Patient Portal", "Consent Form", "Home Care"],
+};
+
+const renderActiveShape = (props: any) => {
   const { cx, cy, innerRadius, outerRadius, startAngle, endAngle, fill } =
     props;
 
@@ -71,9 +87,18 @@ export default function Component() {
   const [activeIndex, setActiveIndex] = useState(-1);
   const [popoverOpen, setPopoverOpen] = useState(false);
   const [popoverPosition, setPopoverPosition] = useState({ x: 0, y: 0 });
-  const [selectedSegment, setSelectedSegment] = useState(null);
+  const [selectedSegment, setSelectedSegment] = useState<any>(null);
+  const [fontSize, setFontSize] = useState(12);
 
-  const handlePieEnter = (_, index) => {
+  const isSmallScreen = useMediaQuery("(max-width: 400px)");
+
+  useEffect(() => {
+    if (isSmallScreen) {
+      setFontSize(6);
+    }
+  }, [isSmallScreen]);
+  console.log("fontsise", fontSize);
+  const handlePieEnter = (_: any, index: number) => {
     setActiveIndex(index);
   };
 
@@ -81,11 +106,12 @@ export default function Component() {
     setActiveIndex(-1);
   };
 
-  const handlePieClick = (data, index, event) => {
+  const handlePieClick = (data: any, _: number, event: React.MouseEvent) => {
     setSelectedSegment(data);
     setPopoverPosition({ x: event.clientX, y: event.clientY });
     setPopoverOpen(true);
   };
+  console.log("selected segment", selectedSegment);
 
   return (
     <Card className="flex flex-col relative shadow-none border-none">
@@ -108,11 +134,12 @@ export default function Component() {
               activeShape={renderActiveShape}
             >
               <LabelList
-                dataKey="browser"
+                dataKey="category"
                 className="fill-background"
                 stroke="none"
-                fontSize={12}
-                formatter={(value) => chartConfig[value]?.label}
+                key={fontSize}
+                fontSize={fontSize}
+                formatter={(value: string) => chartConfig[value]?.label}
               />
             </Pie>
           </PieChart>
@@ -125,27 +152,24 @@ export default function Component() {
             <div className="sr-only">Open popover</div>
           </PopoverTrigger>
           <PopoverContent
-            className="w-64"
+            className="w-64 bg-transparent border-none"
             style={{
               position: "fixed",
-              left: `${popoverPosition.x + 10}px`, // Offset to the right of the cursor
-              top: `${popoverPosition.y + 10}px`, // Offset slightly below the cursor
+              left: `${popoverPosition.x}px`,
+              top: `${popoverPosition.y - 150}px`,
             }}
           >
-            <div>
-              <h3 className="font-medium mb-2">
-                {chartConfig[selectedSegment.browser].label}
-              </h3>
-              <p>Visitors: {selectedSegment.visitors}</p>
-              <p>
-                Percentage:{" "}
-                {(
-                  (selectedSegment.visitors /
-                    chartData.reduce((sum, d) => sum + d.visitors, 0)) *
-                  100
-                ).toFixed(2)}
-                %
-              </p>
+            <div className="space-y-5">
+              {buttons[selectedSegment?.category].map((text: string) => {
+                return (
+                  <Button
+                    className="bg-red-200 !shadow-none text-sm text-black hover:bg-red-200"
+                    key={text}
+                  >
+                    {text}
+                  </Button>
+                );
+              })}
             </div>
           </PopoverContent>
         </Popover>

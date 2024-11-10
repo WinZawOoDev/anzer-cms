@@ -9,7 +9,7 @@ const RectNode: React.FC<Props> = ({ label, className }) => {
   return (
     <div
       className={cn(
-        `px-5 py-3 border rounded-sm text-sm text-center`,
+        `px-5 py-3 border-none rounded-sm text-sm text-center bg-red-200`,
         className
       )}
     >
