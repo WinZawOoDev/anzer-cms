@@ -5,7 +5,7 @@ import BannerSlider from "./components/home/banner-slider";
 
 export default function Home() {
   return (
-    <div className="space-y-8 md:space-y-16">
+    <div className="space-y-10 md:space-y-16">
       <BannerSlider />
       <WhyAnzer />
     </div>

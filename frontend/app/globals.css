@@ -81,7 +81,7 @@ body {
 
 @layer utilities {
   .container {
-    @apply max-w-7xl px-5 mx-auto;
+    @apply max-w-6xl px-5 mx-auto;
   }
   .container-2 {
     @apply max-w-5xl px-5 mx-auto;
