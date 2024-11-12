@@ -5,7 +5,7 @@ import ButtonRed from "../common/button";
 
 const HighInter = () => {
   return (
-    <div className="bg-grey text-white py-10 md:py-16">
+    <div className=" text-black py-10 md:py-16">
       <div className="container px-5">
         <div className="flex flex-col md:flex-row  md:items-start gap-8">
           <div className="md:w-1/2 space-y-6">

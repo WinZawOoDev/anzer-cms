@@ -160,10 +160,11 @@ export default function Component() {
             }}
           >
             <div className="space-y-5">
+              {/* @ts-ignore */}
               {buttons[selectedSegment?.category].map((text: string) => {
                 return (
                   <Button
-                    className="bg-red-200 !shadow-none text-sm text-black hover:bg-red-200"
+                    className="bg-main block !shadow-none text-[10px] text-white hover:bg-main"
                     key={text}
                   >
                     {text}
