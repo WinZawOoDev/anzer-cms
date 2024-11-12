@@ -30,9 +30,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={`${open_sans.className} antialiased`}
-      >
+      <body className={`${open_sans.className} antialiased `}>
         <Header />
         {children}
         <Footer />

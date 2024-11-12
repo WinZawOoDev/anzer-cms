@@ -9,13 +9,13 @@ import HighInter from "../components/products/high-inter";
 const ProductPage = () => {
   return (
     <div className="space-y-8 md:space-y-16 ">
+      <ProductPieChart />
       <EssentialModules />
       <HighInter />
       <BannerSlider />
       <DiagramOne />
       <DiagramTwo />
       <DiagramThree />
-      <ProductPieChart />
     </div>
   );
 };
