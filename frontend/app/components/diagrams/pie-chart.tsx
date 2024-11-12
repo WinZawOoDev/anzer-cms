@@ -139,6 +139,7 @@ export default function Component() {
                 stroke="none"
                 key={fontSize}
                 fontSize={fontSize}
+                // @ts-ignore
                 formatter={(value: string) => chartConfig[value]?.label}
               />
             </Pie>
