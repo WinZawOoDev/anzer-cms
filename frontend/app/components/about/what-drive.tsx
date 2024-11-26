@@ -34,26 +34,29 @@ const WhatDriveUs = () => {
       <div className="space-y-5 md:space-y-10">
         <SectionTitle label="What Drive Us " />
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-4">
           {drivingFactors.map((factor, index) => (
-            <div key={index} className="bg-white border-none">
-              <div className="text-center pb-2">
-                <div className="w-24 h-24 bg-red-50 rounded-3xl mx-auto mb-6 flex items-center justify-center">
-                  <factor.icon className="w-12 h-12 text-red-500" />
+            <div
+              key={index}
+              className="group relative origin-center border-none bg-white p-5 before:absolute before:left-0 before:top-0 before:h-full before:w-[2px] before:scale-y-0 before:bg-main before:duration-500 before:content-[''] hover:before:scale-y-100"
+            >
+              <div className="pb-2 text-center">
+                <div className="mx-auto mb-6 flex h-24 w-24 items-center justify-center rounded-3xl">
+                  <factor.icon className="h-12 w-12 duration-300 group-hover:text-main" />
                 </div>
-                <h5 className="text-xl font-semibold text-gray-800 mb-2">
+                <h5 className="mb-2 text-xl font-semibold text-gray-800">
                   {factor.title}
                 </h5>
               </div>
               <div>
-                <p className="text-sm text-gray-600 text-center">
+                <p className="text-center text-sm text-gray-600">
                   {factor.description}
                 </p>
               </div>
             </div>
           ))}
         </div>
-        <div className="mt-12 text-center">
+        <div className="mt-12 flex items-center justify-center text-center">
           <ButtonRed>Find out more</ButtonRed>
         </div>
       </div>
