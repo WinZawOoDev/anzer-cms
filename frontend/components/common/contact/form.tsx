@@ -50,8 +50,8 @@ export default function ContactForm() {
                     placeholder='Mr'
                 />
 
-                <Button>
-                    Submit
+                <Button type='submit' className='rounded py-4 px-8 bg-primary'>
+                    <span className='font-semibold text-[15px] leading-5 text-white'>Submit</span> 
                 </Button>
             </form>
         </Form>
