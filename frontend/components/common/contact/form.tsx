@@ -1,18 +1,20 @@
 'use client'
 
 import { zodResolver } from '@hookform/resolvers/zod'
-import { Form, FormControl, FormField, FormItem, FormMessage } from '@/components/ui/form'
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form'
 import React from 'react'
 import { useForm, useFormContext } from 'react-hook-form'
 import { z } from 'zod'
 import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
+import { Checkbox } from '@/components/ui/checkbox'
 
 const FormSchema = z.object({
     location: z.string().min(1, 'location is required').max(5, 'location must contain at least 5 characters'),
     hospitalName: z.string(),
     firstName: z.string(),
     lastName: z.string(),
+    mr: z.boolean(),
 })
 
 export default function ContactForm() {
@@ -23,6 +25,7 @@ export default function ContactForm() {
             hospitalName: '',
             firstName: '',
             lastName: '',
+            mr: false,
         },
         resolver: zodResolver(FormSchema),
     });
@@ -40,6 +43,11 @@ export default function ContactForm() {
                 <TextInput
                     name='location'
                     placeholder='Location'
+                />
+
+                <CheckBoxInput
+                    name='mr'
+                    placeholder='Mr'
                 />
 
                 <Button>
@@ -77,6 +85,27 @@ function TextInput({ name, placeholder }: { name: string, placeholder: string })
 
 }
 
-function CheckBox() {
-
+function CheckBoxInput({ name, placeholder }: { name: string, placeholder: string }) {
+    const { control } = useFormContext();
+    return (
+        <FormField
+            control={control}
+            name={name}
+            render={({ field }) => (
+                <FormItem className='relative w-fit flex flex-row items-center space-y-0'>
+                    <FormLabel className='mr-3 tracking-wide text-base leading-6 text-secondary'>
+                        {placeholder}.
+                    </FormLabel>
+                    <FormControl>
+                        <Checkbox
+                            checked={field.value}
+                            onChange={field.onChange}
+                            className='w-6 h-6 rounded-lg border-2 border-primary '
+                        />
+                    </FormControl>
+                    <FormMessage className='absolute' />
+                </FormItem>
+            )}
+        />
+    )
 }
