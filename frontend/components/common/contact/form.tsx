@@ -10,11 +10,18 @@ import { Button } from '@/components/ui/button'
 import { Checkbox } from '@/components/ui/checkbox'
 
 const FormSchema = z.object({
-    location: z.string().min(1, 'location is required').max(5, 'location must contain at least 5 characters'),
+    location: z.string().min(1, 'location is required'),
     hospitalName: z.string(),
     firstName: z.string(),
     lastName: z.string(),
     mr: z.boolean(),
+    ms: z.boolean(),
+    dr: z.boolean(),
+    other: z.boolean(),
+    implement: z.string(),
+    email: z.boolean(),
+    countryCode: z.string(),
+    phoneNumber: z.string(),
 })
 
 export default function ContactForm() {
@@ -25,7 +32,14 @@ export default function ContactForm() {
             hospitalName: '',
             firstName: '',
             lastName: '',
+            dr: false,
             mr: false,
+            ms: false,
+            other: false,
+            implement: '',
+            email: false,
+            countryCode: '',
+            phoneNumber: '',
         },
         resolver: zodResolver(FormSchema),
     });
@@ -39,19 +53,83 @@ export default function ContactForm() {
     return (
         <Form {...form}>
             <form onSubmit={form.handleSubmit(handleSubmit)} className='w-1/2'>
+                <div className='grid grid-cols-4 gap-x-3 gap-y-5 my-3'>
+                    <div className='col-span-4'>
+                        <TextInput
+                            name='location'
+                            placeholder='Location'
+                        />
+                    </div>
+                    <div className='col-span-4'>
+                        <TextInput
+                            name='hospitalName'
+                            placeholder='HospitalName'
+                        />
+                    </div>
+                    <div className='justify-items-start'>
+                        <CheckBoxInput
+                            name='dr'
+                            placeholder='Dr'
+                        />
+                    </div>
+                    <div className='justify-items-center'>
+                        <CheckBoxInput
+                            name='mr'
+                            placeholder='Mr'
+                        />
+                    </div>
+                    <div className='justify-items-center'>
+                        <CheckBoxInput
+                            name='ms'
+                            placeholder='Ms'
+                        />
+                    </div>
+                    <div className='justify-items-end'>
+                        <CheckBoxInput
+                            name='other'
+                            placeholder='Other'
+                        />
+                    </div>
+                    <div className='col-span-2'>
+                        <TextInput
+                            name='firstName'
+                            placeholder='First Name'
+                        />
+                    </div>
+                    <div className='col-span-2'>
+                        <TextInput
+                            name='lastName'
+                            placeholder='Last Name'
+                        />
+                    </div>
+                    <div className='col-span-4'>
+                        <TextInput
+                            name='implement'
+                            placeholder='When do you like to implement?'
+                        />
+                    </div>
+                    <div className='col-span-4'>
+                        <TextInput
+                            name='email'
+                            placeholder='Email Address'
+                        />
+                    </div>
+                    <div className='col-span-2'>
+                        <TextInput
+                            name='countryCode'
+                            placeholder='Country Code'
+                        />
+                    </div>
+                    <div className='col-span-2'>
+                        <TextInput
+                            name='phoneNumber'
+                            placeholder='Phone Number'
+                        />
+                    </div>
+                </div>
 
-                <TextInput
-                    name='location'
-                    placeholder='Location'
-                />
-
-                <CheckBoxInput
-                    name='mr'
-                    placeholder='Mr'
-                />
-
-                <Button type='submit' className='rounded py-4 px-8 bg-primary'>
-                    <span className='font-semibold text-[15px] leading-5 text-white'>Submit</span> 
+                <Button type='submit' className='rounded py-4 px-8 bg-primary float-right'>
+                    <span className='font-semibold text-[15px] leading-5 text-white'>Submit</span>
                 </Button>
             </form>
         </Form>
@@ -68,7 +146,7 @@ function TextInput({ name, placeholder }: { name: string, placeholder: string })
             control={control}
             name={name}
             render={({ field }) => (
-                <FormItem className='relative my-3'>
+                <FormItem className='relative'>
                     <FormControl>
                         <Input
                             {...field}
@@ -77,7 +155,7 @@ function TextInput({ name, placeholder }: { name: string, placeholder: string })
                             className='h-full py-3 px-5 rounded-sm border-none focus-visible:ring-0 bg-[#F1F4FF] text-secondary leading-6 tracking-wide text-xs placeholder:leading-6 placeholder:tracking-wide placeholder:font-normal placeholder:text-xs placeholder:text-[#B3B4B9] '
                         />
                     </FormControl>
-                    <FormMessage className='absolute' />
+                    <FormMessage className='absolute -bottom-5' />
                 </FormItem>
             )}
         />
