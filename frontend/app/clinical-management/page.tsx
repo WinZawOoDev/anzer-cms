@@ -1,3 +1,4 @@
+import CommercialFeatures from "../components/clinical-management/commercial-features";
 import DocumentManagerSvg from "../components/clinical-management/document-manager";
 import HealthCareSvg from "../components/clinical-management/health-care";
 import MessageBubble from "../components/common/bubble";
@@ -7,7 +8,8 @@ import SvgWithBubbles from "../components/common/svg-with-bubbles";
 
 const Page = () => {
   return (
-    <div className="container space-y-8 md:space-y-16">
+    <div className="container space-y-8 py-5 md:space-y-16 md:py-10">
+      <CommercialFeatures />
       <div className="md:space-y-20">
         <SectionTitle label="health care mobile app" />
         <div className="h-[30px] md:h-[30px]"></div>

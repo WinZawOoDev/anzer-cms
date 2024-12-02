@@ -12,6 +12,7 @@ const config: Config = {
       colors: {
         main: "var(--anzer)",
         grey: "var(--grey)",
+        "red-pale": "var(--red-pale)",
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
         card: {
