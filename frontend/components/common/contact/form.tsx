@@ -10,16 +10,18 @@ import { Button } from '@/components/ui/button'
 import { Checkbox } from '@/components/ui/checkbox'
 
 const FormSchema = z.object({
-    location: z.string().min(1, 'location is required'),
+    location: z.string(),
     hospitalName: z.string(),
     firstName: z.string(),
     lastName: z.string(),
+    jobTitle: z.string(),
+    responsibility: z.string(),
     mr: z.boolean(),
     ms: z.boolean(),
     dr: z.boolean(),
     other: z.boolean(),
     implement: z.string(),
-    email: z.boolean(),
+    email: z.string().email(),
     countryCode: z.string(),
     phoneNumber: z.string(),
 })
@@ -32,12 +34,14 @@ export default function ContactForm() {
             hospitalName: '',
             firstName: '',
             lastName: '',
+            jobTitle: '',
+            responsibility: '',
             dr: false,
             mr: false,
             ms: false,
             other: false,
             implement: '',
-            email: false,
+            email: '',
             countryCode: '',
             phoneNumber: '',
         },
@@ -102,6 +106,18 @@ export default function ContactForm() {
                             placeholder='Last Name'
                         />
                     </div>
+                    <div className='col-span-2'>
+                        <TextInput
+                            name='jobTitle'
+                            placeholder='Job Title'
+                        />
+                    </div>
+                    <div className='col-span-2'>
+                        <TextInput
+                            name='responsibility'
+                            placeholder='Responsibility'
+                        />
+                    </div>
                     <div className='col-span-4'>
                         <TextInput
                             name='implement'
@@ -152,7 +168,7 @@ function TextInput({ name, placeholder }: { name: string, placeholder: string })
                             {...field}
                             type='text'
                             placeholder={placeholder}
-                            className='h-full py-3 px-5 rounded-sm border-none focus-visible:ring-0 bg-[#F1F4FF] text-secondary leading-6 tracking-wide text-xs placeholder:leading-6 placeholder:tracking-wide placeholder:font-normal placeholder:text-xs placeholder:text-[#B3B4B9] '
+                            className='h-full py-4 px-5 rounded-sm border-none focus-visible:ring-0 bg-[#F1F4FF] text-secondary leading-6 tracking-wide text-xs placeholder:leading-6 placeholder:tracking-wide placeholder:font-normal placeholder:text-xs placeholder:text-[#B3B4B9] '
                         />
                     </FormControl>
                     <FormMessage className='absolute -bottom-5' />
