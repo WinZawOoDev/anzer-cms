@@ -5,10 +5,11 @@ import ProductPieChart from "../components/diagrams/pie-chart";
 import BannerSlider from "../components/home/banner-slider";
 import EssentialModules from "../components/products/essential-modules";
 import HighInter from "../components/products/high-inter";
+import PageContainer from "@/components/common/page-container";
 
 const ProductPage = () => {
   return (
-    <div className="space-y-8 md:space-y-16 ">
+    <PageContainer>
       <ProductPieChart />
       <EssentialModules />
       <HighInter />
@@ -16,7 +17,7 @@ const ProductPage = () => {
       <DiagramOne />
       <DiagramTwo />
       <DiagramThree />
-    </div>
+    </PageContainer >
   );
 };
 

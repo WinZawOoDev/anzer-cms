@@ -3,7 +3,7 @@ import localFont from "next/font/local";
 import "./globals.css";
 import Header from "./components/common/header";
 import Footer from "@/components/common/footer";
-import { inter, open_sans } from "@/lib/font";
+import { inter, nunito_sans, open_sans } from "@/lib/font";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -18,9 +18,9 @@ const geistMono = localFont({
 
 export const metadata: Metadata = {
   title:
-    "ANZER IT Healthcare Asia – Comprehensive EHR,EMR, RIS, PACS, LIS, Accounting, and Mobiel Apps solutions",
+    "ANZER IT Healthcare Asia Comprehensive EHR,EMR, RIS, PACS, LIS, Accounting, and Mobiel Apps solutions",
   description:
-    "ANZER IT Healthcare Asia – Comprehensive EHR,EMR, RIS, PACS, LIS, Accounting, and Mobiel Apps solutions",
+    "ANZER IT Healthcare Asia Comprehensive EHR,EMR, RIS, PACS, LIS, Accounting, and Mobiel Apps solutions",
 };
 
 export default function RootLayout({
@@ -30,7 +30,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${open_sans.className} antialiased `}>
+      <body className={`${nunito_sans.className} antialiased `}>
         <Header />
         {children}
         <Footer />
