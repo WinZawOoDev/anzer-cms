@@ -1,5 +1,5 @@
 import Image from "next/image";
-import defaultImg from "@/assets/imgs/default-img-01.png";
+import defaultImg from "@/assets/imgs/default-img-05.jpeg";
 import SectionTitle from "../common/sec-ttl";
 const reasons = [
   {
@@ -43,15 +43,15 @@ const reasons = [
 const WhyAnzer = () => {
   return (
     <section className="container ">
-      <div className="space-y-5 md:space-y-10">
+      <div className="space-y-8 md:space-y-14">
         <SectionTitle label="Why choose ANZER IT Healthcare?" />
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 gap-y-10">
           {reasons.map((reason, index) => (
             <div
               key={index}
-              className="flex flex-col items-center text-center group "
+              className="group flex flex-col items-center text-center relative before:content-[''] before:absolute before:w-full before:h-[2px]  before:-bottom-2 before:left-0 before:bg-main before:scale-x-0 hover:before:scale-x-100 before:duration-500"
             >
-              <div className="mb-4  overflow-hidden rounded-3xl transition-transform duration-300 ease-in-out group-hover:scale-105">
+              <div className="mb-4  overflow-hiddens transition-transform duration-500 ease-in-out group-hover:scale-x-125">
                 <Image
                   src={reason.image}
                   alt={reason.title}
@@ -60,10 +60,12 @@ const WhyAnzer = () => {
                   className="object-cover"
                 />
               </div>
-              <h3 className="text-xl font-semibold mb-2 text-gray-800">
+              <h3 className="text-xl text-grey md:text-2xl font-semibold mb-2 text-gray-800">
                 {reason.title}
               </h3>
-              <p className="text-sm text-gray-600">{reason.description}</p>
+              <p className="text-sm md:text-base text-gray-600">
+                {reason.description}
+              </p>
             </div>
           ))}
         </div>

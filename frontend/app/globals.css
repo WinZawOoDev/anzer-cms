@@ -41,6 +41,7 @@ body {
     --radius: 0.5rem;
     --anzer: #ed1c24;
     --grey: #404041;
+    --red-pale: #fde8e9;
   }
   .dark {
     --background: 0 0% 3.9%;
@@ -81,9 +82,9 @@ body {
 
 @layer utilities {
   .container {
-    @apply max-w-6xl px-5 mx-auto;
+    @apply mx-auto max-w-6xl px-5;
   }
   .container-2 {
-    @apply max-w-5xl px-5 mx-auto;
+    @apply mx-auto max-w-5xl px-5;
   }
 }
