@@ -13,11 +13,11 @@ const ProductPage = () => {
       <ProductPieChart />
       <EssentialModules />
       <HighInter />
-      <BannerSlider />
-      <DiagramOne />
+      {/* <BannerSlider /> */}
+      {/* <DiagramOne />
       <DiagramTwo />
-      <DiagramThree />
-    </PageContainer >
+      <DiagramThree /> */}
+    </PageContainer>
   );
 };
 
