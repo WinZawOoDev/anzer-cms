@@ -13,6 +13,7 @@ import {
 import SectionTitle from "../common/sec-ttl";
 import { useMediaQuery } from "usehooks-ts";
 import { Button } from "@/components/ui/button";
+import Link from "next/link";
 
 const chartData = [
   {
@@ -114,7 +115,7 @@ export default function Component() {
   console.log("selected segment", selectedSegment);
 
   return (
-    <Card className="flex flex-col relative shadow-none border-none">
+    <Card className="relative flex flex-col border-none shadow-none">
       <CardHeader className="items-center pb-0">
         <SectionTitle label="Products" />
       </CardHeader>
@@ -153,7 +154,7 @@ export default function Component() {
             <div className="sr-only">Open popover</div>
           </PopoverTrigger>
           <PopoverContent
-            className="w-64 bg-transparent border-none"
+            className="w-64 border-none bg-transparent"
             style={{
               position: "fixed",
               left: `${popoverPosition.x}px`,
@@ -163,13 +164,22 @@ export default function Component() {
             <div className="space-y-5">
               {/* @ts-ignore */}
               {buttons[selectedSegment?.category].map((text: string) => {
+                const href =
+                  selectedSegment?.category === "clinicalManagement"
+                    ? "clinical-management"
+                    : selectedSegment?.category === "managementPerspective"
+                      ? "management-perspective"
+                      : "patient-engagement";
+
                 return (
-                  <Button
-                    className="bg-main block !shadow-none text-[10px] text-white hover:bg-main"
-                    key={text}
-                  >
-                    {text}
-                  </Button>
+                  <Link href={`/${href}`} className="block">
+                    <Button
+                      className="block bg-main text-[10px] text-white !shadow-none hover:bg-main"
+                      key={text}
+                    >
+                      {text}
+                    </Button>
+                  </Link>
                 );
               })}
             </div>

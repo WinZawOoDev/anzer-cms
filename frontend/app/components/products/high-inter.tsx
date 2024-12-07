@@ -2,36 +2,37 @@ import Image from "next/image";
 import defaultImg from "@/assets/imgs/default-img-03.png";
 import SectionTitle from "../common/sec-ttl";
 import ButtonRed from "../common/button";
+import img from "@/assets/imgs/default-img-06.png";
+import { oswald } from "@/lib/font";
+
+const features = [
+  "User Friendly Interface",
+  "All In One Feature",
+  "Time Savings",
+  "Efficient Care Management",
+];
 
 const HighInter = () => {
   return (
-    <div className=" text-black py-10 md:py-16">
-      <div className="container px-5">
-        <div className="flex flex-col md:flex-row  md:items-start gap-8">
-          <div className="md:w-1/2 space-y-6">
-            <SectionTitle
-              label="We are High Interoperable Products "
-              className="text-left md:text-5xl"
-            />
-
-            <ul className="list-disc px-5">
-              <li>Benefits of this product (Recommended)</li>
-              <li>Benefits of this product (Recommended)</li>
-              <li>Benefits of this product (Recommended)</li>
-              <li>Benefits of this product (Recommended)</li>
-            </ul>
-
-            <ButtonRed>Book Demo</ButtonRed>
-          </div>
-          <div className=" w-full md:w-1/2 aspect-video ">
-            <Image
-              src={defaultImg}
-              alt="high iteroperable"
-              //   width={600}
-              //   height={400}
-              className="w-full h-full object-cover rounded-3xl aspect-video"
-            />
-          </div>
+    <div className="py-10 text-black md:py-16">
+      <div className="container relative px-5">
+        <div className="img-bg hidden aspect-square md:block md:aspect-video">
+          <Image
+            src={img}
+            alt="bg image"
+            className="h-full w-full object-cover object-bottom"
+          />
+        </div>
+        <div className="static left-5 top-10 space-y-5 md:absolute md:[left:55%]">
+          <h6 className={`text-2xl font-bold md:text-3xl ${oswald.className}`}>
+            We are High Interoperable Products
+          </h6>
+          <ul className="list-disc space-y-3 pl-5">
+            {features.map((text) => {
+              return <li key={text}>{text}</li>;
+            })}
+          </ul>
+          <ButtonRed>Book Demo</ButtonRed>
         </div>
       </div>
     </div>

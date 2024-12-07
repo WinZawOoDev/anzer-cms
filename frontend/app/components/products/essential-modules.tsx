@@ -37,19 +37,19 @@ const modules = [
 
 const EssentialModules = () => {
   return (
-    <div className=" container ">
-      <div className=" space-y-5 md:space-y-10">
+    <div className="container">
+      <div className="space-y-5 md:space-y-10">
         <SectionTitle label="Other Essential Modules" />
         <div className="grid grid-cols-2 gap-6 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-4">
           {modules.map((module, index) => (
             <div
               key={index}
-              className="group flex cursor-pointer flex-col items-center rounded-lg bg-white p-6 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg"
+              className="group flex cursor-pointer flex-col items-center rounded-lg bg-white p-6 transition-all duration-300"
             >
-              <div className="mb-4 rounded-2xl bg-red-50 p-4 text-red-500 transition-colors duration-300 group-hover:bg-red-100">
+              <div className="mb-4 rounded-full p-4 text-red-500 transition-colors duration-300 group-hover:bg-red-100">
                 <module.icon className="h-12 w-12" />
               </div>
-              <span className="text-center  font-medium text-gray-600">
+              <span className="text-center font-medium text-gray-600">
                 {module.label}
               </span>
             </div>
