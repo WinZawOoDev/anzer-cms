@@ -32,7 +32,7 @@ const ReportGenerator = () => {
 
     return () => clearInterval(interval);
   }, [data.length]);
-  console.log("currentIndex", currentIndex);
+  // console.log("currentIndex", currentIndex);
   return (
     <div className="space-y-5 md:space-y-10">
       <SectionTitle label="report generator" />
