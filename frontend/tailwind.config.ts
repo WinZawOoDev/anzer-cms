@@ -8,6 +8,7 @@ const config: Config = {
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
+
   	extend: {
   		colors: {
   			main: 'var(--anzer)',
@@ -93,6 +94,7 @@ const config: Config = {
   			'accordion-up': 'accordion-up 0.2s ease-out'
   		}
   	}
+
   },
   plugins: [require("tailwindcss-animate")],
 };
