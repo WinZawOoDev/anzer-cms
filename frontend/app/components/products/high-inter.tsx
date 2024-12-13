@@ -15,8 +15,8 @@ const features = [
 const HighInter = () => {
   return (
     <div className="py-10 text-black md:py-16">
-      <div className="container relative px-5">
-        <div className="img-bg hidden aspect-square md:block md:aspect-video">
+      <div className="container relative space-y-5 px-5">
+        <div className="img-bg aspect-video md:block md:aspect-video">
           <Image
             src={img}
             alt="bg image"
