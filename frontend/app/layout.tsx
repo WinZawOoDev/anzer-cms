@@ -4,6 +4,7 @@ import Header from "./components/common/header";
 import Footer from "@/components/common/footer";
 
 import { nuinto, oswald } from "@/lib/font";
+import Transition from "./components/common/animation/transition";
 
 export const metadata: Metadata = {
   title:
@@ -21,7 +22,9 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${nuinto.className} antialiased`}>
         <Header />
+        {/* <Transition> */}
         {children}
+        {/* </Transition> */}
         <Footer />
       </body>
     </html>

@@ -12,7 +12,7 @@ const Page = () => {
       <CommercialFeatures />
       <div className="md:space-y-20">
         <SectionTitle label="health care mobile app" />
-        <div className="h-[30px] md:h-[30px]"></div>
+        <div className="h-[100px] md:h-[30px]"></div>
         <SvgWithBubbles
           SvgComponent={<HealthCareSvg />}
           leftBubble={
@@ -21,7 +21,7 @@ const Page = () => {
               message={
                 "Imm, I am not feeling well. I don’t know how to book the appointment."
               }
-              className="absolute -left-[0vw] -top-[0vw] max-w-[150px] md:-left-12 md:-top-[5vw] md:max-w-[200px]"
+              className="absolute left-0 top-0 max-w-[150px] -translate-x-[50%] -translate-y-[100%] md:max-w-[200px] md:-translate-x-[100%]"
             />
           }
           rightBubble={
@@ -30,7 +30,7 @@ const Page = () => {
               message={
                 " I got ANZER Patient Portal App to make appointment, do you want to book it?"
               }
-              className="absolute -right-[5vw] -top-[0vw] max-w-[150px] md:-right-28 md:-top-[8vw] md:max-w-[200px]"
+              className="absolute right-0 top-0 max-w-[150px] -translate-y-[100%] translate-x-[50%] md:max-w-[200px] md:translate-x-[100%]"
             />
           }
         />
@@ -39,17 +39,17 @@ const Page = () => {
 
       <div className="md:space-y-20">
         <SectionTitle label="document manager" />
-        <div className="h-[30px] md:h-[30px]"></div>
+        <div className="h-[100px] md:h-[30px]"></div>
         <SvgWithBubbles
           SvgComponent={<DocumentManagerSvg />}
-          className="max-w-[600px]"
+          // className="max-w-[600px]"
           leftBubble={
             <MessageBubble
               dir={"right"}
               message={
                 "Imm, I am not feeling well. I don’t know how to book the appointment."
               }
-              className="absolute -left-[0vw] -top-[0vw] max-w-[150px] md:-left-12 md:-top-[5vw] md:max-w-[200px]"
+              className="absolute left-0 top-0 max-w-[150px] -translate-x-[50%] -translate-y-[100%] md:max-w-[200px] md:-translate-x-[100%]"
             />
           }
           rightBubble={
@@ -58,10 +58,11 @@ const Page = () => {
               message={
                 " I got ANZER Patient Portal App to make appointment, do you want to book it?"
               }
-              className="absolute -right-[5vw] -top-[0vw] max-w-[150px] md:-right-28 md:-top-[8vw] md:max-w-[200px]"
+              className="absolute right-0 top-0 max-w-[150px] -translate-y-[100%] translate-x-[50%] md:max-w-[200px] md:translate-x-[100%]"
             />
           }
         />
+        {/* <div className="hidden md:block md:h-[30px]"></div> */}
         <KeyBenefits reverse={true} className="-mt-6 md:mt-0" />
       </div>
       {/* <MessageBubble

@@ -124,7 +124,7 @@ export default function Component() {
           config={chartConfig}
           className="mx-auto aspect-square max-h-[400px] [&_.recharts-text]:fill-background"
         >
-          <PieChart>
+          <PieChart className="">
             <Pie
               data={chartData}
               dataKey="visitors"
@@ -154,14 +154,14 @@ export default function Component() {
             <div className="sr-only">Open popover</div>
           </PopoverTrigger>
           <PopoverContent
-            className="w-64 border-none bg-transparent"
+            className="hidden w-64 border-none bg-transparent md:block"
             style={{
               position: "fixed",
               left: `${popoverPosition.x}px`,
               top: `${popoverPosition.y - 150}px`,
             }}
           >
-            <div className="space-y-5">
+            <div className="flex flex-col justify-center space-y-5 px-10">
               {/* @ts-ignore */}
               {buttons[selectedSegment?.category].map((text: string) => {
                 const href =
@@ -174,7 +174,7 @@ export default function Component() {
                 return (
                   <Link href={`/${href}`} className="block">
                     <Button
-                      className="block bg-main text-[10px] text-white !shadow-none hover:bg-main"
+                      className="block w-[200px] bg-main text-[10px] text-white !shadow-none hover:bg-main"
                       key={text}
                     >
                       {text}
@@ -186,6 +186,29 @@ export default function Component() {
           </PopoverContent>
         </Popover>
       )}
+
+      <div className="x-5 flex flex-col items-center gap-5 py-5 md:hidden">
+        {/* @ts-ignore */}
+        {buttons[selectedSegment?.category]?.map((text: string) => {
+          const href =
+            selectedSegment?.category === "clinicalManagement"
+              ? "clinical-management"
+              : selectedSegment?.category === "managementPerspective"
+                ? "management-perspective"
+                : "patient-engagement";
+
+          return (
+            <Link href={`/${href}`} className="block w-[min(300px,100%)]">
+              <Button
+                className="block w-full bg-main text-[10px] text-white !shadow-none hover:bg-main"
+                key={text}
+              >
+                {text}
+              </Button>
+            </Link>
+          );
+        })}
+      </div>
     </Card>
   );
 }

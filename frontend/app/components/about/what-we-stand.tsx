@@ -61,85 +61,16 @@ const WhatWeStandFor = () => {
                   className={`group bg-gray-100 p-6 transition-transform hover:bg-grey hover:text-white md:translate-x-4 ${styles[idx].container}`}
                 >
                   <div className={`${styles[idx]?.content}`}>
-                    <h3 className="text-xl font-semibold">{card.title}</h3>
-                    <p className="mt-2 opacity-0 duration-300 group-hover:text-white group-hover:opacity-100">
+                    <h3 className="text-xl font-semibold text-main md:text-black md:group-hover:text-white">
+                      {card.title}
+                    </h3>
+                    <p className="mt-2 opacity-100 duration-300 md:opacity-0 md:group-hover:text-white md:group-hover:opacity-100">
                       {card.description}
                     </p>
                   </div>
                 </div>
               );
             })}
-            {/* Collaborative */}
-            {/* <Card className="p-6 transition-transform md:translate-x-4">
-              <div className="flex items-start gap-4">
-                <div className="rounded-lg bg-orange-100 p-3 dark:bg-orange-900">
-                  <Users className="h-6 w-6 text-orange-600 dark:text-orange-200" />
-                </div>
-                <div>
-                  <h3 className="text-xl font-semibold text-orange-600 dark:text-orange-200">
-                    Collaborative
-                  </h3>
-                  <p className="mt-2 text-muted-foreground">
-                    Foster teamwork and partnership to enhance service delivery
-                    and outcomes.
-                  </p>
-                </div>
-              </div>
-            </Card> */}
-
-            {/* Integrity */}
-            {/* <Card className="p-6 transition-transform md:-translate-x-4">
-              <div className="flex items-start gap-4">
-                <div className="rounded-lg bg-blue-100 p-3 dark:bg-blue-900">
-                  <Shield className="h-6 w-6 text-blue-600 dark:text-blue-200" />
-                </div>
-                <div>
-                  <h3 className="text-xl font-semibold text-blue-600 dark:text-blue-200">
-                    Integrity
-                  </h3>
-                  <p className="mt-2 text-muted-foreground">
-                    Upholds high ethical standards and transparency in all
-                    operations.
-                  </p>
-                </div>
-              </div>
-            </Card> */}
-
-            {/* Innovative */}
-            {/* <Card className="p-6 transition-transform md:translate-x-4">
-              <div className="flex items-start gap-4">
-                <div className="rounded-lg bg-green-100 p-3 dark:bg-green-900">
-                  <Lightbulb className="h-6 w-6 text-green-600 dark:text-green-200" />
-                </div>
-                <div>
-                  <h3 className="text-xl font-semibold text-green-600 dark:text-green-200">
-                    Innovative
-                  </h3>
-                  <p className="mt-2 text-muted-foreground">
-                    Committed to developing cutting-edge solutions that advance
-                    healthcare technology.
-                  </p>
-                </div>
-              </div>
-            </Card> */}
-
-            {/* Customer Centric */}
-            {/* <Card className="p-6 transition-transform md:-translate-x-4">
-              <div className="flex items-start gap-4">
-                <div className="rounded-lg bg-red-100 p-3 dark:bg-red-900">
-                  <Heart className="h-6 w-6 text-red-600 dark:text-red-200" />
-                </div>
-                <div>
-                  <h3 className="text-xl font-semibold text-red-600 dark:text-red-200">
-                    Customer Centric
-                  </h3>
-                  <p className="mt-2 text-muted-foreground">
-                    Prioritizes the needs and satisfaction of healthcare
-                    providers and patients.
-                  </p>
-                </div>
-              </div>
-            </Card> */}
           </div>
 
           {/* Center logo */}

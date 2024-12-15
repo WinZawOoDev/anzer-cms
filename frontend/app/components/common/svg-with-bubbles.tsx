@@ -15,7 +15,9 @@ const SvgWithBubbles: React.FC<Props> = ({
   className,
 }) => {
   return (
-    <div className={`relative mx-auto max-w-[350px] ${className}`}>
+    <div
+      className={`relative mx-auto aspect-square max-w-[200px] px-1 py-1 md:aspect-video md:max-w-[400px] ${className}`}
+    >
       {leftBubble}
       {SvgComponent}
       {rightBubble}
