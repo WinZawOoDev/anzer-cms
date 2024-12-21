@@ -1,0 +1,7 @@
+/**
+ * clinical-management service
+ */
+
+import { factories } from '@strapi/strapi';
+
+export default factories.createCoreService('api::clinical-management.clinical-management');

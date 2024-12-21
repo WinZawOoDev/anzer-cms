@@ -1,0 +1,17 @@
+{
+  "collectionName": "components_shared_content_with_titles",
+  "info": {
+    "displayName": "ContentWithTitle"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "contents": {
+      "type": "component",
+      "repeatable": true,
+      "component": "shared.content"
+    }
+  }
+}

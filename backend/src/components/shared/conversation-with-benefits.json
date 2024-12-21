@@ -1,0 +1,35 @@
+{
+  "collectionName": "components_shared_conversation_with_benefits",
+  "info": {
+    "displayName": "ConversationWithBenefits",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "conversation_1": {
+      "type": "text"
+    },
+    "conversation_2": {
+      "type": "text"
+    },
+    "benefits_title": {
+      "type": "string"
+    },
+    "text": {
+      "type": "component",
+      "repeatable": true,
+      "component": "shared.text"
+    },
+    "image": {
+      "allowedTypes": [
+        "images",
+        "files"
+      ],
+      "type": "media",
+      "multiple": false
+    }
+  }
+}

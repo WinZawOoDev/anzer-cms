@@ -1,0 +1,20 @@
+{
+  "collectionName": "components_shared_commercial_features",
+  "info": {
+    "displayName": "CommercialFeatures"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "sub_title": {
+      "type": "string"
+    },
+    "text": {
+      "type": "component",
+      "repeatable": true,
+      "component": "shared.text"
+    }
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "collectionName": "components_shared_essential_modules",
+  "info": {
+    "displayName": "EssentialModules"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "labels": {
+      "type": "component",
+      "repeatable": true,
+      "component": "shared.text"
+    }
+  }
+}

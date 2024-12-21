@@ -1,0 +1,26 @@
+{
+  "collectionName": "components_shared_info_with_titles",
+  "info": {
+    "displayName": "InfoWithTitle",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "infos": {
+      "type": "component",
+      "repeatable": true,
+      "component": "shared.info"
+    },
+    "first_section_image": {
+      "allowedTypes": [
+        "files",
+        "images"
+      ],
+      "type": "media",
+      "multiple": false
+    }
+  }
+}
