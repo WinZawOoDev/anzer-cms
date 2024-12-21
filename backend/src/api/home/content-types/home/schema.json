@@ -12,29 +12,20 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "title": {
-      "type": "string"
-    },
-    "home_banner": {
+    "first_section": {
       "type": "component",
       "repeatable": true,
       "component": "shared.content"
     },
-    "second_section_title": {
-      "type": "string"
-    },
-    "section_section_contents": {
+    "second_section": {
       "type": "component",
-      "repeatable": true,
-      "component": "shared.content"
+      "repeatable": false,
+      "component": "shared.content-with-title"
     },
-    "third_section_title": {
-      "type": "string"
-    },
-    "third_section_contents": {
+    "third_section": {
       "type": "component",
-      "repeatable": true,
-      "component": "shared.content"
+      "repeatable": false,
+      "component": "shared.content-with-title"
     }
   }
 }
