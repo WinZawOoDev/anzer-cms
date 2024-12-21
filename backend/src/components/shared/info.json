@@ -1,0 +1,15 @@
+{
+  "collectionName": "components_shared_infos",
+  "info": {
+    "displayName": "Info"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "description": {
+      "type": "text"
+    }
+  }
+}

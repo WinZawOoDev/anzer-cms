@@ -1,0 +1,30 @@
+{
+  "kind": "singleType",
+  "collectionName": "patient_engagements",
+  "info": {
+    "singularName": "patient-engagement",
+    "pluralName": "patient-engagements",
+    "displayName": "PatientEngagement"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "first_section": {
+      "type": "component",
+      "repeatable": false,
+      "component": "shared.conversation-with-benefits"
+    },
+    "second_section": {
+      "type": "component",
+      "repeatable": false,
+      "component": "shared.conversation-with-benefits"
+    },
+    "third_section": {
+      "type": "component",
+      "repeatable": false,
+      "component": "shared.conversation-with-benefits"
+    }
+  }
+}

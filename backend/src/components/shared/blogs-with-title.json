@@ -1,0 +1,17 @@
+{
+  "collectionName": "components_shared_blogs_with_titles",
+  "info": {
+    "displayName": "BlogsWithTitle"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "blogs": {
+      "type": "component",
+      "repeatable": true,
+      "component": "shared.blog"
+    }
+  }
+}
