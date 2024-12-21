@@ -90,10 +90,12 @@ export interface SharedInfo extends Struct.ComponentSchema {
   collectionName: 'components_shared_infos';
   info: {
     displayName: 'Info';
+    description: '';
   };
   attributes: {
     title: Schema.Attribute.String;
     description: Schema.Attribute.Text;
+    phone: Schema.Attribute.String;
   };
 }
 

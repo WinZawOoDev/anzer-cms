@@ -39,6 +39,13 @@ type TextItem = {
   text: string;
 };
 
+type AddressType = {
+  id: number;
+  title: string;
+  description: string;
+  phone: string;
+};
+
 type HomeSectionsType = {
   data: {
     first_section: Content[];
@@ -244,5 +251,12 @@ type PatientEngagementSectionsType = {
       benefits_title: string;
       text: Info[];
     };
+  };
+};
+
+type FooterSectionsType = {
+  data: {
+    id: number;
+    address: AddressType[];
   };
 };

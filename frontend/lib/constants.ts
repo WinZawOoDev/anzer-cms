@@ -6,3 +6,5 @@ export const newDataUrl = `${hostUrl}/api/new?populate[first_section][populate][
 export const clinicalManagementDataUrl = `${hostUrl}/api/clinical-management?populate[first_section][populate][text]=*&&populate[second_section][populate][text]=*&&populate[second_section][populate][image]=*&&populate[third_section][populate][text]=*&&populate[third_section][populate][image]=*`;
 export const managementPerspectiveDataUrl = `${hostUrl}/api/management-perspective?populate[first_section][populate][infos]=*&&populate[first_section][populate][image]=*&&populate[second_section][populate][contents][populate][image]=*&&populate[third_section][populate][contents][populate][image]=*`;
 export const patientEngagementDataUrl = `${hostUrl}/api/patient-engagement?populate[first_section][populate][text]=*&&populate[second_section][populate][text]=*&&populate[third_section][populate][text]=*`;
+
+export const footerDataUrl = `${hostUrl}/api/footer?populate=*`;

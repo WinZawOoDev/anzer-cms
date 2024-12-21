@@ -562,12 +562,13 @@ export interface ApiFooterFooter extends Struct.SingleTypeSchema {
     singularName: 'footer';
     pluralName: 'footers';
     displayName: 'Footer';
+    description: '';
   };
   options: {
     draftAndPublish: true;
   };
   attributes: {
-    address: Schema.Attribute.Component<'shared.info', false>;
+    address: Schema.Attribute.Component<'shared.info', true>;
     createdAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
     publishedAt: Schema.Attribute.DateTime;
