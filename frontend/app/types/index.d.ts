@@ -47,18 +47,16 @@ type AddressType = {
 };
 
 type HomeSectionsType = {
-  data: {
-    first_section: Content[];
-    second_section: {
-      id: number;
-      title: string;
-      contents: Content[];
-    };
-    third_section: {
-      id: number;
-      title: string;
-      contents: Content[];
-    };
+  first_section: Content[];
+  second_section: {
+    id: number;
+    title: string;
+    contents: Content[];
+  };
+  third_section: {
+    id: number;
+    title: string;
+    contents: Content[];
   };
 };
 

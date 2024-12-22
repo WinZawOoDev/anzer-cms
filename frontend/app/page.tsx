@@ -5,19 +5,19 @@ import WhatImplement from "./components/home/what-implement";
 
 import Container from "@/components/common/page-container";
 import { homeDataUrl } from "@/lib/constants";
-export default function Home() {
-  console.log("home Data Url", homeDataUrl);
+export default async function Home() {
+  const res = await fetch(homeDataUrl, {
+    cache: "no-cache",
+  });
+  const data = (await res.json()).data as HomeSectionsType;
+  // console.log("Home Data", data);
   return (
     <Container>
-      <BannerSlider />
-      <WhyAnzer />
-
-      {/* <WhatWeImplement /> */}
-      <WhatImplement />
-
-      {/* <ImplementationSection /> */}
-
-      {/* <WhatWeImplement /> */}
+      <BannerSlider data={{ first_section: data.first_section }} />
+      <WhyAnzer data={{ second_section: data.second_section }} />
+      <WhatImplement data={{ third_section: data.third_section }} />
     </Container>
   );
 }
+
+export const dynamic = "force-dynamic";

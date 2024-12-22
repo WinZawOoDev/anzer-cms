@@ -7,6 +7,16 @@ const nextConfig = {
 
     ignoreDuringBuilds: true,
   },
+  images: {
+    remotePatterns: [
+      {
+        protocol: "http",
+        hostname: "localhost",
+        port: "1337", // Optional: specify the port
+        pathname: "/**", // Optional: specify the path patterns
+      },
+    ],
+  },
 };
 
 export default nextConfig;
