@@ -6,7 +6,6 @@ const WhyAnzer: React.FC<{
   data: Pick<HomeSectionsType, "second_section">;
 }> = ({ data }) => {
   const secData = data.second_section;
-  console.log("sec Data", data.second_section.contents);
   return (
     <section className="container">
       <div className="space-y-8 md:space-y-14">

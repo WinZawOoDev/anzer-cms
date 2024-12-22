@@ -1,4 +1,4 @@
-import img from "@/assets/imgs/default-img-013.png";
+
 import { hostUrl } from "@/lib/constants";
 import Image from "next/image";
 const NewsCard: React.FC<Blog> = ({ description, image, title }) => {

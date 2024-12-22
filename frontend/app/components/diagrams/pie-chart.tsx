@@ -96,7 +96,7 @@ const Component: React.FC<{
       setFontSize(6);
     }
   }, [isSmallScreen]);
-  console.log("fontsise", fontSize);
+
   const handlePieEnter = (_: any, index: number) => {
     setActiveIndex(index);
   };
@@ -110,7 +110,7 @@ const Component: React.FC<{
     setPopoverPosition({ x: event.clientX, y: event.clientY });
     setPopoverOpen(true);
   };
-  console.log("selected segment", selectedSegment);
+
 
   return (
     <Card className="relative flex flex-col border-none shadow-none">

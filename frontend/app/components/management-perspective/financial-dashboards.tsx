@@ -6,38 +6,25 @@ import imgTwo from "@/assets/imgs/default-img-015.jpg";
 import imgThree from "@/assets/imgs/default-img-016.jpg";
 import imgFour from "@/assets/imgs/default-img-017.jpg";
 import { useState } from "react";
+import { hostUrl } from "@/lib/constants";
 
-const data = [
-  {
-    title: "real-time overview",
-    description: "Instant cash flow and expense tracking",
-  },
-  {
-    title: "buguest control",
-    description: "Monitor spending vs. budgets.",
-  },
-  {
-    title: "SMARTER DECISIONS",
-    description: "Financial data guides strategy.",
-  },
-  {
-    title: " ACCURATE FORECASTS",
-    description: "Predict future trends effectively.",
-  },
-];
-const images = [imgOne, imgTwo, imgThree, imgFour];
-const FinancialDashboards = () => {
+const FinancialDashboards: React.FC<{
+  data: Pick<ManagementPerspectiveSectionsType, "second_section">;
+}> = ({ data }) => {
   const isMobile = useMediaQuery("(max-width: 768px)");
   const [currentIdx, setCurrentIdx] = useState(0);
+  const secData = data.second_section;
+
   return (
     <div className="space-y-5 md:space-y-10" key={currentIdx}>
       <SectionTitle label="Financial dashboard benefits" />
       <div className="hidden gap-2 md:grid md:grid-cols-4">
-        {data.map((item, idx) => {
+        {secData.contents.map((item, idx) => {
           return (
             <div
               style={{
-                backgroundImage: `url(${images[currentIdx].src})`,
+                // @ts-ignore
+                backgroundImage: `url(${hostUrl}/${secData.contents[currentIdx].image.url})`,
                 backgroundSize: isMobile ? "200% 200%" : "400% 100%",
                 backgroundPosition: isMobile
                   ? `${(idx % 2) * 100}% ${Math.floor(idx / 2) * 100}%`
@@ -61,11 +48,13 @@ const FinancialDashboards = () => {
         })}
       </div>
       <div className="block space-y-4 md:hidden">
-        {data.map((item, idx) => {
+        {secData.contents.map((item, idx) => {
           return (
             <div
+              key={idx}
               style={{
-                backgroundImage: `url(${images[idx].src})`,
+                // @ts-ignore
+                backgroundImage: `url(${hostUrl}/${item.image.url})`,
                 backgroundSize: "100% 100%",
                 backgroundPosition: "center",
               }}

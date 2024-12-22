@@ -3298,3 +3298,5 @@ const HomeCareSvg = () => {
     </svg>
   );
 };
+
+export default HomeCareSvg;

@@ -21,7 +21,7 @@ const WhatImplement: React.FC<{
 }> = ({ data }) => {
   const [idx, setIdx] = useState(-1);
   const secData = data.third_section;
-  console.log("Why Implement", secData);
+
   return (
     <div className="container">
       <div className="relative mx-auto flex aspect-[10/9] max-w-[500px] flex-col justify-between bg-main py-10">

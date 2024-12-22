@@ -153,100 +153,93 @@ type NewSectionsType = {
 };
 
 type ManagementPerspectiveSectionsType = {
-  data: {
+  id: number;
+  first_section: {
     id: number;
-    first_section: {
-      id: number;
-      title: string;
-      infos: Info[];
-      image: {
-        formats: {
-          large: Image;
-        };
+    title: string;
+    infos: Info[];
+    image: {
+      formats: {
+        large: Image;
       };
     };
-    second_section: {
-      id: number;
-      title: string;
-      contents: Content[];
-    };
-    third_section: {
-      id: number;
-      title: string;
-      contents: Content[];
-    };
+  };
+  second_section: {
+    id: number;
+    title: string;
+    contents: Content[];
+  };
+  third_section: {
+    id: number;
+    title: string;
+    contents: Content[];
   };
 };
 
 type ClinicalManagementSectionsType = {
-  data: {
+  id: number;
+  first_section: {
     id: number;
-    first_section: {
-      id: number;
-      title: string;
-      sub_title: string;
-      text: TextItem[];
-    };
-    second_section: {
-      id: number;
-      title: string;
-      conversation_1: string;
-      conversation_2: string;
-      benefits_title: string;
+    title: string;
+    sub_title: string;
+    text: TextItem[];
+  };
+  second_section: {
+    id: number;
+    title: string;
+    conversation_1: string;
+    conversation_2: string;
+    benefits_title: string;
 
-      text: TextItem[];
-      image: {
-        formats: {
-          large: Image;
-        };
+    text: TextItem[];
+    image: {
+      formats: {
+        large: Image;
       };
     };
-    third_section: {
-      id: number;
-      title: string;
-      conversation_1: string;
-      conversation_2: string;
-      text: TextItem[];
-      benefits_title: string;
-      image: {
-        formats: {
-          large: Image;
-        };
+  };
+  third_section: {
+    id: number;
+    title: string;
+    conversation_1: string;
+    conversation_2: string;
+    text: TextItem[];
+    benefits_title: string;
+    image: {
+      formats: {
+        large: Image;
       };
     };
   };
 };
 
 type PatientEngagementSectionsType = {
-  data: {
+  id: number;
+  first_section: {
     id: number;
-    first_section: {
-      id: number;
-      title: string;
-      conversation_1: string;
-      conversation_2: string;
-      benefits_title: string;
-      text: Info[];
-    };
-    second_section: {
-      id: number;
-      title: string;
-      conversation_1: string;
-      conversation_2: string;
-      benefits_title: string;
-      text: Info[];
-    };
-    third_section: {
-      id: number;
-      title: string;
-      conversation_1: string;
-      conversation_2: string;
-      benefits_title: string;
-      text: Info[];
-    };
+    title: string;
+    conversation_1: string;
+    conversation_2: string;
+    benefits_title: string;
+    text: TextItem[];
+  };
+  second_section: {
+    id: number;
+    title: string;
+    conversation_1: string;
+    conversation_2: string;
+    benefits_title: string;
+    text: TextItem[];
+  };
+  third_section: {
+    id: number;
+    title: string;
+    conversation_1: string;
+    conversation_2: string;
+    benefits_title: string;
+    text: TextItem[];
   };
 };
-
 type FooterSectionsType = {
   data: {
     id: number;

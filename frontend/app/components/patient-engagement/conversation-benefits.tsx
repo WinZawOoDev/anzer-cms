@@ -10,6 +10,7 @@ const ConversationWithBenefits: React.FC<{
   rightBubble?: ReactNode;
   reverse?: boolean;
   benefitsclass?: string;
+  benefits: TextItem[];
 }> = ({
   className,
   SvgComponent,
@@ -18,6 +19,7 @@ const ConversationWithBenefits: React.FC<{
   rightBubble,
   reverse,
   benefitsclass,
+  benefits,
 }) => {
   return (
     <div className="space-y-8 md:space-y-16">
@@ -37,7 +39,7 @@ const ConversationWithBenefits: React.FC<{
           className={`benefits absolute -bottom-1/2 h-min w-full flex-1 -translate-y-1/2 md:right-0 md:top-2/3 md:w-[min(500px,100%)] md:-translate-y-1/2 md:translate-x-0 ${reverse ? "left-0" : "right-0"} ${benefitsclass}`}
         >
           <FadeX dir={reverse ? "left" : "right"}>
-            <KeyBenefits />
+            <KeyBenefits benefits={benefits} />
           </FadeX>
         </div>
       </div>

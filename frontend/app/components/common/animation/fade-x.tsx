@@ -9,7 +9,6 @@ const FadeX: React.FC<
     amount: 0.5,
   });
   const initialX = dir == "right" ? 100 : -100;
-  console.log("isInView: ", isInView);
   return (
     <motion.div
       ref={ref}

@@ -5,6 +5,7 @@ import imgTwo from "@/assets/imgs/default-img-09.png";
 import imgThree from "@/assets/imgs/default-img-010.png";
 import { useEffect, useState } from "react";
 import Image from "next/image";
+import { hostUrl } from "@/lib/constants";
 const data = [
   {
     title: "CONSISTENCY",
@@ -22,23 +23,25 @@ const data = [
     img: imgThree,
   },
 ];
-const ReportGenerator = () => {
+const ReportGenerator: React.FC<{
+  data: Pick<ManagementPerspectiveSectionsType, "third_section">;
+}> = ({ data }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const secData = data.third_section;
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setCurrentIndex((prevIndex) => (prevIndex + 1) % data.length);
+      setCurrentIndex((prevIndex) => (prevIndex + 1) % secData.contents.length);
     }, 3000);
 
     return () => clearInterval(interval);
-  }, [data.length]);
-  // console.log("currentIndex", currentIndex);
+  }, [secData.contents.length]);
   return (
     <div className="space-y-5 md:space-y-10">
       <SectionTitle label="report generator" />
       <div className="flex w-full flex-col gap-5 md:flex-row">
         <div className="flex-1 space-y-5 py-5 md:w-full md:space-y-10 md:[flex:1]">
-          {data.map((item, idx) => {
+          {secData.contents.map((item, idx) => {
             const isActive = idx === currentIndex;
             return (
               <div
@@ -54,10 +57,12 @@ const ReportGenerator = () => {
         <div className="md:w-fullflex-1 md:[flex:2]">
           <div className="aspect-video w-full">
             <Image
+              width={1600}
+              height={900}
               key={currentIndex}
-              src={data[currentIndex]?.img}
+              src={`${hostUrl}/${secData.contents[currentIndex]?.image.formats.large.url}`}
               className="h-full w-full animate-fadeIn object-cover"
-              alt={data[currentIndex].title}
+              alt={secData.contents[currentIndex].title}
             />
           </div>
         </div>
