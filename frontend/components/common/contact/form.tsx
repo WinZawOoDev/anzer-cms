@@ -1,13 +1,15 @@
 'use client'
 
 import { zodResolver } from '@hookform/resolvers/zod'
-import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form'
+import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form'
 import React from 'react'
 import { useForm, useFormContext } from 'react-hook-form'
 import { z } from 'zod'
 import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
 import { Checkbox } from '@/components/ui/checkbox'
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
+import Link from 'next/link'
 
 const FormSchema = z.object({
     location: z.string(),
@@ -58,13 +60,13 @@ export default function ContactForm() {
         <Form {...form}>
             <form onSubmit={form.handleSubmit(handleSubmit)} className='w-1/2'>
                 <div className='grid grid-cols-4 gap-x-3 gap-y-5 my-3'>
-                    <div className='col-span-4'>
-                        <TextInput
+                    <div className='col-span-2'>
+                        <SelectInput
                             name='location'
                             placeholder='Location'
                         />
                     </div>
-                    <div className='col-span-4'>
+                    <div className='col-span-2'>
                         <TextInput
                             name='hospitalName'
                             placeholder='HospitalName'
@@ -152,6 +154,41 @@ export default function ContactForm() {
     )
 }
 
+function SelectInput({ name, placeholder }: { name: string, placeholder: string }) {
+
+    const { control } = useFormContext();
+
+    return (
+        <FormField
+            control={control}
+            name={name}
+            render={({ field }) => (
+                <FormItem>
+                    <Select onValueChange={field.onChange} defaultValue={field.value}>
+                        <FormControl >
+                            <SelectTrigger
+                                className='h-full py-4 px-5 rounded-sm border-none focus-visible:ring-0 bg-[#F1F4FF] text-secondary leading-6 tracking-wide text-xs focus:outline-none focus-within:outline-none focus:ring-0 focus-within:ring-0'
+                            >
+                                <SelectValue className='leading-6 tracking-wide font-normal text-xs text-[#B3B4B9]' placeholder={placeholder} />
+                            </SelectTrigger>
+                        </FormControl>
+                        <SelectContent>
+                            <SelectItem value="singapore">Singapore</SelectItem>
+                            <SelectItem value="malaysia">Malaysia</SelectItem>
+                            <SelectItem value="india">India</SelectItem>
+                            <SelectItem value="philipine">Philipine</SelectItem>
+                            <SelectItem value="myanmar">Myanmar</SelectItem>
+                            <SelectItem value="thailand">Thailand</SelectItem>
+                            <SelectItem value="cambodia">Cambodia</SelectItem>
+                        </SelectContent>
+                    </Select>
+                    <FormMessage />
+                </FormItem>
+            )}
+        />
+    )
+}
+
 
 function TextInput({ name, placeholder }: { name: string, placeholder: string }) {
 
@@ -178,6 +215,7 @@ function TextInput({ name, placeholder }: { name: string, placeholder: string })
     )
 
 }
+
 
 function CheckBoxInput({ name, placeholder }: { name: string, placeholder: string }) {
     const { control } = useFormContext();
