@@ -5,9 +5,9 @@ import "leaflet/dist/leaflet.css";
 import "leaflet-defaulticon-compatibility/dist/leaflet-defaulticon-compatibility.webpack.css";
 import "leaflet-defaulticon-compatibility";
 
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import * as L from 'leaflet'
-import { MapContainer, Marker, Popup, TileLayer } from 'react-leaflet'
+import { MapContainer, Marker, Popup, TileLayer, useMap } from 'react-leaflet'
 import { FooterContext } from "@/context/footer-context";
 
 const latitude = 16.871311;
@@ -43,9 +43,21 @@ export default function MapLeaflet() {
 
             <Marker icon={customMarkerIcon} position={[selectedCountry.latLong?.lat!, selectedCountry.latLong?.lng!]}>
                 <Popup>
-                    <b>ANZER</b> IT Healthcare asia
+                    <b>ANZER</b> IT Healthcare asia <b>{selectedCountry.countryName}</b>
                 </Popup>
             </Marker>
+            <SetCenterOnCountryChange lat={selectedCountry.latLong?.lat!} lng={selectedCountry.latLong?.lng!} />
         </MapContainer>
     )
+}
+
+function SetCenterOnCountryChange({ lat, lng }: { lat: number, lng: number }) {
+
+    const map = useMap();
+
+    useEffect(() => {
+        map.setView([lat, lng]);
+    }, [lat, lng])
+
+    return null;
 }
