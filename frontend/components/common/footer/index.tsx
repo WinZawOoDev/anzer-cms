@@ -20,7 +20,7 @@ export default function Footer() {
               <Flags />
               <Address />
             </div>
-            <div className="flex sm:flex-col sm:justify-between sm:h-ful py-2 sm:py-3">
+            <div className="flex sm:flex-col sm:justify-between sm:h-ful py-1 sm:py-0">
               <Resources />
               <Social />
             </div>

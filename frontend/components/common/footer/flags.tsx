@@ -102,8 +102,9 @@ export default function Flags() {
                 <button
                     onClick={() => { setSelectedCountry(country) }}
                     key={country.id}
+                    className='outline-none focus:outline-none focus:ring-0 focus-within:ring-0'
                 >
-                    <span className={`inline-block min-w-14 max-w-min ${country.id === selectedCountry.id ? 'ring-2 ring-offset-1 ring-white' : 'ring-0'}`}>
+                    <span className={`hover:cursor-pointer inline-block min-w-14 max-w-min ${country.id === selectedCountry.id ? 'ring-2 ring-offset-1 ring-white' : 'ring-0'}`}>
                         {<country.CountryFlag />}
                     </span>
                 </button>
