@@ -12,10 +12,10 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "address": {
+    "locations": {
       "type": "component",
       "repeatable": true,
-      "component": "shared.info"
+      "component": "shared.address"
     }
   }
 }
