@@ -211,6 +211,20 @@ export interface SharedBlog extends Struct.ComponentSchema {
   };
 }
 
+export interface SharedAddress extends Struct.ComponentSchema {
+  collectionName: 'components_shared_addresses';
+  info: {
+    displayName: 'Address';
+  };
+  attributes: {
+    country: Schema.Attribute.String;
+    address: Schema.Attribute.Text;
+    phone: Schema.Attribute.String;
+    lat: Schema.Attribute.Decimal;
+    lng: Schema.Attribute.Decimal;
+  };
+}
+
 export interface SharedAccorSec extends Struct.ComponentSchema {
   collectionName: 'components_shared_accor_secs';
   info: {
@@ -243,6 +257,7 @@ declare module '@strapi/strapi' {
       'shared.commercial-features': SharedCommercialFeatures;
       'shared.blogs-with-title': SharedBlogsWithTitle;
       'shared.blog': SharedBlog;
+      'shared.address': SharedAddress;
       'shared.accor-sec': SharedAccorSec;
     }
   }
