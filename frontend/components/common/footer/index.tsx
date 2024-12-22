@@ -5,6 +5,7 @@ import SearchForm from "./search-form";
 import Map from "./map";
 import Address from "./address";
 import FooterContextProvider from "@/context/footer-context";
+import Flags from "./flags";
 
 export default function Footer() {
   return (
@@ -15,8 +16,11 @@ export default function Footer() {
             <div className="px-3 py-1 rounded-lg">
               <Map />
             </div>
-            <Address />
-            <div className="flex sm:flex-col sm:justify-between sm:h-ful py-2 sm:py-3">
+            <div>
+              <Flags />
+              <Address />
+            </div>
+            <div className="flex sm:flex-col sm:justify-between sm:h-ful py-1 sm:py-0">
               <Resources />
               <Social />
             </div>

@@ -5,9 +5,10 @@ import "leaflet/dist/leaflet.css";
 import "leaflet-defaulticon-compatibility/dist/leaflet-defaulticon-compatibility.webpack.css";
 import "leaflet-defaulticon-compatibility";
 
-import React, { useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import * as L from 'leaflet'
-import { MapContainer, Marker, Popup, TileLayer } from 'react-leaflet'
+import { MapContainer, Marker, Popup, TileLayer, useMap } from 'react-leaflet'
+import { FooterContext } from "@/context/footer-context";
 
 const latitude = 16.871311;
 const longitude = 96.199379;
@@ -24,12 +25,12 @@ const customMarkerIcon = L.icon({
 
 export default function MapLeaflet() {
 
-    const [map, setMap] = useState({ latitude, longitude, zoom });
+    const { selectedCountry } = useContext(FooterContext) as FooterContextType
 
     return (
         <MapContainer
-            center={[map.latitude, map.longitude]}
-            zoom={map.zoom}
+            center={[selectedCountry.latLong?.lat!, selectedCountry.latLong?.lng!]}
+            zoom={zoom}
             scrollWheelZoom={false}
             style={{
                 height: '300px',
@@ -37,15 +38,26 @@ export default function MapLeaflet() {
             }}
         >
             <TileLayer
-                attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                 url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
             />
 
-            <Marker icon={customMarkerIcon} position={[latitude, longitude]}>
+            <Marker icon={customMarkerIcon} position={[selectedCountry.latLong?.lat!, selectedCountry.latLong?.lng!]}>
                 <Popup>
-                    <b>ANZER</b> IT Healthcare asia
+                    <b>ANZER</b> IT Healthcare asia <b>{selectedCountry.countryName}</b>
                 </Popup>
             </Marker>
+            <SetCenterOnCountryChange lat={selectedCountry.latLong?.lat!} lng={selectedCountry.latLong?.lng!} />
         </MapContainer>
     )
+}
+
+function SetCenterOnCountryChange({ lat, lng }: { lat: number, lng: number }) {
+
+    const map = useMap();
+
+    useEffect(() => {
+        map.setView([lat, lng]);
+    }, [lat, lng])
+
+    return null;
 }
