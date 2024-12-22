@@ -11,6 +11,7 @@ import { Checkbox } from '@/components/ui/checkbox'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { nanoid } from 'nanoid'
 import { PhoneInput } from '@/components/ui/phone-input'
+import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group'
 
 const selectAbleCountry = [
     { id: nanoid(), name: 'Singapore' },
@@ -38,7 +39,7 @@ const selectAbleImplementTime = [
 
 const FormSchema = z.object({
     location: z.string({ required_error: 'location is required' }).min(1, 'Location is required'),
-    hospitalName: z.string().min(1, 'Hospital is required'),
+    hospitalName: z.string().min(1, 'HospitalName is required'),
     firstName: z.string().min(1, 'FirstName is required'),
     lastName: z.string().min(1, 'LastName is required'),
     jobTitle: z.string().min(1, 'JobTitle is required'),
@@ -97,7 +98,10 @@ export default function ContactForm() {
                             placeholder='HospitalName'
                         />
                     </div>
-                    <div className='justify-items-start'>
+                    <div className='col-span-4'>
+                        <RadioInput />
+                    </div>
+                    {/* <div className='justify-items-start'>
                         <CheckBoxInput
                             name='dr'
                             placeholder='Dr'
@@ -120,7 +124,7 @@ export default function ContactForm() {
                             name='other'
                             placeholder='Other'
                         />
-                    </div>
+                    </div> */}
                     <div className='col-span-2'>
                         <TextInput
                             name='firstName'
@@ -301,4 +305,55 @@ function PhoneNumberInput({ name, placeholder }: { name: string, placeholder: st
         />
     )
 
+}
+
+function RadioInput() {
+    const { control } = useFormContext();
+    return (
+        <FormField
+            control={control}
+            name="type"
+            render={({ field }) => (
+                <FormItem className="relative space-y-3">
+                    <FormControl>
+                        <RadioGroup
+                            onValueChange={field.onChange}
+                            defaultValue={field.value}
+                            className="flex items-center"
+                        >
+                            <FormItem className="flex items-center space-x-2 mr-2 space-y-0">
+                                <FormLabel className="font-normal">
+                                    Dr.
+                                </FormLabel>
+                                <FormControl>
+                                    <RadioGroupItem value="dr" className='border border-gray-300' />
+                                </FormControl>
+                            </FormItem>
+                            <FormItem className="flex items-center space-x-2 mx-2 space-y-0">
+                                <FormLabel className="font-normal">
+                                    Mr.
+                                </FormLabel>
+                                <FormControl>
+                                    <RadioGroupItem value="mr" className='border border-gray-300' />
+                                </FormControl>
+                            </FormItem>
+                            <FormItem className="flex items-center space-x-2 mx-2 space-y-0">
+                                <FormLabel className="font-normal">Ms.</FormLabel>
+                                <FormControl>
+                                    <RadioGroupItem value="ms" className='border border-gray-300' />
+                                </FormControl>
+                            </FormItem>
+                            <FormItem className="flex items-center space-x-2 mx-2 space-y-0">
+                                <FormLabel className="font-normal">Other.</FormLabel>
+                                <FormControl>
+                                    <RadioGroupItem value="other" className='border border-gray-300' />
+                                </FormControl>
+                            </FormItem>
+                        </RadioGroup>
+                    </FormControl>
+                    <FormMessage />
+                </FormItem>
+            )}
+        />
+    )
 }
