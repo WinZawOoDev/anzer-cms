@@ -2,6 +2,7 @@ import NewsWithAccrodion from "../components/news/news-accrodion";
 import imgOne from "@/assets/imgs/default-img-011.png";
 import imgTwo from "@/assets/imgs/default-img-012.png";
 import NewsSection from "../components/news/news-section";
+import { newDataUrl } from "@/lib/constants";
 
 const medicalFeatures: MedicalFeature[] = [
   {
@@ -27,26 +28,30 @@ const medicalFeatures: MedicalFeature[] = [
       "Secure, long-term storage solutions for medical records and imaging data",
   },
 ];
-const Page = () => {
+const Page = async () => {
+  const res = await fetch(newDataUrl, {
+    cache: "no-cache",
+  });
+  const data = (await res.json()).data as NewSectionsType;
   return (
     <div className="space-y-8 py-10 pb-36 md:space-y-16 md:py-24">
       <div className="container">
-        <NewsWithAccrodion
-          title="DICOM TECHNOLOGY FOR RADIOLOGY IMAGING"
-          img={imgOne}
-          data={medicalFeatures}
-        />
+        <NewsWithAccrodion data={{ first_section: data.first_section }} />
 
         <div className="h-[250px]"></div>
 
         <NewsWithAccrodion
-          title="LABORATORY INFORMATION SYSTEM"
-          img={imgTwo}
-          data={medicalFeatures}
+          data={{
+            second_section: data.second_section,
+          }}
           reverse={true}
         />
         <div className="h-[250px]"></div>
-        <NewsSection />
+        <NewsSection
+          data={{
+            third_section: data.third_section,
+          }}
+        />
       </div>
     </div>
   );

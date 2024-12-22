@@ -113,43 +113,42 @@ type ProductSectionsType = {
   };
 };
 
+type Blog = {
+  id: number;
+  title: string;
+  description: string;
+  image: {
+    formats: {
+      large: Image;
+    };
+  };
+};
 type NewSectionsType = {
-  data: {
+  id: number;
+  first_section: {
     id: number;
-    first_section: {
-      id: number;
-      title: string;
-      image: {
-        formats: {
-          large: Image;
-        };
+    title: string;
+    image: {
+      formats: {
+        large: Image;
       };
-      infos: Info[];
     };
-    second_section: {
-      id: number;
-      title: string;
-      image: {
-        formats: {
-          large: Image;
-        };
+    infos: Info[];
+  };
+  second_section: {
+    id: number;
+    title: string;
+    image: {
+      formats: {
+        large: Image;
       };
-      infos: Info[];
     };
-    third_section: {
-      id: number;
-      title: string;
-      blogs: {
-        id: number;
-        title: string;
-        description: string;
-        image: {
-          formats: {
-            large: Image;
-          };
-        };
-      }[];
-    };
+    infos: Info[];
+  };
+  third_section: {
+    id: number;
+    title: string;
+    blogs: Blog[];
   };
 };
 
