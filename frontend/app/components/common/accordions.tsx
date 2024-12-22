@@ -26,7 +26,7 @@ const AccordtionContainer: React.FC<{ data: MedicalFeature[] }> = ({
           className="mt-1 border-none first:mt-0"
         >
           <AccordionTrigger className="px-6 py-4 text-black hover:bg-main hover:text-white hover:no-underline data-[state=open]:bg-main data-[state=open]:text-white">
-            <span className="text-base font-medium md:text-xl">
+            <span className="text-base font-medium uppercase md:text-xl">
               {feature.title}
             </span>
           </AccordionTrigger>

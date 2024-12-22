@@ -1,10 +1,14 @@
 import defaultImg from "@/assets/imgs/default-img-04.png";
+import { hostUrl } from "@/lib/constants";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
 
 type Props = {
   reverse?: boolean;
   className?: string;
+  benefits: TextItem[];
+  title?: string;
+  image: Image;
 };
 const benefits = [
   "Boosts patient engagement with easy access to health info",
@@ -12,7 +16,13 @@ const benefits = [
   "Secure communication with healthcare providers",
   "Improves health outcomes through better self-management",
 ];
-const KeyBenefits: React.FC<Props> = ({ reverse, className }) => {
+const KeyBenefits: React.FC<Props> = ({
+  reverse,
+  className,
+  benefits,
+  title,
+  image,
+}) => {
   return (
     <div className={`relative aspect-video md:aspect-auto ${className}`}>
       <div
@@ -22,9 +32,11 @@ const KeyBenefits: React.FC<Props> = ({ reverse, className }) => {
         )}
       >
         <Image
-          src={defaultImg}
+          src={`${hostUrl}/${image.url}`}
           alt={"default image one"}
           className="h-full w-full object-cover"
+          width={1600}
+          height={900}
         />
       </div>
       <div
@@ -33,10 +45,12 @@ const KeyBenefits: React.FC<Props> = ({ reverse, className }) => {
           reverse && "left-0 right-auto",
         )}
       >
-        <p className="text-lg uppercase md:text-xl">Key Benefits</p>
+        <p className="text-lg uppercase md:text-xl">
+          {title || "Key Benefits"}
+        </p>
         <ul className="list-disc space-y-2 pl-5 text-sm md:space-y-3">
           {benefits.map((text, idx) => {
-            return <li key={idx}>{text}</li>;
+            return <li key={idx}>{text.text}</li>;
           })}
         </ul>
       </div>

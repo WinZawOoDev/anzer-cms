@@ -51,20 +51,6 @@ const chartConfig = {
   },
 };
 
-const buttons = {
-  clinicalManagement: [
-    "Specialized Dashboards",
-    "Moblie Apps",
-    "Document Manager",
-  ],
-  managementPerspective: [
-    "Financial Management",
-    "Management Dashboard",
-    "Report Generator",
-  ],
-  patientEngagement: ["Patient Portal", "Consent Form", "Home Care"],
-};
-
 const renderActiveShape = (props: any) => {
   const { cx, cy, innerRadius, outerRadius, startAngle, endAngle, fill } =
     props;
@@ -84,7 +70,9 @@ const renderActiveShape = (props: any) => {
   );
 };
 
-export default function Component() {
+const Component: React.FC<{
+  data: Pick<ProductSectionsType, "first_section">;
+}> = ({ data }) => {
   const [activeIndex, setActiveIndex] = useState(-1);
   const [popoverOpen, setPopoverOpen] = useState(false);
   const [popoverPosition, setPopoverPosition] = useState({ x: 0, y: 0 });
@@ -92,13 +80,23 @@ export default function Component() {
   const [fontSize, setFontSize] = useState(12);
 
   const isSmallScreen = useMediaQuery("(max-width: 400px)");
+  const secData = data.first_section;
+
+  const firstBtns = secData.first.list.map((item) => item.text);
+  const secondBtns = secData.second.list.map((item) => item.text);
+  const thirdBtns = secData.third.list.map((item) => item.text);
+  const buttons = {
+    clinicalManagement: firstBtns,
+    managementPerspective: thirdBtns,
+    patientEngagement: secondBtns,
+  };
 
   useEffect(() => {
     if (isSmallScreen) {
       setFontSize(6);
     }
   }, [isSmallScreen]);
-  console.log("fontsise", fontSize);
+
   const handlePieEnter = (_: any, index: number) => {
     setActiveIndex(index);
   };
@@ -112,7 +110,7 @@ export default function Component() {
     setPopoverPosition({ x: event.clientX, y: event.clientY });
     setPopoverOpen(true);
   };
-  console.log("selected segment", selectedSegment);
+
 
   return (
     <Card className="relative flex flex-col border-none shadow-none">
@@ -211,4 +209,6 @@ export default function Component() {
       </div>
     </Card>
   );
-}
+};
+
+export default Component;

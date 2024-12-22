@@ -90,10 +90,12 @@ export interface SharedInfo extends Struct.ComponentSchema {
   collectionName: 'components_shared_infos';
   info: {
     displayName: 'Info';
+    description: '';
   };
   attributes: {
     title: Schema.Attribute.String;
     description: Schema.Attribute.Text;
+    phone: Schema.Attribute.String;
   };
 }
 
@@ -106,7 +108,7 @@ export interface SharedInfoWithTitle extends Struct.ComponentSchema {
   attributes: {
     title: Schema.Attribute.String;
     infos: Schema.Attribute.Component<'shared.info', true>;
-    first_section_image: Schema.Attribute.Media<'files' | 'images'>;
+    image: Schema.Attribute.Media<'images' | 'files'>;
   };
 }
 
@@ -119,6 +121,7 @@ export interface SharedInfoList extends Struct.ComponentSchema {
   attributes: {
     title: Schema.Attribute.String;
     list: Schema.Attribute.Component<'shared.text', true>;
+    image: Schema.Attribute.Media<'images' | 'files'>;
   };
 }
 

@@ -22,7 +22,7 @@
       "repeatable": false,
       "component": "shared.accor-sec"
     },
-    "blogs": {
+    "third_section": {
       "type": "component",
       "repeatable": false,
       "component": "shared.blogs-with-title"

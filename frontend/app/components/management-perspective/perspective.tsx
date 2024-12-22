@@ -1,40 +1,27 @@
 import Image from "next/image";
 import SectionTitle from "../common/sec-ttl";
-import perspectiveImg from "@/assets/imgs/default-img-07.png";
+import { hostUrl } from "@/lib/constants";
 
-const data = [
-  {
-    title: "DATA-DRIVEN INSIGHTS",
-    description: "Easily identify trends and patterns.",
-  },
-  {
-    title: "PERFORMANCE TRACKING",
-    description: "Monitor KPIs to assess business health.",
-  },
-  {
-    title: "FASTER DECISION-MAKING",
-    description: "Real-time data accelerates responses.",
-  },
-  {
-    title: "ENHANCED FORECASTING",
-    description: "Use historical data for better future predictions.",
-  },
-];
-const Perspective = () => {
+const Perspective: React.FC<{
+  data: Pick<ManagementPerspectiveSectionsType, "first_section">;
+}> = ({ data }) => {
+  const secData = data.first_section;
   return (
     <div className="space-y-5 pb-0 md:space-y-10 md:pb-20">
-      <SectionTitle label="management perspective" />
+      <SectionTitle label={secData.title} />
       <div className="relative">
         <div className="mr-auto hidden max-w-[800px] md:block">
           <Image
-            src={perspectiveImg}
+            src={`${hostUrl}/${secData.image.formats.large.url}`}
             alt="Perspective image"
             className="h-full w-full object-contain"
+            width={1600}
+            height={900}
           />
         </div>
         <div className="static right-0 top-1/2 aspect-auto md:absolute md:aspect-square">
           <div className="grid grid-cols-2 gap-[2px]">
-            {data.map((item, idx) => {
+            {secData.infos.map((item, idx) => {
               return (
                 <div
                   key={idx}

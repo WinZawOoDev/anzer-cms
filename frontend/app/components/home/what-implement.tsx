@@ -7,8 +7,6 @@ import imgfour from "@/assets/imgs/default-img-04.png";
 import imgfive from "@/assets/imgs/default-img-05.jpeg";
 import Image from "next/image";
 import { useState } from "react";
-import { ChevronLeft, ChevronRight } from "lucide-react";
-import { Card, CardContent } from "@/components/ui/card";
 import {
   Carousel,
   CarouselContent,
@@ -16,46 +14,24 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
-const steps = [
-  {
-    title: "Assessment and Planning",
-    description:
-      "We work closely with healthcare facilities to understand their challenges and design tailored solutions.",
-  },
-  {
-    title: "System Setup and Configuration",
-    description:
-      "We assess infrastructure, customize the system, and securely migrate data.",
-  },
-  {
-    title: "Integration and Testing",
-    description:
-      "We ensure smooth integration and thoroughly test the system for reliability.",
-  },
-  {
-    title: "Training and Support",
-    description:
-      "Comprehensive training and support help staff confidently use the new system.",
-  },
-  {
-    title: "Post-Implementation Review and Maintenance",
-    description:
-      "We review performance and provide ongoing support for optimal functionality.",
-  },
-];
-const images = [imgfour, imgtwo, imgthree, imgfour, imgfive];
-const WhatImplement = () => {
+import { hostUrl } from "@/lib/constants";
+
+const WhatImplement: React.FC<{
+  data: Pick<HomeSectionsType, "third_section">;
+}> = ({ data }) => {
   const [idx, setIdx] = useState(-1);
+  const secData = data.third_section;
+
   return (
     <div className="container">
       <div className="relative mx-auto flex aspect-[10/9] max-w-[500px] flex-col justify-between bg-main py-10">
         <SectionTitle
-          label="How Do We Implement"
+          label={secData.title}
           className="text-white before:bg-white"
         />
 
         <div className="absolute left-1/2 top-[120px] z-10 hidden w-max max-w-[100vw] -translate-x-1/2 gap-5 px-5 md:flex">
-          {images.map((img, idx) => {
+          {secData.contents.map((item, idx) => {
             return (
               <div
                 key={idx}
@@ -64,9 +40,12 @@ const WhatImplement = () => {
                 onMouseLeave={() => setIdx(-1)}
               >
                 <Image
-                  src={img}
+                  // @ts-ignore
+                  src={`${hostUrl}/${item.image.formats.large.url}`}
                   alt={"image" + idx}
                   className="h-full w-full object-cover"
+                  width={150}
+                  height={150}
                 />
               </div>
             );
@@ -76,15 +55,18 @@ const WhatImplement = () => {
         <div className="mt-5 flex items-center justify-center md:hidden">
           <Carousel className="w-full max-w-xs">
             <CarouselContent>
-              {steps.map((step, index) => (
+              {secData.contents.map((step, index) => (
                 <CarouselItem key={index}>
                   <div className="p-1">
                     <div className="space-y-5">
                       <div className="aspect-video w-full">
                         <Image
-                          src={images[index]}
+                          // @ts-ignore
+                          src={`${hostUrl}/${step.image.formats.thumbnail.url}`}
                           alt={step.title}
                           className="h-full w-full object-cover"
+                          width={150}
+                          height={150}
                         />
                       </div>
                       <div className="space-y-3 text-center text-white">
@@ -101,11 +83,13 @@ const WhatImplement = () => {
           </Carousel>
         </div>
         <div
-          key={steps[idx]?.title}
+          key={secData.contents[idx]?.title}
           className="spacey-5 mx-auto w-[90%] animate-fadeIn text-center text-white"
         >
-          <p className="text-xl md:text-2xl">{steps[idx]?.title}</p>
-          <p className="text-sm md:text-base">{steps[idx]?.description}</p>
+          <p className="text-xl md:text-2xl">{secData.contents[idx]?.title}</p>
+          <p className="text-sm md:text-base">
+            {secData.contents[idx]?.description}
+          </p>
         </div>
       </div>
 

@@ -500,10 +500,10 @@ export interface ApiAboutAbout extends Struct.SingleTypeSchema {
     first_section_content: Schema.Attribute.Component<'shared.content', false>;
     first_section_info_list: Schema.Attribute.Component<
       'shared.info-list',
-      true
+      false
     >;
     second_section: Schema.Attribute.Component<'shared.info-with-title', false>;
-    thrid_section: Schema.Attribute.Component<'shared.info-with-title', false>;
+    third_section: Schema.Attribute.Component<'shared.info-with-title', false>;
     createdAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
     publishedAt: Schema.Attribute.DateTime;
@@ -562,12 +562,13 @@ export interface ApiFooterFooter extends Struct.SingleTypeSchema {
     singularName: 'footer';
     pluralName: 'footers';
     displayName: 'Footer';
+    description: '';
   };
   options: {
     draftAndPublish: true;
   };
   attributes: {
-    address: Schema.Attribute.Component<'shared.info', false>;
+    address: Schema.Attribute.Component<'shared.info', true>;
     createdAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
     publishedAt: Schema.Attribute.DateTime;
@@ -592,15 +593,15 @@ export interface ApiHomeHome extends Struct.SingleTypeSchema {
     draftAndPublish: true;
   };
   attributes: {
-    title: Schema.Attribute.String;
-    home_banner: Schema.Attribute.Component<'shared.content', true>;
-    second_section_title: Schema.Attribute.String;
-    section_section_contents: Schema.Attribute.Component<
-      'shared.content',
-      true
+    first_section: Schema.Attribute.Component<'shared.content', true>;
+    second_section: Schema.Attribute.Component<
+      'shared.content-with-title',
+      false
     >;
-    third_section_title: Schema.Attribute.String;
-    third_section_contents: Schema.Attribute.Component<'shared.content', true>;
+    third_section: Schema.Attribute.Component<
+      'shared.content-with-title',
+      false
+    >;
     createdAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
     publishedAt: Schema.Attribute.DateTime;
@@ -664,7 +665,7 @@ export interface ApiNewNew extends Struct.SingleTypeSchema {
   attributes: {
     first_section: Schema.Attribute.Component<'shared.accor-sec', false>;
     second_section: Schema.Attribute.Component<'shared.accor-sec', false>;
-    blogs: Schema.Attribute.Component<'shared.blogs-with-title', false>;
+    third_section: Schema.Attribute.Component<'shared.blogs-with-title', false>;
     createdAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
     publishedAt: Schema.Attribute.DateTime;
