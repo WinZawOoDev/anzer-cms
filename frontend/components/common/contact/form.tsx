@@ -9,24 +9,49 @@ import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
 import { Checkbox } from '@/components/ui/checkbox'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
-import Link from 'next/link'
+import { nanoid } from 'nanoid'
+import { PhoneInput } from '@/components/ui/phone-input'
+
+const selectAbleCountry = [
+    { id: nanoid(), name: 'Singapore' },
+    { id: nanoid(), name: 'Malaysia' },
+    { id: nanoid(), name: 'India' },
+    { id: nanoid(), name: 'Philippines' },
+    { id: nanoid(), name: 'Myanmar' },
+    { id: nanoid(), name: 'Thailand' },
+    { id: nanoid(), name: 'Cambodia' },
+]
+
+const selectAbleResponsibility = [
+    { id: nanoid(), name: 'CEO' },
+    { id: nanoid(), name: 'Director' },
+    { id: nanoid(), name: 'Manager' },
+    { id: nanoid(), name: 'Other' },
+]
+
+const selectAbleImplementTime = [
+    { id: nanoid(), name: '3 months' },
+    { id: nanoid(), name: '6 months' },
+    { id: nanoid(), name: '1 year' },
+    { id: nanoid(), name: 'other' },
+]
 
 const FormSchema = z.object({
-    location: z.string(),
-    hospitalName: z.string(),
-    firstName: z.string(),
-    lastName: z.string(),
-    jobTitle: z.string(),
-    responsibility: z.string(),
+    location: z.string({ required_error: 'location is required' }).min(1, 'Location is required'),
+    hospitalName: z.string().min(1, 'Hospital is required'),
+    firstName: z.string().min(1, 'FirstName is required'),
+    lastName: z.string().min(1, 'LastName is required'),
+    jobTitle: z.string().min(1, 'JobTitle is required'),
+    responsibility: z.string().min(1, 'Responsibility is required'),
     mr: z.boolean().default(false).optional(),
     ms: z.boolean().default(false).optional(),
     dr: z.boolean().default(false).optional(),
     other: z.boolean().default(false).optional(),
-    implement: z.string(),
-    email: z.string().email(),
-    countryCode: z.string(),
-    phoneNumber: z.string(),
+    implement: z.string().min(1, 'When to implement is required'),
+    email: z.string().min(1, 'Email is required').email(),
+    phoneNumber: z.string().min(1, 'Phone Number is required'),
 })
+
 
 export default function ContactForm() {
 
@@ -44,7 +69,6 @@ export default function ContactForm() {
             other: false,
             implement: '',
             email: '',
-            countryCode: '',
             phoneNumber: '',
         },
         resolver: zodResolver(FormSchema),
@@ -63,7 +87,8 @@ export default function ContactForm() {
                     <div className='col-span-2'>
                         <SelectInput
                             name='location'
-                            placeholder='Location'
+                            placeholder='Select location'
+                            selectItems={selectAbleCountry}
                         />
                     </div>
                     <div className='col-span-2'>
@@ -115,24 +140,32 @@ export default function ContactForm() {
                         />
                     </div>
                     <div className='col-span-2'>
-                        <TextInput
+                        <SelectInput
                             name='responsibility'
                             placeholder='Responsibility'
+                            selectItems={selectAbleResponsibility}
                         />
                     </div>
                     <div className='col-span-4'>
-                        <TextInput
+                        <SelectInput
                             name='implement'
                             placeholder='When do you like to implement?'
+                            selectItems={selectAbleImplementTime}
                         />
                     </div>
-                    <div className='col-span-4'>
+                    <div className='col-span-2'>
                         <TextInput
                             name='email'
                             placeholder='Email Address'
                         />
                     </div>
                     <div className='col-span-2'>
+                        <PhoneNumberInput
+                            name='phoneNumber'
+                            placeholder='Enter phone number'
+                        />
+                    </div>
+                    {/* <div className='col-span-2'>
                         <TextInput
                             name='countryCode'
                             placeholder='Country Code'
@@ -143,10 +176,10 @@ export default function ContactForm() {
                             name='phoneNumber'
                             placeholder='Phone Number'
                         />
-                    </div>
+                    </div> */}
                 </div>
 
-                <Button type='submit' className='rounded py-4 px-8 bg-primary float-right'>
+                <Button type='submit' className='rounded py-5 px-7 bg-primary float-right'>
                     <span className='font-semibold text-[15px] leading-5 text-white'>Submit</span>
                 </Button>
             </form>
@@ -154,7 +187,11 @@ export default function ContactForm() {
     )
 }
 
-function SelectInput({ name, placeholder }: { name: string, placeholder: string }) {
+function SelectInput({ name, placeholder, selectItems }: {
+    name: string,
+    placeholder: string,
+    selectItems: { id: string, name: string }[]
+}) {
 
     const { control } = useFormContext();
 
@@ -163,26 +200,23 @@ function SelectInput({ name, placeholder }: { name: string, placeholder: string 
             control={control}
             name={name}
             render={({ field }) => (
-                <FormItem>
+                <FormItem className='relative'>
                     <Select onValueChange={field.onChange} defaultValue={field.value}>
                         <FormControl >
                             <SelectTrigger
-                                className='h-full py-4 px-5 rounded-sm border-none focus-visible:ring-0 bg-[#F1F4FF] text-secondary leading-6 tracking-wide text-xs focus:outline-none focus-within:outline-none focus:ring-0 focus-within:ring-0'
+                                className='h-full py-3 px-2'
+                            // className='h-full py-4 px-5 rounded-sm border-none focus-visible:ring-0 bg-[#F1F4FF] text-secondary leading-6 tracking-wide text-xs focus:outline-none focus-within:outline-none focus:ring-0 focus-within:ring-0'
                             >
-                                <SelectValue className='leading-6 tracking-wide font-normal text-xs text-[#B3B4B9]' placeholder={placeholder} />
+                                <SelectValue className='leading-6 tracking-wide font-normal text-xs text-green-500 placeholder:text-[#B3B4B9]' placeholder={placeholder} />
                             </SelectTrigger>
                         </FormControl>
                         <SelectContent>
-                            <SelectItem value="singapore">Singapore</SelectItem>
-                            <SelectItem value="malaysia">Malaysia</SelectItem>
-                            <SelectItem value="india">India</SelectItem>
-                            <SelectItem value="philipine">Philipine</SelectItem>
-                            <SelectItem value="myanmar">Myanmar</SelectItem>
-                            <SelectItem value="thailand">Thailand</SelectItem>
-                            <SelectItem value="cambodia">Cambodia</SelectItem>
+                            {selectItems.map(item => (
+                                <SelectItem key={item.id} value={item.name}>{item.name}</SelectItem>
+                            ))}
                         </SelectContent>
                     </Select>
-                    <FormMessage />
+                    <FormMessage className='absolute -bottom-5' />
                 </FormItem>
             )}
         />
@@ -205,7 +239,8 @@ function TextInput({ name, placeholder }: { name: string, placeholder: string })
                             {...field}
                             type='text'
                             placeholder={placeholder}
-                            className='h-full py-4 px-5 rounded-sm border-none focus-visible:ring-0 bg-[#F1F4FF] text-secondary leading-6 tracking-wide text-xs placeholder:leading-6 placeholder:tracking-wide placeholder:font-normal placeholder:text-xs placeholder:text-[#B3B4B9] '
+                            className='h-full py-3 px-2'
+                        // className='h-full py-4 px-5 rounded-sm border-none focus-visible:ring-0 bg-[#F1F4FF] text-secondary leading-6 tracking-wide text-xs placeholder:leading-6 placeholder:tracking-wide placeholder:font-normal placeholder:text-xs placeholder:text-[#B3B4B9] '
                         />
                     </FormControl>
                     <FormMessage className='absolute -bottom-5' />
@@ -232,7 +267,7 @@ function CheckBoxInput({ name, placeholder }: { name: string, placeholder: strin
                         <Checkbox
                             checked={field.value}
                             onChange={field.onChange}
-                            className='w-6 h-6 rounded-lg border-2 border-primary '
+                            className='w-5 h-5 rounded border-gray-300 box-border'
                         />
                     </FormControl>
                     <FormMessage className='absolute' />
@@ -240,4 +275,30 @@ function CheckBoxInput({ name, placeholder }: { name: string, placeholder: strin
             )}
         />
     )
+}
+
+
+function PhoneNumberInput({ name, placeholder }: { name: string, placeholder: string }) {
+
+    const { control } = useFormContext();
+
+    return (
+        <FormField
+            control={control}
+            name={name}
+            render={({ field }) => (
+                <FormItem className='relative'>
+                    <FormControl>
+                        <PhoneInput
+                            placeholder={placeholder}
+                            {...field}
+                            defaultCountry='MM'
+                        />
+                    </FormControl>
+                    <FormMessage className='absolute -bottom-5' />
+                </FormItem>
+            )}
+        />
+    )
+
 }
