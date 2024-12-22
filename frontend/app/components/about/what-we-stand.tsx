@@ -25,18 +25,21 @@ const cards = [
   },
 ];
 
-const WhatWeStandFor = () => {
+const WhatWeStandFor: React.FC<{
+  data: Pick<AboutSectionsType, "second_section">;
+}> = ({ data }) => {
+  const secData = data.second_section;
   return (
     <div className="container">
       <div className="mx-auto max-w-[800px] space-y-5 md:space-y-10">
-        <SectionTitle label="What we stand for ?" />
+        <SectionTitle label={secData.title} />
 
         <div className="relative">
           {/* Center line */}
           {/* <div className="absolute left-1/2 top-0 h-full w-px -translate-x-1/2 bg-border"˝ /˝> */}
 
           <div className="relative grid gap-8 md:grid-cols-2">
-            {cards.map((card, idx) => {
+            {secData.infos.map((card, idx) => {
               const styles = [
                 {
                   container: "rounded-2xl md:rounded-none md:rounded-tl-3xl",

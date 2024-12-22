@@ -1,22 +1,27 @@
-import DiagramOne from "../components/diagrams/diagram-one";
-import DiagramThree from "../components/diagrams/diagram-three";
-import DiagramTwo from "../components/diagrams/diagram-two";
+import { productDataUrl } from "@/lib/constants";
 import ProductPieChart from "../components/diagrams/pie-chart";
-import BannerSlider from "../components/home/banner-slider";
 import EssentialModules from "../components/products/essential-modules";
 import HighInter from "../components/products/high-inter";
 import PageContainer from "@/components/common/page-container";
 
-const ProductPage = () => {
+const ProductPage = async () => {
+  const res = await fetch(productDataUrl, {
+    cache: "no-cache",
+  });
+  const data = (await res.json()).data as ProductSectionsType;
   return (
     <PageContainer>
-      <ProductPieChart />
+      <ProductPieChart
+        data={{
+          first_section: data.first_section,
+        }}
+      />
       <EssentialModules />
-      <HighInter />
-      {/* <BannerSlider /> */}
-      {/* <DiagramOne />
-      <DiagramTwo />
-      <DiagramThree /> */}
+      <HighInter
+        data={{
+          third_section: data.third_section,
+        }}
+      />
     </PageContainer>
   );
 };

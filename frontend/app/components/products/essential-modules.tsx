@@ -16,6 +16,7 @@ import {
   Network,
 } from "lucide-react";
 import SectionTitle from "../common/sec-ttl";
+import Link from "next/link";
 
 const modules = [
   { icon: Pill, label: "Pharmacy" },
@@ -39,7 +40,9 @@ const EssentialModules = () => {
   return (
     <div className="container">
       <div className="space-y-5 md:space-y-10">
-        <SectionTitle label="Other Essential Modules" />
+        <Link href={"/news"}>
+          <SectionTitle label="Other Essential Modules" />
+        </Link>
         <div className="grid grid-cols-2 gap-6 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-4">
           {modules.map((module, index) => (
             <div

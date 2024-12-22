@@ -61,57 +61,53 @@ type HomeSectionsType = {
 };
 
 type AboutSectionsType = {
-  data: {
+  id: number;
+  first_section_content: Content;
+  first_section_info_list: {
     id: number;
-    first_section_content: Content;
-    first_section_info_list: {
-      id: number;
-      title: string;
-      list: TextItem[];
-    };
-    second_section: {
-      id: number;
-      title: string;
-      infos: Info[];
-    };
-    third_section: {
-      id: number;
-      title: string;
-      infos: Info[];
-    };
+    title: string;
+    list: TextItem[];
+  };
+  second_section: {
+    id: number;
+    title: string;
+    infos: Info[];
+  };
+  third_section: {
+    id: number;
+    title: string;
+    infos: Info[];
   };
 };
 
 type ProductSectionsType = {
-  data: {
+  id: number;
+  first_section: {
     id: number;
-    first_section: {
-      id: number;
-      title: string;
-      first: {
-        id: number;
-        title: string;
-        list: TextItem[];
-      };
-      second: {
-        id: number;
-        title: string;
-        list: TextItem[];
-      };
-      third: {
-        id: number;
-        title: string;
-        list: TextItem[];
-      };
-    };
-    third_section: {
+    title: string;
+    first: {
       id: number;
       title: string;
       list: TextItem[];
-      image: {
-        formats: {
-          large: Image;
-        };
+    };
+    second: {
+      id: number;
+      title: string;
+      list: TextItem[];
+    };
+    third: {
+      id: number;
+      title: string;
+      list: TextItem[];
+    };
+  };
+  third_section: {
+    id: number;
+    title: string;
+    list: TextItem[];
+    image: {
+      formats: {
+        large: Image;
       };
     };
   };
