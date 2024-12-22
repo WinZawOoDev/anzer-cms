@@ -1,4 +1,3 @@
-
 type Country = {
     id: string;
     countryName: string;
