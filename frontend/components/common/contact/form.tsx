@@ -1,8 +1,7 @@
 'use client'
 
 import { zodResolver } from '@hookform/resolvers/zod'
-import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form'
-import React from 'react'
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form'
 import { useForm, useFormContext } from 'react-hook-form'
 import { z } from 'zod'
 import { Input } from '@/components/ui/input'
@@ -37,17 +36,21 @@ const selectAbleImplementTime = [
     { id: nanoid(), name: 'other' },
 ]
 
+const honorifices = [
+    { id: nanoid(), label: 'Dr.', value: 'Dr.' },
+    { id: nanoid(), label: 'Mr.', value: 'Mr.' },
+    { id: nanoid(), label: 'Ms.', value: 'Ms.' },
+    { id: nanoid(), label: 'Other.', value: 'Other.' }
+]
+
 const FormSchema = z.object({
     location: z.string({ required_error: 'location is required' }).min(1, 'Location is required'),
     hospitalName: z.string().min(1, 'HospitalName is required'),
+    honorific: z.string().min(1, 'Honorific is required'),
     firstName: z.string().min(1, 'FirstName is required'),
     lastName: z.string().min(1, 'LastName is required'),
     jobTitle: z.string().min(1, 'JobTitle is required'),
     responsibility: z.string().min(1, 'Responsibility is required'),
-    mr: z.boolean().default(false).optional(),
-    ms: z.boolean().default(false).optional(),
-    dr: z.boolean().default(false).optional(),
-    other: z.boolean().default(false).optional(),
     implement: z.string().min(1, 'When to implement is required'),
     email: z.string().min(1, 'Email is required').email(),
     phoneNumber: z.string().min(1, 'Phone Number is required'),
@@ -60,14 +63,11 @@ export default function ContactForm() {
         defaultValues: {
             location: '',
             hospitalName: '',
+            honorific: '',
             firstName: '',
             lastName: '',
             jobTitle: '',
             responsibility: '',
-            dr: false,
-            mr: false,
-            ms: false,
-            other: false,
             implement: '',
             email: '',
             phoneNumber: '',
@@ -99,32 +99,11 @@ export default function ContactForm() {
                         />
                     </div>
                     <div className='col-span-4'>
-                        <RadioInput />
-                    </div>
-                    {/* <div className='justify-items-start'>
-                        <CheckBoxInput
-                            name='dr'
-                            placeholder='Dr'
+                        <RadioInput
+                            name='honorific'
+                            items={honorifices}
                         />
                     </div>
-                    <div className='justify-items-center'>
-                        <CheckBoxInput
-                            name='mr'
-                            placeholder='Mr'
-                        />
-                    </div>
-                    <div className='justify-items-center'>
-                        <CheckBoxInput
-                            name='ms'
-                            placeholder='Ms'
-                        />
-                    </div>
-                    <div className='justify-items-end'>
-                        <CheckBoxInput
-                            name='other'
-                            placeholder='Other'
-                        />
-                    </div> */}
                     <div className='col-span-2'>
                         <TextInput
                             name='firstName'
@@ -169,20 +148,7 @@ export default function ContactForm() {
                             placeholder='Enter phone number'
                         />
                     </div>
-                    {/* <div className='col-span-2'>
-                        <TextInput
-                            name='countryCode'
-                            placeholder='Country Code'
-                        />
-                    </div>
-                    <div className='col-span-2'>
-                        <TextInput
-                            name='phoneNumber'
-                            placeholder='Phone Number'
-                        />
-                    </div> */}
                 </div>
-
                 <Button type='submit' className='rounded py-5 px-7 bg-primary float-right'>
                     <span className='font-semibold text-[15px] leading-5 text-white'>Submit</span>
                 </Button>
@@ -307,12 +273,12 @@ function PhoneNumberInput({ name, placeholder }: { name: string, placeholder: st
 
 }
 
-function RadioInput() {
+function RadioInput({ name, items }: { name: string, items: { id: string, label: string, value: string }[] }) {
     const { control } = useFormContext();
     return (
         <FormField
             control={control}
-            name="type"
+            name={name}
             render={({ field }) => (
                 <FormItem className="relative space-y-3">
                     <FormControl>
@@ -321,37 +287,19 @@ function RadioInput() {
                             defaultValue={field.value}
                             className="flex items-center"
                         >
-                            <FormItem className="flex items-center space-x-2 mr-2 space-y-0">
-                                <FormLabel className="font-normal">
-                                    Dr.
-                                </FormLabel>
-                                <FormControl>
-                                    <RadioGroupItem value="dr" className='border border-gray-300' />
-                                </FormControl>
-                            </FormItem>
-                            <FormItem className="flex items-center space-x-2 mx-2 space-y-0">
-                                <FormLabel className="font-normal">
-                                    Mr.
-                                </FormLabel>
-                                <FormControl>
-                                    <RadioGroupItem value="mr" className='border border-gray-300' />
-                                </FormControl>
-                            </FormItem>
-                            <FormItem className="flex items-center space-x-2 mx-2 space-y-0">
-                                <FormLabel className="font-normal">Ms.</FormLabel>
-                                <FormControl>
-                                    <RadioGroupItem value="ms" className='border border-gray-300' />
-                                </FormControl>
-                            </FormItem>
-                            <FormItem className="flex items-center space-x-2 mx-2 space-y-0">
-                                <FormLabel className="font-normal">Other.</FormLabel>
-                                <FormControl>
-                                    <RadioGroupItem value="other" className='border border-gray-300' />
-                                </FormControl>
-                            </FormItem>
+                            {items.map(item => (
+                                <FormItem key={item.id} className="flex items-center space-x-2 mr-2 space-y-0">
+                                    <FormLabel className="font-normal">
+                                        {item.label}
+                                    </FormLabel>
+                                    <FormControl>
+                                        <RadioGroupItem value={item.value} className='border border-gray-300' />
+                                    </FormControl>
+                                </FormItem>
+                            ))}
                         </RadioGroup>
                     </FormControl>
-                    <FormMessage />
+                    <FormMessage className='absolute -bottom-5' />
                 </FormItem>
             )}
         />
