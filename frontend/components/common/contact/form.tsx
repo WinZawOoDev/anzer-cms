@@ -83,7 +83,7 @@ export default function ContactForm() {
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(handleSubmit)} className='w-1/2'>
+      <form onSubmit={form.handleSubmit(handleSubmit)} className='mb-20 md:mb-0 md:w-1/2'>
         <div className='grid grid-cols-4 gap-x-3 gap-y-5 my-3'>
           <div className='col-span-2'>
             <SelectInput
@@ -149,7 +149,7 @@ export default function ContactForm() {
             />
           </div>
         </div>
-        <Button type='submit' className='rounded py-5 px-7 bg-primary float-right'>
+        <Button type='submit' className='rounded mt-3 lg:mt-0 py-5 px-7 bg-primary float-right'>
           <span className='font-semibold text-[15px] leading-5 text-white'>Submit</span>
         </Button>
       </form>

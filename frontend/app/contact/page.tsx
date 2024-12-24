@@ -9,14 +9,14 @@ export default function ContactPage() {
     return (
         <PageContainer className='mx-auto'>
             <NavigationBanner />
-            <div className='flex items-center justify-around mx-9'>
+            <div className='md:flex md:items-center md:justify-around mx-5 md:mx-9'>
                 <ContactForm />
                 <Image
                     src={DoctorPointing}
                     alt='Doctor Pointing'
                     height={300}
                     width={300}
-                    className='w-2/5 max-h-[35em]'
+                    className='hidden md:block  w-2/5 max-h-[35em]'
                 />
             </div>
         </PageContainer>

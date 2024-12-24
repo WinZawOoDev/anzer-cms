@@ -11,7 +11,7 @@ export default function Footer() {
   return (
     <FooterContextProvider>
       <footer className="bg-[#414040] mt-10 md:mt-16 py-3 ">
-        <div className="mx-5 space-y-2">
+        <div className="mx-5 md:mx-10 space-y-2">
           <div className="grid md:grid-cols-3 md:gap-12 w-full">
             <div className="">
               <Flags />
@@ -21,7 +21,7 @@ export default function Footer() {
               <Map />
             </div>
 
-            <div className="flex md:flex-col md:justify-between md:h-ful py-4 md:py-0">
+            <div className="flex md:flex-col md:justify-between md:h-ful md:pr-10 py-4 md:py-0">
               <Resources />
               <Social />
             </div>

@@ -10,7 +10,7 @@ const links = [
 
 export default function NavigationBanner() {
   return (
-    <div className="mx-auto my-5 w-fit text-2xl font-bold leading-8 tracking-normal">
+    <div className="mx-auto my-5 w-fit text-lg md:text-2xl font-bold leading-8 tracking-normal">
       {links.map((lnk) => (
         <Link
           key={lnk.id}
