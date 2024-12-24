@@ -107,7 +107,6 @@ export interface SharedInfoWithTitle extends Struct.ComponentSchema {
   attributes: {
     title: Schema.Attribute.String;
     infos: Schema.Attribute.Component<'shared.info', true>;
-    image: Schema.Attribute.Media<'images' | 'files'>;
   };
 }
 
