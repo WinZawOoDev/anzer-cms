@@ -72,6 +72,7 @@ const Page = async () => {
         />
         {/* <div className="hidden md:block md:h-[30px]"></div> */}
         <KeyBenefits
+          reverse={true}
           className="-mt-6 md:mt-0"
           title={thirdSec.benefits_title}
           benefits={thirdSec.text}

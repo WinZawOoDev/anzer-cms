@@ -1,12 +1,7 @@
 "use client";
 import { useMediaQuery } from "usehooks-ts";
 import SectionTitle from "../common/sec-ttl";
-import imgOne from "@/assets/imgs/default-img-014.jpg";
-import imgTwo from "@/assets/imgs/default-img-015.jpg";
-import imgThree from "@/assets/imgs/default-img-016.jpg";
-import imgFour from "@/assets/imgs/default-img-017.jpg";
-import { useState } from "react";
-import { imgHostUrl } from "@/lib/constants";
+import { useEffect, useState } from "react";
 
 const FinancialDashboards: React.FC<{
   data: Pick<ManagementPerspectiveSectionsType, "second_section">;
@@ -14,6 +9,10 @@ const FinancialDashboards: React.FC<{
   const isMobile = useMediaQuery("(max-width: 768px)");
   const [currentIdx, setCurrentIdx] = useState(0);
   const secData = data.second_section;
+
+  console.log("sec", JSON.stringify(secData.contents, null, 2));
+
+  useEffect(() => {}, []);
 
   return (
     <div className="space-y-5 md:space-y-10" key={currentIdx}>
@@ -24,7 +23,7 @@ const FinancialDashboards: React.FC<{
             <div
               style={{
                 // @ts-ignore
-                backgroundImage: `url(''${secData.contents[currentIdx].image.url})`,
+                backgroundImage: `url(${secData.contents[currentIdx].image.url})`,
                 backgroundSize: isMobile ? "200% 200%" : "400% 100%",
                 backgroundPosition: isMobile
                   ? `${(idx % 2) * 100}% ${Math.floor(idx / 2) * 100}%`
@@ -54,7 +53,7 @@ const FinancialDashboards: React.FC<{
               key={idx}
               style={{
                 // @ts-ignore
-                backgroundImage: `url(''${item.image.url})`,
+                backgroundImage: `url(${item.image.url})`,
                 backgroundSize: "100% 100%",
                 backgroundPosition: "center",
               }}

@@ -1,33 +1,15 @@
 "use client";
 import SectionTitle from "../common/sec-ttl";
-import imgOne from "@/assets/imgs/default-img-08.png";
-import imgTwo from "@/assets/imgs/default-img-09.png";
-import imgThree from "@/assets/imgs/default-img-010.png";
 import { useEffect, useState } from "react";
 import Image from "next/image";
-import { imgHostUrl } from "@/lib/constants";
-const data = [
-  {
-    title: "CONSISTENCY",
-    description: "Ensures standartized data presentation.",
-    img: imgOne,
-  },
-  {
-    title: "TIME-SAVING",
-    description: "Automates report creation.",
-    img: imgTwo,
-  },
-  {
-    title: "REAL-TIME DATA",
-    description: "Generates up-to-date reports instantly.",
-    img: imgThree,
-  },
-];
+
 const ReportGenerator: React.FC<{
   data: Pick<ManagementPerspectiveSectionsType, "third_section">;
 }> = ({ data }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const secData = data.third_section;
+
+ 
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -60,7 +42,8 @@ const ReportGenerator: React.FC<{
               width={1600}
               height={900}
               key={currentIndex}
-              src={`${secData.contents[currentIndex]?.image.formats.large.url}`}
+              // @ts-ignore
+              src={`${secData.contents[currentIndex]?.image?.formats?.thumbnail?.url}`}
               className="h-full w-full animate-fadeIn object-cover"
               alt={secData.contents[currentIndex].title}
             />
