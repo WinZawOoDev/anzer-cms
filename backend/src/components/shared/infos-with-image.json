@@ -1,0 +1,27 @@
+{
+  "collectionName": "components_shared_infos_with_images",
+  "info": {
+    "displayName": "InfosWithImage",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "image": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files"
+      ]
+    },
+    "list": {
+      "type": "component",
+      "repeatable": true,
+      "component": "shared.text"
+    }
+  }
+}

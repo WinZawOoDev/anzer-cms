@@ -12,11 +12,6 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "third_section": {
-      "type": "component",
-      "repeatable": false,
-      "component": "shared.info-list"
-    },
     "first_section": {
       "type": "component",
       "repeatable": false,
@@ -26,6 +21,11 @@
       "type": "component",
       "repeatable": false,
       "component": "shared.essential-modules"
+    },
+    "third_section": {
+      "type": "component",
+      "repeatable": false,
+      "component": "shared.infos-with-image"
     }
   }
 }
