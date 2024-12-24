@@ -11,16 +11,17 @@ export default function Footer() {
   return (
     <FooterContextProvider>
       <footer className="bg-[#414040] mt-10 md:mt-16 py-3 ">
-        <div className="mx-5 space-y-2">
-          <div className="grid sm:grid-cols-3 sm:gap-10 md:gap-12 w-full">
-            <div className="px-3 py-1 rounded-lg">
-              <Map />
-            </div>
-            <div>
+        <div className="mx-5 md:mx-10 space-y-2">
+          <div className="grid md:grid-cols-3 md:gap-12 w-full">
+            <div className="">
               <Flags />
               <Address />
             </div>
-            <div className="flex sm:flex-col sm:justify-between sm:h-ful py-1 sm:py-0">
+            <div className="md:order-first px-3 py-1 rounded-lg">
+              <Map />
+            </div>
+
+            <div className="flex md:flex-col md:justify-between md:h-ful md:pr-10 py-4 md:py-0">
               <Resources />
               <Social />
             </div>

@@ -83,8 +83,8 @@ export default function ContactForm() {
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(handleSubmit)} className='w-1/2'>
-        <div className='grid grid-cols-4 gap-x-3 gap-y-5 my-3'>
+      <form onSubmit={form.handleSubmit(handleSubmit)} className='mb-20 md:mb-0 md:w-1/2'>
+        <div className='grid grid-cols-4 gap-x-3 gap-y-8 my-3'>
           <div className='col-span-2'>
             <SelectInput
               name='location'
@@ -136,20 +136,20 @@ export default function ContactForm() {
               selectItems={selectAbleImplementTime}
             />
           </div>
-          <div className='col-span-2'>
+          <div className='col-span-4 sm:col-span-2'>
             <TextInput
               name='email'
               placeholder='Email Address'
             />
           </div>
-          <div className='col-span-2'>
+          <div className='col-span-4 sm:col-span-2'>
             <PhoneNumberInput
               name='phoneNumber'
               placeholder='Enter phone number'
             />
           </div>
         </div>
-        <Button type='submit' className='rounded py-5 px-7 bg-primary float-right'>
+        <Button type='submit' className='rounded mt-3 lg:mt-0 py-5 px-7 bg-[#D01B23] hover:bg-[#e73939] float-right'>
           <span className='font-semibold text-[15px] leading-5 text-white'>Submit</span>
         </Button>
       </form>
