@@ -1,8 +1,14 @@
 import { managementPerspectiveDataUrl } from "@/lib/constants";
-import FinancialDashboards from "../components/management-perspective/financial-dashboards";
+// import FinancialDashboards from "../components/management-perspective/financial-dashboards";
 import Perspective from "../components/management-perspective/perspective";
 import ReportGenerator from "../components/management-perspective/report-generator";
-
+import dynamic from "next/dynamic";
+const FinancialDashboards = dynamic(
+  () => import("../components/management-perspective/financial-dashboards"),
+  {
+    ssr: false,
+  },
+);
 const Page = async () => {
   const res = await fetch(managementPerspectiveDataUrl, {
     cache: "no-cache",
