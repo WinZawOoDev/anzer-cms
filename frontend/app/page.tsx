@@ -10,7 +10,7 @@ export default async function Home() {
     cache: "no-cache",
   });
   const data = (await res.json()).data as HomeSectionsType;
-
+  console.log("Home data", data.first_section[0].image);
   return (
     <Container>
       <BannerSlider data={{ first_section: data.first_section }} />

@@ -1,6 +1,6 @@
 import Image, { StaticImageData } from "next/image";
 import AccordtionContainer from "../common/accordions";
-import { hostUrl } from "@/lib/constants";
+import { imgHostUrl } from "@/lib/constants";
 
 type H = Pick<NewSectionsType, "first_section" | "second_section">;
 const NewsWithAccrodion: React.FC<{
@@ -19,7 +19,7 @@ const NewsWithAccrodion: React.FC<{
       </div>
       <div className="aspect-video flex-1 md:aspect-[16/10] md:[flex:3]">
         <Image
-          src={`${hostUrl}/${secData?.image.formats.large.url}`}
+          src={`${secData?.image.formats.large.url}`}
           alt={secData?.title || "image"}
           className="h-full w-full object-cover"
           width={1600}

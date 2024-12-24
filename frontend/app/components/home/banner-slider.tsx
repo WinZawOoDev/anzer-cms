@@ -10,7 +10,7 @@ import Autoplay from "embla-carousel-autoplay";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import ButtonRed from "../common/button";
-import { hostUrl } from "@/lib/constants";
+import { imgHostUrl } from "@/lib/constants";
 
 type CarouselApi = {
   scrollNext: () => void;
@@ -73,7 +73,7 @@ const BannerSlider: React.FC<{
             >
               <div className="h-full w-full">
                 <Image
-                  src={`${hostUrl}/${item.image.formats.large.url}`}
+                  src={`${item.image.formats.large.url}`}
                   alt={`banner ${index}`}
                   width={1600}
                   height={900}

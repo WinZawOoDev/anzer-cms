@@ -5,7 +5,7 @@ import imgTwo from "@/assets/imgs/default-img-09.png";
 import imgThree from "@/assets/imgs/default-img-010.png";
 import { useEffect, useState } from "react";
 import Image from "next/image";
-import { hostUrl } from "@/lib/constants";
+import { imgHostUrl } from "@/lib/constants";
 const data = [
   {
     title: "CONSISTENCY",
@@ -60,7 +60,7 @@ const ReportGenerator: React.FC<{
               width={1600}
               height={900}
               key={currentIndex}
-              src={`${hostUrl}/${secData.contents[currentIndex]?.image.formats.large.url}`}
+              src={`${secData.contents[currentIndex]?.image.formats.large.url}`}
               className="h-full w-full animate-fadeIn object-cover"
               alt={secData.contents[currentIndex].title}
             />

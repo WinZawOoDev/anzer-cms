@@ -95,7 +95,6 @@ export interface SharedInfo extends Struct.ComponentSchema {
   attributes: {
     title: Schema.Attribute.String;
     description: Schema.Attribute.Text;
-    phone: Schema.Attribute.String;
   };
 }
 
