@@ -15,6 +15,11 @@ const nextConfig = {
         port: "1337", // Optional: specify the port
         pathname: "/**", // Optional: specify the path patterns
       },
+      {
+        protocol: "https",
+        hostname: "tranquil-badge-60175d2313.strapiapp.com",
+        pathname: "/**", // Optional: specify the path patterns
+      },
     ],
   },
 };

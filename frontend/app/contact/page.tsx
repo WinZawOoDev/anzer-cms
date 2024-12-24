@@ -16,7 +16,7 @@ export default function ContactPage() {
                     alt='Doctor Pointing'
                     height={300}
                     width={300}
-                    className='w-2/5 max-h-[30em]'
+                    className='w-2/5 max-h-[35em]'
                 />
             </div>
         </PageContainer>
