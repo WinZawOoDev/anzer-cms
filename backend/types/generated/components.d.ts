@@ -119,7 +119,6 @@ export interface SharedInfoList extends Struct.ComponentSchema {
   attributes: {
     title: Schema.Attribute.String;
     list: Schema.Attribute.Component<'shared.text', true>;
-    image: Schema.Attribute.Media<'images' | 'files'>;
   };
 }
 

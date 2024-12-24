@@ -13,14 +13,6 @@
       "type": "component",
       "repeatable": true,
       "component": "shared.text"
-    },
-    "image": {
-      "allowedTypes": [
-        "images",
-        "files"
-      ],
-      "type": "media",
-      "multiple": false
     }
   }
 }
