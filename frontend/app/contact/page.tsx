@@ -16,7 +16,7 @@ export default function ContactPage() {
                     alt='Doctor Pointing'
                     height={300}
                     width={300}
-                    className='hidden md:block  w-2/5 max-h-[35em]'
+                    className='hidden md:block w-2/5'
                 />
             </div>
         </PageContainer>
