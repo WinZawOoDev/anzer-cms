@@ -6,9 +6,7 @@ import WhatImplement from "./components/home/what-implement";
 import Container from "@/components/common/page-container";
 import { homeDataUrl } from "@/lib/constants";
 export default async function Home() {
-  const res = await fetch(homeDataUrl, {
-    cache: "no-cache",
-  });
+  const res = await fetch(homeDataUrl);
 
   const data = (await res.json()).data as HomeSectionsType;
   return (
