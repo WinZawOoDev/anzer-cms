@@ -8,9 +8,7 @@ import SectionTitle from "../components/common/sec-ttl";
 import SvgWithBubbles from "../components/common/svg-with-bubbles";
 
 const Page = async () => {
-  const res = await fetch(clinicalManagementDataUrl, {
-    cache: "no-cache",
-  });
+  const res = await fetch(clinicalManagementDataUrl);
   const data = (await res.json()).data as ClinicalManagementSectionsType;
   const secondSec = data.second_section;
   const thirdSec = data.third_section;

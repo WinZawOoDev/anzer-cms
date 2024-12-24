@@ -5,9 +5,7 @@ import ConversationWithBenefits from "../components/patient-engagement/conversat
 import PatientManagerSVG from "../components/patient-engagement/patient-manager-svg";
 import HomeCareSvg from "../components/patient-engagement/home-care";
 const Page = async () => {
-  const res = await fetch(patientEngagementDataUrl, {
-    cache: "no-cache",
-  });
+  const res = await fetch(patientEngagementDataUrl);
   const data = (await res.json()).data as PatientEngagementSectionsType;
   const firstSec = data.first_section;
   const secondSec = data.second_section;
