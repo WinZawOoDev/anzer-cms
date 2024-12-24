@@ -9,8 +9,8 @@ export default function Address() {
 
     return (
         <div className='w-fit text-white'>
-            <h2 className='inline-block my-5 font-bold text-xl leading-6'>{selectedCountry.countryName}</h2>
-            <p className='font-normal leading-5 tracking-wider'>
+            <h2 className='inline-block my-5 font-bold text-lg md:text-xl leading-6'>{selectedCountry.countryName}</h2>
+            <p className='font-normal leading-5 text-sm md:text-base tracking-wider'>
                 {selectedCountry.address}<br />
                 <span className='inline-block my-3'>
                     {selectedCountry.phoneNumber}

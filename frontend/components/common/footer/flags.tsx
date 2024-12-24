@@ -97,14 +97,14 @@ export default function Flags() {
     }, [])
 
     return (
-        <div className='grid grid-cols-4 gap-6 py-1 place-items-start'>
+        <div className='grid grid-cols-4 gap-4 md:gap-6 py-1 place-items-start'>
             {countries.map((country) => (
                 <button
                     onClick={() => { setSelectedCountry(country) }}
                     key={country.id}
                     className='outline-none focus:outline-none focus:ring-0 focus-within:ring-0'
                 >
-                    <span className={`hover:cursor-pointer inline-block min-w-14 max-w-min ${country.id === selectedCountry.id ? 'ring-2 ring-offset-1 ring-white' : 'ring-0'}`}>
+                    <span className={`hover:cursor-pointer inline-block min-w-12 max-w-min sm:min-w-14 sm:max-w-min ${country.id === selectedCountry.id ? 'ring-2 ring-offset-1 ring-white' : 'ring-0'}`}>
                         {<country.CountryFlag />}
                     </span>
                 </button>
