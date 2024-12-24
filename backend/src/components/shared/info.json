@@ -11,9 +11,6 @@
     },
     "description": {
       "type": "text"
-    },
-    "phone": {
-      "type": "string"
     }
   }
 }

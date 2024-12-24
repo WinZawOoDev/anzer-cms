@@ -1,5 +1,5 @@
 import defaultImg from "@/assets/imgs/default-img-04.png";
-import { hostUrl } from "@/lib/constants";
+import { imgHostUrl } from "@/lib/constants";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
 
@@ -32,7 +32,7 @@ const KeyBenefits: React.FC<Props> = ({
         )}
       >
         <Image
-          src={`${hostUrl}/${image.url}`}
+          src={`${image.url}`}
           alt={"default image one"}
           className="h-full w-full object-cover"
           width={1600}

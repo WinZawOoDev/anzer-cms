@@ -1,5 +1,5 @@
 
-import { hostUrl } from "@/lib/constants";
+import { imgHostUrl } from "@/lib/constants";
 import Image from "next/image";
 const NewsCard: React.FC<Blog> = ({ description, image, title }) => {
   return (
@@ -7,7 +7,7 @@ const NewsCard: React.FC<Blog> = ({ description, image, title }) => {
       <div className="aspect-video">
         <Image
           // @ts-ignore
-          src={`${hostUrl}/${image.formats.thumbnail.url}`}
+          src={`${image.formats.thumbnail.url}`}
           width={400}
           height={400}
           alt="card image"

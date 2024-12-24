@@ -14,7 +14,7 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
-import { hostUrl } from "@/lib/constants";
+import { imgHostUrl } from "@/lib/constants";
 
 const WhatImplement: React.FC<{
   data: Pick<HomeSectionsType, "third_section">;
@@ -41,7 +41,7 @@ const WhatImplement: React.FC<{
               >
                 <Image
                   // @ts-ignore
-                  src={`${hostUrl}/${item.image.formats.large.url}`}
+                  src={`${item.image.formats.large.url}`}
                   alt={"image" + idx}
                   className="h-full w-full object-cover"
                   width={150}
@@ -62,7 +62,7 @@ const WhatImplement: React.FC<{
                       <div className="aspect-video w-full">
                         <Image
                           // @ts-ignore
-                          src={`${hostUrl}/${step.image.formats.thumbnail.url}`}
+                          src={`${step.image.formats.thumbnail.url}`}
                           alt={step.title}
                           className="h-full w-full object-cover"
                           width={150}

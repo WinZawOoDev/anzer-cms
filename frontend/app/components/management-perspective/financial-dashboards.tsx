@@ -6,7 +6,7 @@ import imgTwo from "@/assets/imgs/default-img-015.jpg";
 import imgThree from "@/assets/imgs/default-img-016.jpg";
 import imgFour from "@/assets/imgs/default-img-017.jpg";
 import { useState } from "react";
-import { hostUrl } from "@/lib/constants";
+import { imgHostUrl } from "@/lib/constants";
 
 const FinancialDashboards: React.FC<{
   data: Pick<ManagementPerspectiveSectionsType, "second_section">;
@@ -24,7 +24,7 @@ const FinancialDashboards: React.FC<{
             <div
               style={{
                 // @ts-ignore
-                backgroundImage: `url(${hostUrl}/${secData.contents[currentIdx].image.url})`,
+                backgroundImage: `url(''${secData.contents[currentIdx].image.url})`,
                 backgroundSize: isMobile ? "200% 200%" : "400% 100%",
                 backgroundPosition: isMobile
                   ? `${(idx % 2) * 100}% ${Math.floor(idx / 2) * 100}%`
@@ -54,7 +54,7 @@ const FinancialDashboards: React.FC<{
               key={idx}
               style={{
                 // @ts-ignore
-                backgroundImage: `url(${hostUrl}/${item.image.url})`,
+                backgroundImage: `url(''${item.image.url})`,
                 backgroundSize: "100% 100%",
                 backgroundPosition: "center",
               }}

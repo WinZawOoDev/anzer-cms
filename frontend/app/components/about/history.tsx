@@ -4,7 +4,6 @@ import SectionTitle from "../common/sec-ttl";
 import ButtonRed from "../common/button";
 import { ArrowDownFromLine, ArrowUpFromLine } from "lucide-react";
 import { useState } from "react";
-import { hostUrl } from "@/lib/constants";
 
 const HistoryAnzer: React.FC<{
   data: Pick<
@@ -30,7 +29,7 @@ const HistoryAnzer: React.FC<{
             </div>
             <div className="aspect-video w-full md:w-1/2">
               <Image
-                src={`${hostUrl}/${data.first_section_content.image.formats.large.url}`}
+                src={`${data.first_section_content.image.formats.large.url}`}
                 alt="Healthcare professionals working"
                 width={600}
                 height={400}

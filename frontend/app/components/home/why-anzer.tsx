@@ -1,6 +1,6 @@
 import Image from "next/image";
 import SectionTitle from "../common/sec-ttl";
-import { hostUrl } from "@/lib/constants";
+import { imgHostUrl } from "@/lib/constants";
 
 const WhyAnzer: React.FC<{
   data: Pick<HomeSectionsType, "second_section">;
@@ -19,7 +19,7 @@ const WhyAnzer: React.FC<{
               <div className="overflow-hiddens mb-4 transition-transform duration-500 ease-in-out group-hover:scale-x-125">
                 <Image
                   // @ts-ignore
-                  src={`${hostUrl}/${reason?.image?.formats?.thumbnail?.url}`}
+                  src={`${reason?.image?.formats?.thumbnail?.url}`}
                   alt={reason.title}
                   width={150}
                   height={150}
