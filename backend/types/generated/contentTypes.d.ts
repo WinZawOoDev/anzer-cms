@@ -729,12 +729,12 @@ export interface ApiProductProduct extends Struct.SingleTypeSchema {
     draftAndPublish: true;
   };
   attributes: {
-    third_section: Schema.Attribute.Component<'shared.info-list', false>;
     first_section: Schema.Attribute.Component<'shared.pie-chart', false>;
     second_section: Schema.Attribute.Component<
       'shared.essential-modules',
       false
     >;
+    third_section: Schema.Attribute.Component<'shared.infos-with-image', false>;
     createdAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
     publishedAt: Schema.Attribute.DateTime;

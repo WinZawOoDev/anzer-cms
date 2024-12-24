@@ -86,6 +86,19 @@ export interface SharedMedia extends Struct.ComponentSchema {
   };
 }
 
+export interface SharedInfosWithImage extends Struct.ComponentSchema {
+  collectionName: 'components_shared_infos_with_images';
+  info: {
+    displayName: 'InfosWithImage';
+    description: '';
+  };
+  attributes: {
+    title: Schema.Attribute.String;
+    image: Schema.Attribute.Media<'images' | 'files'>;
+    list: Schema.Attribute.Component<'shared.text', true>;
+  };
+}
+
 export interface SharedInfo extends Struct.ComponentSchema {
   collectionName: 'components_shared_infos';
   info: {
@@ -107,6 +120,7 @@ export interface SharedInfoWithTitle extends Struct.ComponentSchema {
   attributes: {
     title: Schema.Attribute.String;
     infos: Schema.Attribute.Component<'shared.info', true>;
+    image: Schema.Attribute.Media<'images' | 'files'>;
   };
 }
 
@@ -244,6 +258,7 @@ declare module '@strapi/strapi' {
       'shared.quote': SharedQuote;
       'shared.pie-chart': SharedPieChart;
       'shared.media': SharedMedia;
+      'shared.infos-with-image': SharedInfosWithImage;
       'shared.info': SharedInfo;
       'shared.info-with-title': SharedInfoWithTitle;
       'shared.info-list': SharedInfoList;
