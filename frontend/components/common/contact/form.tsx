@@ -149,7 +149,7 @@ export default function ContactForm() {
             />
           </div>
         </div>
-        <Button type='submit' className='rounded mt-3 lg:mt-0 py-5 px-7 bg-primary float-right'>
+        <Button type='submit' className='rounded mt-3 lg:mt-0 py-5 px-7 bg-[#D01B23] hover:bg-[#e73939] float-right'>
           <span className='font-semibold text-[15px] leading-5 text-white'>Submit</span>
         </Button>
       </form>
