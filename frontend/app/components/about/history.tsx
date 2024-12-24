@@ -1,40 +1,69 @@
+"use client";
 import Image from "next/image";
-import defaultImg from "@/assets/imgs/default-img-02.png";
 import SectionTitle from "../common/sec-ttl";
 import ButtonRed from "../common/button";
+import { ArrowDownFromLine, ArrowUpFromLine } from "lucide-react";
+import { useState } from "react";
+import { hostUrl } from "@/lib/constants";
 
-const HistoryAnzer = () => {
+const HistoryAnzer: React.FC<{
+  data: Pick<
+    AboutSectionsType,
+    "first_section_content" | "first_section_info_list"
+  >;
+}> = ({ data }) => {
+  const [expand, setExpaned] = useState(false);
   return (
-    <div className="bg-grey text-white py-10 md:py-16">
+    <div className="bg-grey py-10 text-white md:py-16">
       <div className="container px-5">
-        <div className="flex flex-col md:flex-row items-center md:items-start gap-8">
+        <div className="space-y-5">
+          <div className="flex flex-col items-center gap-8 md:flex-row md:items-start">
+            <div className="w-full space-y-6 md:w-1/2">
+              <SectionTitle
+                label={data.first_section_content.title}
+                className="text-white"
+              />
 
-          <div className="w-full md:w-1/2 space-y-6">
-            <SectionTitle
-              label="History of ANZER IT Healthcare Asia"
-              className="text-3xl md:text-5xl text-left"
-            />
-
-            <p className="text-base indent-10">
-              ANZER IT Healthcare Asia, founded in 1984 and headquartered in
-              Singapore, has become a leading provider of integrated healthcare
-              IT solutions across Asia. With over 100 hospitals and clinics
-              using its systems, ANZER ensures seamless operations without the
-              need for third-party integration, helping healthcare providers
-              focus on delivering quality patient care.
-            </p>
-            <ButtonRed>Expand</ButtonRed>
+              <p className="indent-10 text-base">
+                {data.first_section_content.description}
+              </p>
+            </div>
+            <div className="aspect-video w-full md:w-1/2">
+              <Image
+                src={`${hostUrl}/${data.first_section_content.image.formats.large.url}`}
+                alt="Healthcare professionals working"
+                width={600}
+                height={400}
+                className="aspect-video h-full w-full rounded-3xl object-cover"
+              />
+            </div>
           </div>
-          <div className=" w-full md:w-1/2 aspect-video ">
-            <Image
-              src={defaultImg}
-              alt="Healthcare professionals working"
-              //   width={600}
-              //   height={400}
+          <div className="space-y-5">
+            {expand && (
+              <div className="space-y-5 pt-10">
+                <h6 className="text-xl font-bold md:text-2xl">
+                  {data.first_section_info_list.title}
+                </h6>
+                <ul className="list-disc pl-5 text-sm md:text-base">
+                  {data.first_section_info_list.list.map((item, idx) => {
+                    return <li key={idx}>{item.text}</li>;
+                  })}
+                </ul>
+              </div>
+            )}
 
-              className="w-full h-full object-cover rounded-3xl aspect-video"
-
-            />
+            <ButtonRed
+              onClick={() => setExpaned((prev) => !prev)}
+              Icon={
+                expand ? (
+                  <ArrowUpFromLine size={16} />
+                ) : (
+                  <ArrowDownFromLine size={16} />
+                )
+              }
+            >
+              {expand ? "Collapse" : "Expand"}
+            </ButtonRed>
           </div>
         </div>
       </div>

@@ -1,37 +1,33 @@
 import Image from "next/image";
-import defaultImg from "@/assets/imgs/default-img-03.png";
-import SectionTitle from "../common/sec-ttl";
 import ButtonRed from "../common/button";
-
-const HighInter = () => {
+import { oswald } from "@/lib/font";
+import { hostUrl } from "@/lib/constants";
+const HighInter: React.FC<{
+  data: Pick<ProductSectionsType, "third_section">;
+}> = ({ data }) => {
+  const secData = data.third_section;
   return (
-    <div className=" text-black py-10 md:py-16">
-      <div className="container px-5">
-        <div className="flex flex-col md:flex-row  md:items-start gap-8">
-          <div className="md:w-1/2 space-y-6">
-            <SectionTitle
-              label="We are High Interoperable Products "
-              className="text-left md:text-5xl"
-            />
-
-            <ul className="list-disc px-5">
-              <li>Benefits of this product (Recommended)</li>
-              <li>Benefits of this product (Recommended)</li>
-              <li>Benefits of this product (Recommended)</li>
-              <li>Benefits of this product (Recommended)</li>
-            </ul>
-
-            <ButtonRed>Book Demo</ButtonRed>
-          </div>
-          <div className=" w-full md:w-1/2 aspect-video ">
-            <Image
-              src={defaultImg}
-              alt="high iteroperable"
-              //   width={600}
-              //   height={400}
-              className="w-full h-full object-cover rounded-3xl aspect-video"
-            />
-          </div>
+    <div className="py-10 text-black md:py-16">
+      <div className="container relative space-y-5 px-5">
+        <div className="img-bg aspect-video md:block md:aspect-video">
+          <Image
+            src={`${hostUrl}/${secData.image.formats.large.url}`}
+            alt="bg image"
+            className="h-full w-full object-cover object-bottom"
+            width={1600}
+            height={900}
+          />
+        </div>
+        <div className="static left-5 top-10 space-y-5 md:absolute md:[left:55%]">
+          <h6 className={`text-2xl font-bold md:text-3xl ${oswald.className}`}>
+            {secData.title}
+          </h6>
+          <ul className="list-disc space-y-3 pl-5">
+            {secData.list.map((item) => {
+              return <li key={item.text}>{item.text}</li>;
+            })}
+          </ul>
+          <ButtonRed>Book Demo</ButtonRed>
         </div>
       </div>
     </div>

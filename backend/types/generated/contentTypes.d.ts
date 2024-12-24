@@ -491,16 +491,19 @@ export interface ApiAboutAbout extends Struct.SingleTypeSchema {
     singularName: 'about';
     pluralName: 'abouts';
     displayName: 'About';
-    description: 'Write about yourself and the content you create';
+    description: '';
   };
   options: {
-    draftAndPublish: false;
+    draftAndPublish: true;
   };
   attributes: {
-    title: Schema.Attribute.String;
-    blocks: Schema.Attribute.DynamicZone<
-      ['shared.media', 'shared.quote', 'shared.rich-text', 'shared.slider']
+    first_section_content: Schema.Attribute.Component<'shared.content', false>;
+    first_section_info_list: Schema.Attribute.Component<
+      'shared.info-list',
+      false
     >;
+    second_section: Schema.Attribute.Component<'shared.info-with-title', false>;
+    third_section: Schema.Attribute.Component<'shared.info-with-title', false>;
     createdAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
     publishedAt: Schema.Attribute.DateTime;
@@ -513,29 +516,30 @@ export interface ApiAboutAbout extends Struct.SingleTypeSchema {
   };
 }
 
-export interface ApiArticleArticle extends Struct.CollectionTypeSchema {
-  collectionName: 'articles';
+export interface ApiClinicalManagementClinicalManagement
+  extends Struct.SingleTypeSchema {
+  collectionName: 'clinical_managements';
   info: {
-    singularName: 'article';
-    pluralName: 'articles';
-    displayName: 'Article';
-    description: 'Create your blog content';
+    singularName: 'clinical-management';
+    pluralName: 'clinical-managements';
+    displayName: 'ClinicalManagement';
+    description: '';
   };
   options: {
     draftAndPublish: true;
   };
   attributes: {
-    title: Schema.Attribute.String;
-    description: Schema.Attribute.Text &
-      Schema.Attribute.SetMinMaxLength<{
-        maxLength: 80;
-      }>;
-    slug: Schema.Attribute.UID<'title'>;
-    cover: Schema.Attribute.Media<'images' | 'files' | 'videos'>;
-    author: Schema.Attribute.Relation<'manyToOne', 'api::author.author'>;
-    category: Schema.Attribute.Relation<'manyToOne', 'api::category.category'>;
-    blocks: Schema.Attribute.DynamicZone<
-      ['shared.media', 'shared.quote', 'shared.rich-text', 'shared.slider']
+    first_section: Schema.Attribute.Component<
+      'shared.commercial-features',
+      false
+    >;
+    second_section: Schema.Attribute.Component<
+      'shared.conversation-with-benefits',
+      false
+    >;
+    third_section: Schema.Attribute.Component<
+      'shared.conversation-with-benefits',
+      false
     >;
     createdAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
@@ -547,27 +551,24 @@ export interface ApiArticleArticle extends Struct.CollectionTypeSchema {
     locale: Schema.Attribute.String;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
-      'api::article.article'
+      'api::clinical-management.clinical-management'
     >;
   };
 }
 
-export interface ApiAuthorAuthor extends Struct.CollectionTypeSchema {
-  collectionName: 'authors';
+export interface ApiFooterFooter extends Struct.SingleTypeSchema {
+  collectionName: 'footers';
   info: {
-    singularName: 'author';
-    pluralName: 'authors';
-    displayName: 'Author';
-    description: 'Create authors for your content';
+    singularName: 'footer';
+    pluralName: 'footers';
+    displayName: 'Footer';
+    description: '';
   };
   options: {
-    draftAndPublish: false;
+    draftAndPublish: true;
   };
   attributes: {
-    name: Schema.Attribute.String;
-    avatar: Schema.Attribute.Media<'images' | 'files' | 'videos'>;
-    email: Schema.Attribute.String;
-    articles: Schema.Attribute.Relation<'oneToMany', 'api::article.article'>;
+    locations: Schema.Attribute.Component<'shared.address', true>;
     createdAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
     publishedAt: Schema.Attribute.DateTime;
@@ -576,26 +577,65 @@ export interface ApiAuthorAuthor extends Struct.CollectionTypeSchema {
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
     locale: Schema.Attribute.String;
-    localizations: Schema.Attribute.Relation<'oneToMany', 'api::author.author'>;
+    localizations: Schema.Attribute.Relation<'oneToMany', 'api::footer.footer'>;
   };
 }
 
-export interface ApiCategoryCategory extends Struct.CollectionTypeSchema {
-  collectionName: 'categories';
+export interface ApiHomeHome extends Struct.SingleTypeSchema {
+  collectionName: 'homes';
   info: {
-    singularName: 'category';
-    pluralName: 'categories';
-    displayName: 'Category';
-    description: 'Organize your content into categories';
+    singularName: 'home';
+    pluralName: 'homes';
+    displayName: 'home';
+    description: '';
   };
   options: {
-    draftAndPublish: false;
+    draftAndPublish: true;
   };
   attributes: {
-    name: Schema.Attribute.String;
-    slug: Schema.Attribute.UID;
-    articles: Schema.Attribute.Relation<'oneToMany', 'api::article.article'>;
-    description: Schema.Attribute.Text;
+    first_section: Schema.Attribute.Component<'shared.content', true>;
+    second_section: Schema.Attribute.Component<
+      'shared.content-with-title',
+      false
+    >;
+    third_section: Schema.Attribute.Component<
+      'shared.content-with-title',
+      false
+    >;
+    createdAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    publishedAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String;
+    localizations: Schema.Attribute.Relation<'oneToMany', 'api::home.home'>;
+  };
+}
+
+export interface ApiManagementPerspectiveManagementPerspective
+  extends Struct.SingleTypeSchema {
+  collectionName: 'management_perspectives';
+  info: {
+    singularName: 'management-perspective';
+    pluralName: 'management-perspectives';
+    displayName: 'ManagementPerspective';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    first_section: Schema.Attribute.Component<'shared.info-with-title', false>;
+    second_section: Schema.Attribute.Component<
+      'shared.content-with-title',
+      false
+    >;
+    third_section: Schema.Attribute.Component<
+      'shared.content-with-title',
+      false
+    >;
     createdAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
     publishedAt: Schema.Attribute.DateTime;
@@ -606,27 +646,26 @@ export interface ApiCategoryCategory extends Struct.CollectionTypeSchema {
     locale: Schema.Attribute.String;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
-      'api::category.category'
+      'api::management-perspective.management-perspective'
     >;
   };
 }
 
-export interface ApiGlobalGlobal extends Struct.SingleTypeSchema {
-  collectionName: 'globals';
+export interface ApiNewNew extends Struct.SingleTypeSchema {
+  collectionName: 'news';
   info: {
-    singularName: 'global';
-    pluralName: 'globals';
-    displayName: 'Global';
-    description: 'Define global settings';
+    singularName: 'new';
+    pluralName: 'news';
+    displayName: 'New';
+    description: '';
   };
   options: {
-    draftAndPublish: false;
+    draftAndPublish: true;
   };
   attributes: {
-    siteName: Schema.Attribute.String & Schema.Attribute.Required;
-    favicon: Schema.Attribute.Media<'images' | 'files' | 'videos'>;
-    siteDescription: Schema.Attribute.Text & Schema.Attribute.Required;
-    defaultSeo: Schema.Attribute.Component<'shared.seo', false>;
+    first_section: Schema.Attribute.Component<'shared.accor-sec', false>;
+    second_section: Schema.Attribute.Component<'shared.accor-sec', false>;
+    third_section: Schema.Attribute.Component<'shared.blogs-with-title', false>;
     createdAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
     publishedAt: Schema.Attribute.DateTime;
@@ -635,7 +674,79 @@ export interface ApiGlobalGlobal extends Struct.SingleTypeSchema {
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
     locale: Schema.Attribute.String;
-    localizations: Schema.Attribute.Relation<'oneToMany', 'api::global.global'>;
+    localizations: Schema.Attribute.Relation<'oneToMany', 'api::new.new'>;
+  };
+}
+
+export interface ApiPatientEngagementPatientEngagement
+  extends Struct.SingleTypeSchema {
+  collectionName: 'patient_engagements';
+  info: {
+    singularName: 'patient-engagement';
+    pluralName: 'patient-engagements';
+    displayName: 'PatientEngagement';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    first_section: Schema.Attribute.Component<
+      'shared.conversation-with-benefits',
+      false
+    >;
+    second_section: Schema.Attribute.Component<
+      'shared.conversation-with-benefits',
+      false
+    >;
+    third_section: Schema.Attribute.Component<
+      'shared.conversation-with-benefits',
+      false
+    >;
+    createdAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    publishedAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::patient-engagement.patient-engagement'
+    >;
+  };
+}
+
+export interface ApiProductProduct extends Struct.SingleTypeSchema {
+  collectionName: 'products';
+  info: {
+    singularName: 'product';
+    pluralName: 'products';
+    displayName: 'Product';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    third_section: Schema.Attribute.Component<'shared.info-list', false>;
+    first_section: Schema.Attribute.Component<'shared.pie-chart', false>;
+    second_section: Schema.Attribute.Component<
+      'shared.essential-modules',
+      false
+    >;
+    createdAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    publishedAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::product.product'
+    >;
   };
 }
 
@@ -1015,10 +1126,13 @@ declare module '@strapi/strapi' {
       'plugin::users-permissions.role': PluginUsersPermissionsRole;
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
       'api::about.about': ApiAboutAbout;
-      'api::article.article': ApiArticleArticle;
-      'api::author.author': ApiAuthorAuthor;
-      'api::category.category': ApiCategoryCategory;
-      'api::global.global': ApiGlobalGlobal;
+      'api::clinical-management.clinical-management': ApiClinicalManagementClinicalManagement;
+      'api::footer.footer': ApiFooterFooter;
+      'api::home.home': ApiHomeHome;
+      'api::management-perspective.management-perspective': ApiManagementPerspectiveManagementPerspective;
+      'api::new.new': ApiNewNew;
+      'api::patient-engagement.patient-engagement': ApiPatientEngagementPatientEngagement;
+      'api::product.product': ApiProductProduct;
       'admin::permission': AdminPermission;
       'admin::user': AdminUser;
       'admin::role': AdminRole;

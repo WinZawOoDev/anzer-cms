@@ -10,8 +10,7 @@ import Autoplay from "embla-carousel-autoplay";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import ButtonRed from "../common/button";
-
-const images = [defaulImg, defaulImg, defaulImg];
+import { hostUrl } from "@/lib/constants";
 
 type CarouselApi = {
   scrollNext: () => void;
@@ -20,11 +19,13 @@ type CarouselApi = {
   selectedScrollSnap: () => number;
   scrollSnapList: () => number[];
 };
-const BannerSlider = () => {
+
+const BannerSlider: React.FC<{
+  data: Pick<HomeSectionsType, "first_section">;
+}> = ({ data }) => {
   const [api, setApi] = React.useState<CarouselApi | null>(null);
   const [current, setCurrent] = React.useState(0);
   const [count, setCount] = React.useState(0);
-
   React.useEffect(() => {
     if (!api) return;
 
@@ -45,11 +46,11 @@ const BannerSlider = () => {
 
   const scrollTo = React.useCallback(
     (index: number) => api && api.scrollTo(index),
-    [api]
+    [api],
   );
 
   return (
-    <div className="flex flex-col items-center gap-4 relative">
+    <div className="relative flex flex-col items-center gap-4">
       <Carousel
         className="container !px-0"
         // @ts-ignore
@@ -65,22 +66,22 @@ const BannerSlider = () => {
         ]}
       >
         <CarouselContent>
-          {images.map((img, index) => (
+          {data.first_section.map((item, index) => (
             <CarouselItem
               key={index}
-              className="  aspect-video md:[aspect-ratio:16/7] relative "
+              className="relative aspect-video md:[aspect-ratio:16/7]"
             >
-              <div className="w-full h-full">
+              <div className="h-full w-full">
                 <Image
-                  src={img}
+                  src={`${hostUrl}/${item.image.formats.large.url}`}
                   alt={`banner ${index}`}
-                  className="w-full h-full object-cover"
+                  width={1600}
+                  height={900}
+                  className="h-full w-full object-cover"
                 />
               </div>
-              <div className="absolute  text-white bottom-0 left-0 p-5 space-y-5 px-12  bg-transparent md:bg-black md:bg-opacity-25 w-full h-[min(200px,80%)] md:h-[min(200px,60%)]">
-                <p>
-                  Are you looking the system to boost your hospital operations?
-                </p>
+              <div className="absolute bottom-0 left-0 h-[min(200px,80%)] w-full space-y-5 bg-transparent p-5 px-12 text-white md:h-[min(200px,60%)] md:bg-black md:bg-opacity-25">
+                <p>{item.description}</p>
                 <ButtonRed>Book Demo</ButtonRed>
               </div>
             </CarouselItem>
@@ -88,8 +89,8 @@ const BannerSlider = () => {
         </CarouselContent>
       </Carousel>
 
-      <div className="flex space-x-2  absolute bottom-5 left-1/2 -translate-x-1/2">
-        {Array.from({ length: count }).map((_, index) => (
+      <div className="absolute bottom-5 left-1/2 flex -translate-x-1/2 space-x-2">
+        {data.first_section.map((_, index) => (
           <Button
             key={index}
             variant="ghost"

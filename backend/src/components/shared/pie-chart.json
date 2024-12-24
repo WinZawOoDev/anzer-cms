@@ -1,0 +1,28 @@
+{
+  "collectionName": "components_shared_pie_charts",
+  "info": {
+    "displayName": "PieChart",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "first": {
+      "type": "component",
+      "repeatable": false,
+      "component": "shared.info-list"
+    },
+    "second": {
+      "type": "component",
+      "repeatable": false,
+      "component": "shared.info-list"
+    },
+    "third": {
+      "type": "component",
+      "repeatable": false,
+      "component": "shared.info-list"
+    }
+  }
+}
