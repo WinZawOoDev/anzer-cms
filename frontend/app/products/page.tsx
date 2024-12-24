@@ -5,9 +5,7 @@ import HighInter from "../components/products/high-inter";
 import PageContainer from "@/components/common/page-container";
 
 const ProductPage = async () => {
-  const res = await fetch(productDataUrl, {
-    cache: "no-cache",
-  });
+  const res = await fetch(productDataUrl);
   const data = (await res.json()).data as ProductSectionsType;
   return (
     <PageContainer>

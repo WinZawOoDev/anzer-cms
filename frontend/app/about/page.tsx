@@ -5,9 +5,7 @@ import WhatWeStandFor from "../components/about/what-we-stand";
 import { aboutDataUrl } from "@/lib/constants";
 
 const AboutPage = async () => {
-  const res = await fetch(aboutDataUrl, {
-    cache: "no-cache",
-  });
+  const res = await fetch(aboutDataUrl);
   const data = (await res.json()).data as AboutSectionsType;
   return (
     <PageContainer>

@@ -10,9 +10,7 @@ const FinancialDashboards = dynamic(
   },
 );
 const Page = async () => {
-  const res = await fetch(managementPerspectiveDataUrl, {
-    cache: "no-cache",
-  });
+  const res = await fetch(managementPerspectiveDataUrl);
   const data = (await res.json()).data as ManagementPerspectiveSectionsType;
   return (
     <div className="container space-y-8 md:space-y-16">
