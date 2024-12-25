@@ -3,8 +3,8 @@ const ConsentFormSvg = () => {
     <svg
       //   width="371"
       //   height="242"
-      //   viewBox="0 0 371 242"
-      className="mx-auto mt-16 aspect-square max-w-[400px] scale-95 md:mt-28 md:w-[400px]"
+        viewBox="0 0 371 242"
+      // className="mx-auto mt-16 aspect-square max-w-[400px] scale-95 md:mt-28 md:w-[400px]"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
     >

@@ -1,5 +1,5 @@
-
 import { imgHostUrl } from "@/lib/constants";
+import { getAvailableImgFirst } from "@/lib/utils";
 import Image from "next/image";
 const NewsCard: React.FC<Blog> = ({ description, image, title }) => {
   return (
@@ -7,7 +7,8 @@ const NewsCard: React.FC<Blog> = ({ description, image, title }) => {
       <div className="aspect-video">
         <Image
           // @ts-ignore
-          src={`${image.formats.thumbnail.url}`}
+          // src={`${image.formats.thumbnail.url}`}
+          src={getAvailableImgFirst(image)}
           width={400}
           height={400}
           alt="card image"

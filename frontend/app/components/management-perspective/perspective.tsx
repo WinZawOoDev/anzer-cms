@@ -1,6 +1,7 @@
 import Image from "next/image";
 import SectionTitle from "../common/sec-ttl";
 import { imgHostUrl } from "@/lib/constants";
+import { getAvailableImgFirst } from "@/lib/utils";
 
 const Perspective: React.FC<{
   data: Pick<ManagementPerspectiveSectionsType, "first_section">;
@@ -12,7 +13,8 @@ const Perspective: React.FC<{
       <div className="relative">
         <div className="mr-auto hidden max-w-[800px] md:block">
           <Image
-            src={`${secData.image.formats.large.url}`}
+            // src={`${secData.image.formats.large.url}`}
+            src={getAvailableImgFirst(secData.image) as string}
             alt="Perspective image"
             className="h-full w-full object-contain"
             width={1600}

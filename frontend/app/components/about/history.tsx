@@ -4,6 +4,7 @@ import SectionTitle from "../common/sec-ttl";
 import ButtonRed from "../common/button";
 import { ArrowDownFromLine, ArrowUpFromLine } from "lucide-react";
 import { useState } from "react";
+import { getAvailableImgFirst } from "@/lib/utils";
 
 const HistoryAnzer: React.FC<{
   data: Pick<
@@ -29,7 +30,12 @@ const HistoryAnzer: React.FC<{
             </div>
             <div className="aspect-video w-full md:w-1/2">
               <Image
-                src={`${data.first_section_content.image.formats.large.url}`}
+                // src={`${data.first_section_content.image.formats.large.url}`}
+                src={
+                  getAvailableImgFirst(
+                    data.first_section_content.image,
+                  ) as string
+                }
                 alt="Healthcare professionals working"
                 width={600}
                 height={400}

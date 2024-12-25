@@ -11,6 +11,7 @@ import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import ButtonRed from "../common/button";
 import { imgHostUrl } from "@/lib/constants";
+import { getAvailableImgFirst } from "@/lib/utils";
 
 type CarouselApi = {
   scrollNext: () => void;
@@ -73,7 +74,8 @@ const BannerSlider: React.FC<{
             >
               <div className="h-full w-full">
                 <Image
-                  src={`${item.image.formats.large.url}`}
+                  // src={`${item.image.formats.large.url}`}
+                  src={getAvailableImgFirst(item.image) as string}
                   alt={`banner ${index}`}
                   width={1600}
                   height={900}

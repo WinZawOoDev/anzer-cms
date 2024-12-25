@@ -3,9 +3,9 @@ const HomeCareSvg = () => {
     <svg
       //   width="608"
       //   height="453"
-      //   viewBox="0 0 608 453"
+        viewBox="0 0 608 453"
       //   fill="none"
-      className="mx-auto aspect-square max-w-[400px] scale-75 md:w-[400px]"
+      // className="mx-auto aspect-square max-w-[400px] scale-75 md:w-[400px]"
       xmlns="http://www.w3.org/2000/svg"
     >
       <path d="M0 397.715H607.383V398.019H0V397.715Z" fill="#EBEBEB" />

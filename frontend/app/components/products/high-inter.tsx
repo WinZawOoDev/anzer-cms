@@ -2,6 +2,7 @@ import Image from "next/image";
 import ButtonRed from "../common/button";
 import { oswald } from "@/lib/font";
 import { imgHostUrl } from "@/lib/constants";
+import { getAvailableImgFirst } from "@/lib/utils";
 const HighInter: React.FC<{
   data: Pick<ProductSectionsType, "third_section">;
 }> = ({ data }) => {
@@ -11,7 +12,8 @@ const HighInter: React.FC<{
       <div className="container relative space-y-5 px-5">
         <div className="img-bg aspect-video md:block md:aspect-video">
           <Image
-            src={`${secData.image.formats.large.url}`}
+            // src={`${secData.image.formats.large.url}`}
+            src={getAvailableImgFirst(secData.image) as string}
             alt="bg image"
             className="h-full w-full object-cover object-bottom"
             width={1600}

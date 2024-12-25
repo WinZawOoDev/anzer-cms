@@ -28,7 +28,7 @@ const ConversationWithBenefits: React.FC<{
         className={`flex items-center gap-5 ${reverse && "flex-row-reverse"} relative ${className}`}
       >
         <div className="conversation basis-[650px]">
-          <div className="relative">
+          <div className="relative mx-auto max-w-[200px] bg-red-200 md:max-w-[300px]">
             {SvgComponent}
             {leftBubble}
             {rightBubble}

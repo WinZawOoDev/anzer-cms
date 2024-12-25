@@ -20,14 +20,14 @@ const Page = async () => {
             <MessageBubble
               dir={"right"}
               message={firstSec.conversation_1}
-              className="absolute left-[2vw] top-[3vw] max-w-[150px] md:left-2 md:top-0 md:max-w-[200px]"
+              className="absolute left-0 top-0 max-w-[150px] -translate-x-[50%] -translate-y-[100%] md:max-w-[200px] md:-translate-x-[100%]"
             />
           }
           rightBubble={
             <MessageBubble
               dir={"left"}
               message={firstSec.conversation_2}
-              className="absolute right-[2vw] top-[1vw] max-w-[150px] md:-top-5 md:right-2 md:max-w-[200px]"
+              className="absolute right-0 top-0 max-w-[150px] -translate-y-[100%] translate-x-[50%] md:max-w-[200px] md:translate-x-[100%]"
             />
           }
           benefits={firstSec.text}
@@ -43,14 +43,14 @@ const Page = async () => {
             <MessageBubble
               dir={"right"}
               message={secondSec.conversation_1}
-              className="absolute -top-[12vw] left-[0vw] max-w-[150px] md:-top-[10vw] md:left-0 md:max-w-[200px]"
+              className="absolute left-0 top-0 max-w-[150px] -translate-x-[50%] -translate-y-[100%] md:max-w-[200px] md:-translate-x-[100%]"
             />
           }
           rightBubble={
             <MessageBubble
               dir={"left"}
               message={secondSec.conversation_2}
-              className="absolute -top-[14vw] right-[0vw] max-w-[150px] md:-top-[10vw] md:right-2 md:max-w-[200px]"
+              className="absolute right-0 top-0 max-w-[150px] -translate-y-[100%] translate-x-[50%] md:max-w-[200px] md:translate-x-[100%]"
             />
           }
           benefits={secondSec.text}
@@ -65,14 +65,14 @@ const Page = async () => {
             <MessageBubble
               dir={"right"}
               message={thirdSec.conversation_1}
-              className="absolute left-[2vw] top-[3vw] max-w-[150px] md:left-2 md:top-0 md:max-w-[200px]"
+              className="absolute left-0 top-0 max-w-[150px] -translate-x-[50%] -translate-y-[100%] md:max-w-[200px] md:-translate-x-[100%]"
             />
           }
           rightBubble={
             <MessageBubble
               dir={"left"}
               message={thirdSec.conversation_2}
-              className="absolute right-[2vw] top-[1vw] max-w-[150px] md:-top-5 md:right-2 md:max-w-[200px]"
+              className="absolute right-0 top-0 max-w-[150px] -translate-y-[100%] translate-x-[50%] md:max-w-[200px] md:translate-x-[100%]"
             />
           }
           benefits={thirdSec.text}
