@@ -41,7 +41,7 @@ const KeyBenefits: React.FC<Props> = ({
       </div>
       <div
         className={cn(
-          `absolute right-0 top-1/2 aspect-video w-[min(450px,auto)] -translate-y-1/2 space-y-5 bg-main px-5 py-5 text-white md:aspect-auto md:py-10`,
+          `absolute right-0 top-1/2 aspect-video w-[min(450px,100%)] -translate-y-1/2 space-y-5 bg-main px-5 py-5 text-white md:aspect-auto md:py-10`,
           reverse && "left-0 right-auto",
         )}
       >
