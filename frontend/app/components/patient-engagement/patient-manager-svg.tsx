@@ -3,10 +3,10 @@ const PatientManagerSVG = () => {
     <svg
       //   width='full'
       //   height="371"
-      //   viewBox="0 0 351 371"
+      viewBox="0 0 351 371"
       //   fill="none"
       fill="none"
-      className="mx-auto aspect-square max-w-[400px] scale-75 md:w-[400px]"
+      // className="mx-auto aspect-square max-w-[400px] scale-75 md:w-[400px]"
       xmlns="http://www.w3.org/2000/svg"
     >
       <path

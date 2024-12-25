@@ -1,4 +1,3 @@
-import { svg } from "leaflet";
 import { ReactNode } from "react";
 
 type Props = {

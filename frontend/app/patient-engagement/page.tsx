@@ -12,7 +12,7 @@ const Page = async () => {
   const thirdSec = data.third_section;
   return (
     <div className="space-y-8 py-10 pb-36 md:space-y-16 md:py-24">
-      <div className="container">
+      <div className="container overflow-x-clip">
         <ConversationWithBenefits
           SvgComponent={<PatientManagerSVG />}
           title={firstSec.title}
@@ -20,59 +20,60 @@ const Page = async () => {
             <MessageBubble
               dir={"right"}
               message={firstSec.conversation_1}
-              className="absolute left-[2vw] top-[3vw] max-w-[150px] md:left-2 md:top-0 md:max-w-[200px]"
+              className="absolute left-0 top-0 max-w-[150px] -translate-x-[50%] -translate-y-[100%] md:max-w-[200px] md:-translate-x-[100%]"
             />
           }
           rightBubble={
             <MessageBubble
               dir={"left"}
               message={firstSec.conversation_2}
-              className="absolute right-[2vw] top-[1vw] max-w-[150px] md:-top-5 md:right-2 md:max-w-[200px]"
+              className="absolute right-0 top-0 max-w-[150px] -translate-y-[100%] translate-x-[50%] md:max-w-[200px] md:translate-x-[100%]"
             />
           }
           benefits={firstSec.text}
         />
 
-        <div className="h-[200px] md:h-[100px]"></div>
+        <div className="h-[200px] md:h-[150px]"></div>
         <ConversationWithBenefits
           SvgComponent={<ConsentFormSvg />}
           title={secondSec.title}
           reverse={true}
-          benefitsclass="-translate-y-full"
+          benefitsclass="-bottom-[180%]"
           leftBubble={
             <MessageBubble
               dir={"right"}
               message={secondSec.conversation_1}
-              className="absolute -top-[12vw] left-[0vw] max-w-[150px] md:-top-[10vw] md:left-0 md:max-w-[200px]"
+              className="absolute left-0 top-0 max-w-[150px] -translate-x-[50%] -translate-y-[100%] md:max-w-[200px] md:-translate-x-[100%]"
             />
           }
           rightBubble={
             <MessageBubble
               dir={"left"}
               message={secondSec.conversation_2}
-              className="absolute -top-[14vw] right-[0vw] max-w-[150px] md:-top-[10vw] md:right-2 md:max-w-[200px]"
+              className="absolute right-0 top-0 max-w-[150px] -translate-y-[100%] translate-x-[50%] md:max-w-[200px] md:translate-x-[100%]"
             />
           }
           benefits={secondSec.text}
         />
 
-        <div className="h-[150px] md:h-[100px]"></div>
+        <div className="h-[150px] md:h-[150px]"></div>
 
         <ConversationWithBenefits
           SvgComponent={<HomeCareSvg />}
           title={thirdSec.title}
+          benefitsclass="-bottom-[170%]"
           leftBubble={
             <MessageBubble
               dir={"right"}
               message={thirdSec.conversation_1}
-              className="absolute left-[2vw] top-[3vw] max-w-[150px] md:left-2 md:top-0 md:max-w-[200px]"
+              className="absolute left-0 top-0 max-w-[150px] -translate-x-[50%] -translate-y-[100%] md:max-w-[200px] md:-translate-x-[100%]"
             />
           }
           rightBubble={
             <MessageBubble
               dir={"left"}
               message={thirdSec.conversation_2}
-              className="absolute right-[2vw] top-[1vw] max-w-[150px] md:-top-5 md:right-2 md:max-w-[200px]"
+              className="absolute right-0 top-0 max-w-[150px] -translate-y-[100%] translate-x-[50%] md:max-w-[200px] md:translate-x-[100%]"
             />
           }
           benefits={thirdSec.text}

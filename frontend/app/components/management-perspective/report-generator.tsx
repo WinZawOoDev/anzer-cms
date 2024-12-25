@@ -2,14 +2,13 @@
 import SectionTitle from "../common/sec-ttl";
 import { useEffect, useState } from "react";
 import Image from "next/image";
+import { getAvailableImgFirst } from "@/lib/utils";
 
 const ReportGenerator: React.FC<{
   data: Pick<ManagementPerspectiveSectionsType, "third_section">;
 }> = ({ data }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const secData = data.third_section;
-
- 
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -43,7 +42,8 @@ const ReportGenerator: React.FC<{
               height={900}
               key={currentIndex}
               // @ts-ignore
-              src={`${secData.contents[currentIndex]?.image?.formats?.thumbnail?.url}`}
+              // src={`${secData.contents[currentIndex]?.image?.formats?.thumbnail?.url}`}
+              src={getAvailableImgFirst(secData.contents[currentIndex]?.image)}
               className="h-full w-full animate-fadeIn object-cover"
               alt={secData.contents[currentIndex].title}
             />

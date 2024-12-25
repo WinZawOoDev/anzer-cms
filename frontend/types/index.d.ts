@@ -240,9 +240,12 @@ type PatientEngagementSectionsType = {
     text: TextItem[];
   };
 };
-type FooterSectionsType = {
-  data: {
-    id: number;
-    address: AddressType[];
+
+type ImageFormat = {
+  formats: {
+    large?: Image;
+    medium?: Image;
+    small?: Image;
+    thumbnail?: Image;
   };
 };

@@ -1,6 +1,7 @@
 import Image from "next/image";
 import SectionTitle from "../common/sec-ttl";
 import { imgHostUrl } from "@/lib/constants";
+import { getAvailableImgFirst } from "@/lib/utils";
 
 const WhyAnzer: React.FC<{
   data: Pick<HomeSectionsType, "second_section">;
@@ -19,7 +20,8 @@ const WhyAnzer: React.FC<{
               <div className="overflow-hiddens mb-4 transition-transform duration-500 ease-in-out group-hover:scale-x-125">
                 <Image
                   // @ts-ignore
-                  src={`${reason?.image?.formats?.thumbnail?.url}`}
+                  // src={`${reason?.image?.formats?.thumbnail?.url}`}
+                  src={getAvailableImgFirst(reason.image)}
                   alt={reason.title}
                   width={150}
                   height={150}
