@@ -12,7 +12,7 @@ const Page = async () => {
   const thirdSec = data.third_section;
   return (
     <div className="space-y-8 py-10 pb-36 md:space-y-16 md:py-24">
-      <div className="container">
+      <div className="container overflow-x-clip">
         <ConversationWithBenefits
           SvgComponent={<PatientManagerSVG />}
           title={firstSec.title}
@@ -33,12 +33,12 @@ const Page = async () => {
           benefits={firstSec.text}
         />
 
-        <div className="h-[200px] md:h-[100px]"></div>
+        <div className="h-[200px] md:h-[150px]"></div>
         <ConversationWithBenefits
           SvgComponent={<ConsentFormSvg />}
           title={secondSec.title}
           reverse={true}
-          benefitsclass="-translate-y-full"
+          benefitsclass="-bottom-[180%]"
           leftBubble={
             <MessageBubble
               dir={"right"}
@@ -56,11 +56,12 @@ const Page = async () => {
           benefits={secondSec.text}
         />
 
-        <div className="h-[150px] md:h-[100px]"></div>
+        <div className="h-[150px] md:h-[150px]"></div>
 
         <ConversationWithBenefits
           SvgComponent={<HomeCareSvg />}
           title={thirdSec.title}
+          benefitsclass="-bottom-[170%]"
           leftBubble={
             <MessageBubble
               dir={"right"}

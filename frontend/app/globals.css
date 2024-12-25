@@ -88,3 +88,6 @@ body {
     @apply mx-auto max-w-5xl px-5;
   }
 }
+body {
+  overflow-x: none !important;
+}
