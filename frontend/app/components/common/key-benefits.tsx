@@ -27,7 +27,7 @@ const KeyBenefits: React.FC<Props> = ({
     <div className={`relative aspect-video md:aspect-auto ${className}`}>
       <div
         className={cn(
-          `aspect-video max-w-[900px] bg-red-100`,
+          `aspect-video w-[min(450px,auto)] bg-red-100`,
           reverse && "ml-auto",
         )}
       >
