@@ -1,12 +1,12 @@
 import Image from "next/image";
 import SectionTitle from "../common/sec-ttl";
-import { imgHostUrl } from "@/lib/constants";
 import { getAvailableImgFirst } from "@/lib/utils";
 
 const Perspective: React.FC<{
   data: Pick<ManagementPerspectiveSectionsType, "first_section">;
 }> = ({ data }) => {
   const secData = data.first_section;
+  console.log("secData Perspective", JSON.stringify(secData, null, 2));
   return (
     <div className="space-y-5 pb-0 md:space-y-10 md:pb-20">
       <SectionTitle label={secData.title} />
@@ -14,7 +14,7 @@ const Perspective: React.FC<{
         <div className="mr-auto hidden max-w-[800px] md:block">
           <Image
             // src={`${secData.image.formats.large.url}`}
-            src={getAvailableImgFirst(secData.image) as string}
+            src={getAvailableImgFirst(secData?.image) as string}
             alt="Perspective image"
             className="h-full w-full object-contain"
             width={1600}

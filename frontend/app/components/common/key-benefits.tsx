@@ -8,14 +8,9 @@ type Props = {
   className?: string;
   benefits: TextItem[];
   title?: string;
-  image: Image;
+  image: string;
 };
-const benefits = [
-  "Boosts patient engagement with easy access to health info",
-  "24/7 access to medical records and appointments",
-  "Secure communication with healthcare providers",
-  "Improves health outcomes through better self-management",
-];
+
 const KeyBenefits: React.FC<Props> = ({
   reverse,
   className,
@@ -32,7 +27,7 @@ const KeyBenefits: React.FC<Props> = ({
         )}
       >
         <Image
-          src={`${image.url}`}
+          src={`${image}`}
           alt={"default image one"}
           className="h-full w-full object-cover"
           width={1600}
