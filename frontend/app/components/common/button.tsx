@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import Link from "next/link";
 import { PropsWithChildren, ReactElement, ReactNode } from "react";
 
 const ButtonRed: React.FC<
