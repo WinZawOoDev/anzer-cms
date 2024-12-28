@@ -10,6 +10,16 @@ export interface SharedText extends Struct.ComponentSchema {
   };
 }
 
+export interface SharedTest extends Struct.ComponentSchema {
+  collectionName: 'components_shared_tests';
+  info: {
+    displayName: 'test';
+  };
+  attributes: {
+    HelloText: Schema.Attribute.RichText;
+  };
+}
+
 export interface SharedSlider extends Struct.ComponentSchema {
   collectionName: 'components_shared_sliders';
   info: {
@@ -252,6 +262,7 @@ declare module '@strapi/strapi' {
   export module Public {
     export interface ComponentSchemas {
       'shared.text': SharedText;
+      'shared.test': SharedTest;
       'shared.slider': SharedSlider;
       'shared.seo': SharedSeo;
       'shared.rich-text': SharedRichText;

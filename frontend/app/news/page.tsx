@@ -1,6 +1,4 @@
 import NewsWithAccrodion from "../components/news/news-accrodion";
-import imgOne from "@/assets/imgs/default-img-011.png";
-import imgTwo from "@/assets/imgs/default-img-012.png";
 import NewsSection from "../components/news/news-section";
 import { newDataUrl } from "@/lib/constants";
 
@@ -12,7 +10,7 @@ const Page = async () => {
       <div className="container">
         <NewsWithAccrodion data={{ first_section: data.first_section }} />
 
-        <div className="h-[250px]"></div>
+        <div className="h-[400px]"></div>
 
         <NewsWithAccrodion
           data={{
@@ -20,7 +18,7 @@ const Page = async () => {
           }}
           reverse={true}
         />
-        <div className="h-[250px]"></div>
+        <div className="h-[400px]"></div>
         <NewsSection
           data={{
             third_section: data.third_section,
