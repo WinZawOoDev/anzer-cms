@@ -1,7 +1,7 @@
-import { imgHostUrl } from "@/lib/constants";
 import { getAvailableImgFirst } from "@/lib/utils";
 import Image from "next/image";
-const NewsCard: React.FC<Blog> = ({ description, image, title }) => {
+import Link from "next/link";
+const NewsCard: React.FC<Blog> = ({ description, image, title, id }) => {
   return (
     <div className="cursor-pointer space-y-4 hover:opacity-80">
       <div className="aspect-video">
@@ -16,8 +16,13 @@ const NewsCard: React.FC<Blog> = ({ description, image, title }) => {
         />
       </div>
       <div className="space-y-2 md:space-y-3">
-        <p className="text-lg font-bold uppercase md:text-xl">{title}</p>
-        <span>{description}</span>
+        <Link href={`/news/${id}`} className="block">
+          <h5 className="text-lg font-bold uppercase underline md:text-xl">
+            {title}
+          </h5>
+        </Link>
+
+        <p className="line-clamp-4 indent-10">{description}</p>
       </div>
     </div>
   );
