@@ -15,9 +15,6 @@ export default async function Footer() {
   });
   const data = (await res.json()).data as FooterContent
 
-  console.log(data.FollowUp)
-
-
   return (
     <FooterContextProvider country={data.Country[0]}>
       <footer className="bg-[#414040] mt-10 md:mt-16 py-3 ">
@@ -33,7 +30,7 @@ export default async function Footer() {
 
             <div className="flex md:flex-col md:justify-between md:h-ful md:pr-10 py-4 md:py-0">
               <Resources />
-              <Social />
+              <Social followUs={data.FollowUp} />
             </div>
           </div>
           <SearchForm />
