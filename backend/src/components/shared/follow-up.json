@@ -1,0 +1,15 @@
+{
+  "collectionName": "components_shared_follow_ups",
+  "info": {
+    "displayName": "FollowUp"
+  },
+  "options": {},
+  "attributes": {
+    "socialName": {
+      "type": "text"
+    },
+    "socialLink": {
+      "type": "text"
+    }
+  }
+}

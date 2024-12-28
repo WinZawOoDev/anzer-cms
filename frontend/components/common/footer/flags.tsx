@@ -4,6 +4,7 @@ import React, { useContext, useEffect } from 'react'
 import { nanoid } from 'nanoid'
 import { FooterContext } from '@/context/footer-context'
 import { IN, KH, MM, MY, PH, SG, TH } from 'country-flag-icons/react/3x2'
+import { footerDataUrl } from '@/lib/constants'
 
 
 const countries: Country[] = [
@@ -91,6 +92,7 @@ const countries: Country[] = [
 export default function Flags() {
 
     const { selectedCountry, setSelectedCountry } = useContext(FooterContext) as FooterContextType
+
 
     useEffect(() => {
         setSelectedCountry(countries[0]);

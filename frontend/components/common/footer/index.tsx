@@ -6,8 +6,17 @@ import Map from "./map";
 import Address from "./address";
 import FooterContextProvider from "@/context/footer-context";
 import Flags from "./flags";
+import { footerDataUrl } from "@/lib/constants";
 
-export default function Footer() {
+export default async function Footer() {
+
+  const res = await fetch(footerDataUrl, {
+    cache: "no-cache",
+  });
+  const data = (await res.json()).data
+  console.log(data)
+  
+
   return (
     <FooterContextProvider>
       <footer className="bg-[#414040] mt-10 md:mt-16 py-3 ">
