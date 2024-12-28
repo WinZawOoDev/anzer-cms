@@ -30,6 +30,7 @@ type FooterContent = {
 }
 
 type FollowUp = {
+    id: number;
     socialName: string;
     socialLink: string
 }
