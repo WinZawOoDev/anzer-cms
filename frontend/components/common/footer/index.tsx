@@ -6,15 +6,22 @@ import Map from "./map";
 import Address from "./address";
 import FooterContextProvider from "@/context/footer-context";
 import Flags from "./flags";
+import { footerDataUrl } from "@/lib/constants";
 
-export default function Footer() {
+export default async function Footer() {
+
+  const res = await fetch(footerDataUrl, {
+    cache: "no-cache",
+  });
+  const data = (await res.json()).data as FooterContent
+
   return (
-    <FooterContextProvider>
+    <FooterContextProvider country={data.Country[0]}>
       <footer className="bg-[#414040] mt-10 md:mt-16 py-3 ">
         <div className="mx-5 md:mx-10 space-y-2">
           <div className="grid md:grid-cols-3 md:gap-12 w-full">
             <div className="">
-              <Flags />
+              <Flags countries={data.Country} />
               <Address />
             </div>
             <div className="md:order-first px-3 py-1 rounded-lg">
@@ -23,7 +30,7 @@ export default function Footer() {
 
             <div className="flex md:flex-col md:justify-between md:h-ful md:pr-10 py-4 md:py-0">
               <Resources />
-              <Social />
+              <Social followUs={data.FollowUp} />
             </div>
           </div>
           <SearchForm />

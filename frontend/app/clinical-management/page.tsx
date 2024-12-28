@@ -6,9 +6,12 @@ import MessageBubble from "../components/common/bubble";
 import KeyBenefits from "../components/common/key-benefits";
 import SectionTitle from "../components/common/sec-ttl";
 import SvgWithBubbles from "../components/common/svg-with-bubbles";
+import { getAvailableImgFirst } from "@/lib/utils";
 
 const Page = async () => {
-  const res = await fetch(clinicalManagementDataUrl);
+  const res = await fetch(clinicalManagementDataUrl, {
+    cache: "no-cache",
+  });
   const data = (await res.json()).data as ClinicalManagementSectionsType;
   const secondSec = data.second_section;
   const thirdSec = data.third_section;
@@ -43,7 +46,7 @@ const Page = async () => {
           className="-mt-6 md:mt-0"
           title={secondSec.benefits_title}
           benefits={secondSec.text}
-          image={secondSec.image.formats.large}
+          image={getAvailableImgFirst(secondSec.image) as string}
         />
       </div>
 
@@ -74,7 +77,7 @@ const Page = async () => {
           className="-mt-6 md:mt-0"
           title={thirdSec.benefits_title}
           benefits={thirdSec.text}
-          image={thirdSec.image.formats.large}
+          image={getAvailableImgFirst(thirdSec.image) as string}
         />
       </div>
       {/* <MessageBubble

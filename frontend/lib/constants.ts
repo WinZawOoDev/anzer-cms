@@ -10,4 +10,4 @@ export const clinicalManagementDataUrl = `${backendUrl}/api/clinical-management?
 export const managementPerspectiveDataUrl = `${backendUrl}/api/management-perspective?populate[first_section][populate][infos]=*&&populate[first_section][populate][image]=*&&populate[second_section][populate][contents][populate][image]=*&&populate[third_section][populate][contents][populate][image]=*`;
 export const patientEngagementDataUrl = `${backendUrl}/api/patient-engagement?populate[first_section][populate][text]=*&&populate[second_section][populate][text]=*&&populate[third_section][populate][text]=*`;
 
-export const footerDataUrl = `${backendUrl}/api/footer?populate=*`;
+export const footerDataUrl = `${backendUrl}/api/footer?populate[Country][populate][mapAddress]=*&&populate[FollowUp]=*`;

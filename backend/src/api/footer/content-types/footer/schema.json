@@ -12,10 +12,17 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "locations": {
+    "Country": {
+      "displayName": "Country",
       "type": "component",
       "repeatable": true,
-      "component": "shared.address"
+      "component": "shared.country"
+    },
+    "FollowUp": {
+      "displayName": "FollowUp",
+      "type": "component",
+      "repeatable": true,
+      "component": "shared.follow-up"
     }
   }
 }
