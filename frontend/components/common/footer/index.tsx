@@ -13,17 +13,18 @@ export default async function Footer() {
   const res = await fetch(footerDataUrl, {
     cache: "no-cache",
   });
-  const data = (await res.json()).data
-  console.log(data)
-  
+  const data = (await res.json()).data as FooterContent
+
+  console.log(data.FollowUp)
+
 
   return (
-    <FooterContextProvider>
+    <FooterContextProvider country={data.Country[0]}>
       <footer className="bg-[#414040] mt-10 md:mt-16 py-3 ">
         <div className="mx-5 md:mx-10 space-y-2">
           <div className="grid md:grid-cols-3 md:gap-12 w-full">
             <div className="">
-              <Flags />
+              <Flags countries={data.Country} />
               <Address />
             </div>
             <div className="md:order-first px-3 py-1 rounded-lg">
