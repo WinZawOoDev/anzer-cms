@@ -29,7 +29,7 @@ export default function MapLeaflet() {
 
     return (
         <MapContainer
-            center={[selectedCountry.latLong?.lat!, selectedCountry.latLong?.lng!]}
+            center={[selectedCountry.mapAddress?.latitude!, selectedCountry.mapAddress?.longitude!]}
             zoom={zoom}
             scrollWheelZoom={false}
             style={{
@@ -41,12 +41,12 @@ export default function MapLeaflet() {
                 url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
             />
 
-            <Marker icon={customMarkerIcon} position={[selectedCountry.latLong?.lat!, selectedCountry.latLong?.lng!]}>
+            <Marker icon={customMarkerIcon} position={[selectedCountry.mapAddress?.latitude!, selectedCountry.mapAddress?.longitude!]}>
                 <Popup>
                     <b>ANZER</b> IT Healthcare asia <b>{selectedCountry.countryName}</b>
                 </Popup>
             </Marker>
-            <SetCenterOnCountryChange lat={selectedCountry.latLong?.lat!} lng={selectedCountry.latLong?.lng!} />
+            <SetCenterOnCountryChange lat={selectedCountry.mapAddress?.latitude!} lng={selectedCountry.mapAddress?.longitude!} />
         </MapContainer>
     )
 }
