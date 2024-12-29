@@ -1,3 +1,5 @@
+'use client'
+
 import * as React from "react";
 import { CheckIcon, ChevronsUpDown } from "lucide-react";
 import * as RPNInput from "react-phone-number-input";
@@ -20,8 +22,9 @@ import {
 } from "@/components/ui/popover";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { cn } from "@/lib/utils";
+import { useFormContext } from "react-hook-form";
 
-type PhoneInputProps = Omit<
+type CountryInputProps = Omit<
     React.ComponentProps<"input">,
     "onChange" | "value" | "ref"
 > &
@@ -29,14 +32,14 @@ type PhoneInputProps = Omit<
         onChange?: (value: RPNInput.Value) => void;
     };
 
-const PhoneInput: React.ForwardRefExoticComponent<PhoneInputProps> =
-    React.forwardRef<React.ElementRef<typeof RPNInput.default>, PhoneInputProps>(
+const CountryInput: React.ForwardRefExoticComponent<CountryInputProps> =
+    React.forwardRef<React.ElementRef<typeof RPNInput.default>, CountryInputProps>(
         ({ className, onChange, ...props }, ref) => {
             return (
                 <RPNInput.default
                     ref={ref}
                     className={cn("flex", className)}
-                    flagComponent={FlagComponent}
+                    // flagComponent={FlagComponent}
                     countrySelectComponent={CountrySelect}
                     inputComponent={InputComponent}
                     smartCaret={false}
@@ -55,14 +58,14 @@ const PhoneInput: React.ForwardRefExoticComponent<PhoneInputProps> =
             );
         },
     );
-PhoneInput.displayName = "PhoneInput";
+CountryInput.displayName = "CountryInput";
 
 const InputComponent = React.forwardRef<
     HTMLInputElement,
     React.ComponentProps<"input">
 >(({ className, ...props }, ref) => (
     <Input
-        className={cn("rounded-e-lg rounded-s-none py-[22px]", className)}
+        className={cn("hidden rounded-e-lg rounded-s-none py-[22px]", className)}
         {...props}
         ref={ref}
     />
@@ -82,30 +85,34 @@ const CountrySelect = ({
     disabled,
     value: selectedCountry,
     options: countryList,
-    onChange,
+    onChange
 }: CountrySelectProps) => {
+
     return (
         <Popover>
-            {/* <PopoverTrigger asChild> */}
-            <Button
-                type="button"
-                variant="outline"
-                className="flex gap-1 cursor-default rounded-e-none rounded-s-lg border-r-0 py-[22px] px-3 focus:z-10"
-                disabled={disabled}
-            >
-                <FlagComponent
-                    country={selectedCountry}
-                    countryName={selectedCountry}
-                />
-                {/* <ChevronsUpDown
+            <PopoverTrigger asChild>
+                <Button
+                    type="button"
+                    variant="outline"
+                    className="flex gap-1 w-full rounded-e-none justify-between rounded-lg py-[22px] px-3 focus:z-10"
+                    disabled={disabled}
+                >
+                    {selectedCountry ?
+                        <span className="">
+                            {countryList.find(country => country.value === selectedCountry)?.label}
+                        </span> :
+                        <span className="text-muted-foreground">Select Country</span>
+                    }
+
+                    <ChevronsUpDown
                         className={cn(
                             "-mr-2 size-4 opacity-50",
                             disabled ? "hidden" : "opacity-100",
                         )}
-                    /> */}
-            </Button>
-            {/* </PopoverTrigger> */}
-            <PopoverContent className="w-[300px] p-0">
+                    />
+                </Button>
+            </PopoverTrigger>
+            <PopoverContent className="w-popover-content p-0">
                 <Command>
                     <CommandInput placeholder="Search country..." />
                     <CommandList>
@@ -143,11 +150,21 @@ const CountrySelectOption = ({
     selectedCountry,
     onChange,
 }: CountrySelectOptionProps) => {
+
+    const { setValue, clearErrors, resetField } = useFormContext();
+
+    const handleChange = () => {
+        setValue('location', country)
+        clearErrors('location');
+        onChange(country);
+        resetField('phoneNumber');
+    }
+
     return (
-        <CommandItem className="gap-2" onSelect={() => onChange(country)}>
+        <CommandItem className="gap-2" onSelect={handleChange}>
             <FlagComponent country={country} countryName={countryName} />
             <span className="flex-1 text-sm">{countryName}</span>
-            <span className="text-sm text-foreground/50">{`+${RPNInput.getCountryCallingCode(country)}`}</span>
+            {/* <span className="text-sm text-foreground/50">{`+${RPNInput.getCountryCallingCode(country)}`}</span> */}
             <CheckIcon
                 className={`ml-auto size-4 ${country === selectedCountry ? "opacity-100" : "opacity-0"}`}
             />
@@ -165,4 +182,4 @@ const FlagComponent = ({ country, countryName }: RPNInput.FlagProps) => {
     );
 };
 
-export { PhoneInput };
+export { CountryInput };

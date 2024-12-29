@@ -11,6 +11,9 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { nanoid } from 'nanoid'
 import { PhoneInput } from '@/components/ui/phone-input'
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group'
+import { CountryInput } from '@/components/ui/country-input';
+import { Phone } from 'lucide-react';
+import { Separator } from '@/components/ui/separator';
 
 const selectAbleCountry = [
   { id: nanoid(), name: 'Singapore' },
@@ -43,14 +46,21 @@ const honorifices = [
   { id: nanoid(), label: 'Other.', value: 'Other.' }
 ]
 
+const healthProvider = [
+  { id: nanoid(), label: 'Hospital', value: 'Hospital' },
+  { id: nanoid(), label: 'Clinic.', value: 'Clinic' },
+  { id: nanoid(), label: 'Other', value: 'Other' },
+];
+
 const FormSchema = z.object({
   location: z.string({ required_error: 'location is required' }).min(1, 'Location is required'),
-  hospitalName: z.string().min(1, 'HospitalName is required'),
+  organizationName: z.string().min(1, 'OrganizationName is required'),
   honorific: z.string().min(1, 'Honorific is required'),
   firstName: z.string().min(1, 'FirstName is required'),
   lastName: z.string().min(1, 'LastName is required'),
   jobTitle: z.string().min(1, 'JobTitle is required'),
   responsibility: z.string().min(1, 'Responsibility is required'),
+  healthProvider: z.string().min(1, 'Health Provider is required'),
   implement: z.string().min(1, 'When to implement is required'),
   email: z.string().min(1, 'Email is required').email(),
   phoneNumber: z.string().min(1, 'Phone Number is required'),
@@ -63,12 +73,13 @@ export default function ContactForm() {
   const form = useForm<z.infer<typeof FormSchema>>({
     defaultValues: {
       location: '',
-      hospitalName: '',
+      organizationName: '',
       honorific: '',
       firstName: '',
       lastName: '',
       jobTitle: '',
       responsibility: '',
+      healthProvider: '',
       implement: '',
       email: '',
       phoneNumber: '',
@@ -80,22 +91,17 @@ export default function ContactForm() {
     console.log("🚀 ~ handleSubmit ~ values:", values);
   }
 
-
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(handleSubmit)} className='mb-20 md:mb-0 md:w-1/2'>
+      <form onSubmit={form.handleSubmit(handleSubmit)} className='mb-20 md:mb-0 mt-5'>
         <div className='grid grid-cols-4 gap-x-3 gap-y-8 my-3'>
           <div className='col-span-2'>
-            <SelectInput
-              name='location'
-              placeholder='Select location'
-              selectItems={selectAbleCountry}
-            />
+            <CountrySelectInput />
           </div>
           <div className='col-span-2'>
             <TextInput
-              name='hospitalName'
-              placeholder='HospitalName'
+              name='organizationName'
+              placeholder='Organization Name'
             />
           </div>
           <div className='col-span-4'>
@@ -127,6 +133,12 @@ export default function ContactForm() {
               name='responsibility'
               placeholder='Responsibility'
               selectItems={selectAbleResponsibility}
+            />
+          </div>
+          <div className='col-span-4'>
+            <RadioInput
+              name='healthProvider'
+              items={healthProvider}
             />
           </div>
           <div className='col-span-4'>
@@ -250,7 +262,7 @@ function CheckBoxInput({ name, placeholder }: { name: string, placeholder: strin
 
 function PhoneNumberInput({ name, placeholder }: { name: string, placeholder: string }) {
 
-  const { control } = useFormContext();
+  const { control, formState, getValues } = useFormContext();
 
   return (
     <FormField
@@ -262,7 +274,7 @@ function PhoneNumberInput({ name, placeholder }: { name: string, placeholder: st
             <PhoneInput
               placeholder={placeholder}
               {...field}
-              defaultCountry='MM'
+              defaultCountry={getValues('location')}
             />
           </FormControl>
           <FormMessage className='absolute -bottom-5' />
@@ -304,4 +316,18 @@ function RadioInput({ name, items }: { name: string, items: { id: string, label:
       )}
     />
   )
+}
+
+function CountrySelectInput() {
+
+  const { formState } = useFormContext();
+
+  return (
+    <div className='relative'>
+      <CountryInput />
+      {formState.errors.location && <span className='text-[0.8rem] absolute -bottom-5 font-medium text-destructive'>{String(formState.errors.location.message)}</span>}
+    </div>
+
+  )
+
 }
