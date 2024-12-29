@@ -27,3 +27,18 @@ type FormLabelValue = {
 
 type ContactFormProps = Omit<ContactForm, 'id' | 'helpDeskPhone' | 'projectTeamPhone'>
 type ContactTitleAndSupportProps = Pick<ContactForm, 'helpDeskPhone' | 'projectTeamPhone'>
+
+
+type ContactFormValue = {
+    location: string;
+    organizationName: string;
+    honorific: string;
+    firstName: string;
+    lastName: string;
+    jobTitle: string;
+    responsibility: string,
+    healthCareType: string,
+    implement: string,
+    email: string,
+    phoneNumber: string,
+}

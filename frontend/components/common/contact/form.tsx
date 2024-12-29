@@ -12,6 +12,8 @@ import { nanoid } from 'nanoid'
 import { PhoneInput } from '@/components/ui/phone-input'
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group'
 import { CountryInput } from '@/components/ui/country-input';
+import { useState } from 'react';
+import { useToast } from '@/hooks/use-toast';
 
 const selectAbleCountry = [
   { id: nanoid(), name: 'Singapore' },
@@ -79,8 +81,31 @@ export default function ContactForm({ honorifics, healthCareType, responsibility
     resolver: zodResolver(FormSchema),
   });
 
-  function handleSubmit(values: z.infer<typeof FormSchema>) {
-    console.log("🚀 ~ handleSubmit ~ values:", values);
+  const [sending, setSending] = useState(false);
+  const { toast } = useToast();
+
+  async function handleSubmit(values: z.infer<typeof FormSchema>) {
+    // console.log("🚀 ~ handleSubmit ~ values:", values);
+    setSending(true)
+    const response = await fetch('/api/send-email', {
+      method: 'POST',
+      body: JSON.stringify(values)
+    });
+
+    setSending(false)
+    if (response.status >= 500) {
+      toast({
+        description: 'Failed to send form. Please try again later.',
+        variant: "destructive"
+      });
+      return;
+    }
+
+    toast({
+      description: 'Your form has been submitted successfully !',
+    });
+    form.reset();
+    // console.log("🚀 ~ handleSubmit ~ response:", response)
   }
 
   return (
@@ -153,7 +178,7 @@ export default function ContactForm({ honorifics, healthCareType, responsibility
             />
           </div>
         </div>
-        <Button type='submit' className='rounded mt-3 lg:mt-0 py-5 px-7 bg-[#D01B23] hover:bg-[#e73939] float-right'>
+        <Button type='submit' disabled={sending} className={`rounded mt-3 lg:mt-0 py-5 px-7 bg-[#D01B23] hover:bg-[#e73939] float-right ${sending && 'cursor-not-allowed'}`}>
           <span className='font-semibold text-[15px] leading-5 text-white'>Submit</span>
         </Button>
       </form>
