@@ -1,0 +1,15 @@
+{
+  "collectionName": "components_shared_health_care_types",
+  "info": {
+    "displayName": "healthCareType"
+  },
+  "options": {},
+  "attributes": {
+    "label": {
+      "type": "string"
+    },
+    "value": {
+      "type": "string"
+    }
+  }
+}
