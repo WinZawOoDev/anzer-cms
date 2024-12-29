@@ -101,7 +101,7 @@ const CountrySelect = ({
                         <span className="">
                             {countryList.find(country => country.value === selectedCountry)?.label}
                         </span> :
-                        <span className="text-muted-foreground">Select Country</span>
+                        <span className="text-muted-foreground">Select Location</span>
                     }
 
                     <ChevronsUpDown

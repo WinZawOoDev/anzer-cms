@@ -12,8 +12,6 @@ import { nanoid } from 'nanoid'
 import { PhoneInput } from '@/components/ui/phone-input'
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group'
 import { CountryInput } from '@/components/ui/country-input';
-import { Phone } from 'lucide-react';
-import { Separator } from '@/components/ui/separator';
 
 const selectAbleCountry = [
   { id: nanoid(), name: 'Singapore' },
@@ -39,14 +37,8 @@ const selectAbleImplementTime = [
   { id: nanoid(), name: 'other' },
 ]
 
-const honorifices = [
-  { id: nanoid(), label: 'Dr.', value: 'Dr.' },
-  { id: nanoid(), label: 'Mr.', value: 'Mr.' },
-  { id: nanoid(), label: 'Ms.', value: 'Ms.' },
-  { id: nanoid(), label: 'Other.', value: 'Other.' }
-]
 
-const healthProvider = [
+const healthCareType = [
   { id: nanoid(), label: 'Hospital', value: 'Hospital' },
   { id: nanoid(), label: 'Clinic.', value: 'Clinic' },
   { id: nanoid(), label: 'Other', value: 'Other' },
@@ -60,7 +52,7 @@ const FormSchema = z.object({
   lastName: z.string().min(1, 'LastName is required'),
   jobTitle: z.string().min(1, 'JobTitle is required'),
   responsibility: z.string().min(1, 'Responsibility is required'),
-  healthProvider: z.string().min(1, 'Health Provider is required'),
+  healthCareType: z.string().min(1, 'Health Care Type is required'),
   implement: z.string().min(1, 'When to implement is required'),
   email: z.string().min(1, 'Email is required').email(),
   phoneNumber: z.string().min(1, 'Phone Number is required'),
@@ -68,7 +60,7 @@ const FormSchema = z.object({
 
 
 
-export default function ContactForm() {
+export default function ContactForm({ honorifics, healthCareType, responsibility, whenToImplement }: ContactFormProps) {
 
   const form = useForm<z.infer<typeof FormSchema>>({
     defaultValues: {
@@ -79,7 +71,7 @@ export default function ContactForm() {
       lastName: '',
       jobTitle: '',
       responsibility: '',
-      healthProvider: '',
+      healthCareType: '',
       implement: '',
       email: '',
       phoneNumber: '',
@@ -107,7 +99,7 @@ export default function ContactForm() {
           <div className='col-span-4'>
             <RadioInput
               name='honorific'
-              items={honorifices}
+              items={honorifics}
             />
           </div>
           <div className='col-span-2'>
@@ -132,20 +124,20 @@ export default function ContactForm() {
             <SelectInput
               name='responsibility'
               placeholder='Responsibility'
-              selectItems={selectAbleResponsibility}
+              selectItems={responsibility}
             />
           </div>
           <div className='col-span-4'>
             <RadioInput
-              name='healthProvider'
-              items={healthProvider}
+              name='healthCareType'
+              items={healthCareType}
             />
           </div>
           <div className='col-span-4'>
             <SelectInput
               name='implement'
               placeholder='When do you like to implement?'
-              selectItems={selectAbleImplementTime}
+              selectItems={whenToImplement}
             />
           </div>
           <div className='col-span-4 sm:col-span-2'>
@@ -172,7 +164,7 @@ export default function ContactForm() {
 function SelectInput({ name, placeholder, selectItems }: {
   name: string,
   placeholder: string,
-  selectItems: { id: string, name: string }[]
+  selectItems: FormLabelValue[]
 }) {
 
   const { control } = useFormContext();
@@ -194,7 +186,7 @@ function SelectInput({ name, placeholder, selectItems }: {
             </FormControl>
             <SelectContent>
               {selectItems.map(item => (
-                <SelectItem key={item.id} value={item.name}>{item.name}</SelectItem>
+                <SelectItem key={item.id} value={item.value}>{item.label}</SelectItem>
               ))}
             </SelectContent>
           </Select>
@@ -285,7 +277,7 @@ function PhoneNumberInput({ name, placeholder }: { name: string, placeholder: st
 
 }
 
-function RadioInput({ name, items }: { name: string, items: { id: string, label: string, value: string }[] }) {
+function RadioInput({ name, items }: { name: string, items: FormLabelValue[] }) {
   const { control } = useFormContext();
   return (
     <FormField
