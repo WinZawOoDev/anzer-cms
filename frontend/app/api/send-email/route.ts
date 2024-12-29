@@ -6,7 +6,7 @@ const resend = new Resend(process.env.RESEND_API_KEY)
 export async function POST(request: Request, response: Response) {
 
     const requestBody = await request.json() as ContactFormValue
-    const countryResponse = await fetch(`${process.env.RESTFUL_COUNTRY_API_URL}?iso2=${requestBody.location}`, {
+    const countryResponse = await fetch(`https://restfulcountries.com/api/v1/countries?iso2=${requestBody.location}`, {
         headers: {
             'Content-Type': 'application/json',
             'Authorization': `Bearer ${process.env.RESTFUL_COUNTRY_API_TOKEN}`,
