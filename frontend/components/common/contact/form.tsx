@@ -82,17 +82,13 @@ export default function ContactForm() {
   }
 
 
+
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(handleSubmit)} className='mb-20 md:mb-0 md:w-1/2'>
         <div className='grid grid-cols-4 gap-x-3 gap-y-8 my-3'>
           <div className='col-span-2'>
-            {/* <SelectInput
-              name='location'
-              placeholder='Select location'
-              selectItems={selectAbleCountry}
-            /> */}
-            <CountryInput />
+            <CountrySelectInput />
           </div>
           <div className='col-span-2'>
             <TextInput
@@ -252,7 +248,7 @@ function CheckBoxInput({ name, placeholder }: { name: string, placeholder: strin
 
 function PhoneNumberInput({ name, placeholder }: { name: string, placeholder: string }) {
 
-  const { control } = useFormContext();
+  const { control, formState, getValues } = useFormContext();
 
   return (
     <FormField
@@ -264,7 +260,7 @@ function PhoneNumberInput({ name, placeholder }: { name: string, placeholder: st
             <PhoneInput
               placeholder={placeholder}
               {...field}
-            // defaultCountry='MM'
+              defaultCountry={getValues('location')}
             />
           </FormControl>
           <FormMessage className='absolute -bottom-5' />
@@ -306,4 +302,18 @@ function RadioInput({ name, items }: { name: string, items: { id: string, label:
       )}
     />
   )
+}
+
+function CountrySelectInput() {
+
+  const { formState } = useFormContext();
+
+  return (
+    <div className='relative'>
+      <CountryInput />
+      {formState.errors.location && <span className='text-[0.8rem] absolute -bottom-5 font-medium text-destructive'>{String(formState.errors.location.message)}</span>}
+    </div>
+
+  )
+
 }

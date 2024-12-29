@@ -1,3 +1,5 @@
+'use client'
+
 import * as React from "react";
 import { CheckIcon, ChevronsUpDown } from "lucide-react";
 import * as RPNInput from "react-phone-number-input";
@@ -20,6 +22,7 @@ import {
 } from "@/components/ui/popover";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { cn } from "@/lib/utils";
+import { useFormContext } from "react-hook-form";
 
 type CountryInputProps = Omit<
     React.ComponentProps<"input">,
@@ -82,9 +85,8 @@ const CountrySelect = ({
     disabled,
     value: selectedCountry,
     options: countryList,
-    onChange,
+    onChange
 }: CountrySelectProps) => {
-    const countryName = countryList.find(country => country.value === selectedCountry)?.label;
 
     return (
         <Popover>
@@ -148,8 +150,18 @@ const CountrySelectOption = ({
     selectedCountry,
     onChange,
 }: CountrySelectOptionProps) => {
+
+    const { setValue, clearErrors, resetField } = useFormContext();
+
+    const handleChange = () => {
+        setValue('location', country)
+        clearErrors('location');
+        onChange(country);
+        resetField('phoneNumber');
+    }
+
     return (
-        <CommandItem className="gap-2" onSelect={() => onChange(country)}>
+        <CommandItem className="gap-2" onSelect={handleChange}>
             <FlagComponent country={country} countryName={countryName} />
             <span className="flex-1 text-sm">{countryName}</span>
             {/* <span className="text-sm text-foreground/50">{`+${RPNInput.getCountryCallingCode(country)}`}</span> */}
