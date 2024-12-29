@@ -1,4 +1,4 @@
-import ContactForm from '@/components/common/contact/form'
+import ContactForm from '@/components/common/contact'
 import PageContainer from '@/components/common/page-container'
 import Image from 'next/image'
 import DoctorPointing from '@/assets/imgs/doctor-pointing.png'

@@ -92,106 +92,80 @@ export default function ContactForm() {
   }
 
   return (
-    <div className='relative md:w-1/2'>
-      <div className='mb-5 flex items-center justify-between'>
-        <div className='font-bold w-fit'>
-          <span className='inline-block text-xl text-gray-500 tracking-normal leading-5'>Book a Demo</span>
-          <span className='inline-block mx-1 text-gray-300'>or</span>
-          <span className='inline-block text-xl text-gray-500 tracking-normal leading-5'>Enquiry for Partnership</span>
-        </div>
-        <div className='relative flex items-center h-10'>
-          <button type='button' className='flex items-center'>
-            <Phone className='w-5 h-5 text-gray-400 hover:text-red-500' />
-            <div className='ml-1 px-0 text-left hover:text-red-500'>
-              <span className='block text-sm text-gray-600 leading-5 tracking-tight hover:text-red-500 hover:underline'>Helpdesk Support</span>
-              <span className='block text-xs text-gray-400 hover:text-red-500'>+9769309030</span>
-            </div>
-          </button>
-          <Separator className='mx-2' orientation='vertical' />
-          <button type='button' className='flex items-center'>
-            <Phone className='w-5 h-5 text-gray-400 hover:text-red-500' />
-            <div className='ml-1 px-0 text-left hover:text-red-500'>
-              <span className='block text-sm text-gray-600 leading-5 tracking-tight hover:text-red-500 hover:underline'>Project Team Support</span>
-              <span className='block text-xs text-gray-400 hover:text-red-500'>+9769309030</span>
-            </div>
-          </button>
-        </div>
-      </div>
-      <Form {...form}>
-        <form onSubmit={form.handleSubmit(handleSubmit)} className='mb-20 md:mb-0 mt-5'>
-          <div className='grid grid-cols-4 gap-x-3 gap-y-8 my-3'>
-            <div className='col-span-2'>
-              <CountrySelectInput />
-            </div>
-            <div className='col-span-2'>
-              <TextInput
-                name='organizationName'
-                placeholder='Organization Name'
-              />
-            </div>
-            <div className='col-span-4'>
-              <RadioInput
-                name='honorific'
-                items={honorifices}
-              />
-            </div>
-            <div className='col-span-2'>
-              <TextInput
-                name='firstName'
-                placeholder='First Name'
-              />
-            </div>
-            <div className='col-span-2'>
-              <TextInput
-                name='lastName'
-                placeholder='Last Name'
-              />
-            </div>
-            <div className='col-span-2'>
-              <TextInput
-                name='jobTitle'
-                placeholder='Job Title'
-              />
-            </div>
-            <div className='col-span-2'>
-              <SelectInput
-                name='responsibility'
-                placeholder='Responsibility'
-                selectItems={selectAbleResponsibility}
-              />
-            </div>
-            <div className='col-span-4'>
-              <RadioInput
-                name='healthProvider'
-                items={healthProvider}
-              />
-            </div>
-            <div className='col-span-4'>
-              <SelectInput
-                name='implement'
-                placeholder='When do you like to implement?'
-                selectItems={selectAbleImplementTime}
-              />
-            </div>
-            <div className='col-span-4 sm:col-span-2'>
-              <TextInput
-                name='email'
-                placeholder='Email Address'
-              />
-            </div>
-            <div className='col-span-4 sm:col-span-2'>
-              <PhoneNumberInput
-                name='phoneNumber'
-                placeholder='Enter phone number'
-              />
-            </div>
+    <Form {...form}>
+      <form onSubmit={form.handleSubmit(handleSubmit)} className='mb-20 md:mb-0 mt-5'>
+        <div className='grid grid-cols-4 gap-x-3 gap-y-8 my-3'>
+          <div className='col-span-2'>
+            <CountrySelectInput />
           </div>
-          <Button type='submit' className='rounded mt-3 lg:mt-0 py-5 px-7 bg-[#D01B23] hover:bg-[#e73939] float-right'>
-            <span className='font-semibold text-[15px] leading-5 text-white'>Submit</span>
-          </Button>
-        </form>
-      </Form>
-    </div>
+          <div className='col-span-2'>
+            <TextInput
+              name='organizationName'
+              placeholder='Organization Name'
+            />
+          </div>
+          <div className='col-span-4'>
+            <RadioInput
+              name='honorific'
+              items={honorifices}
+            />
+          </div>
+          <div className='col-span-2'>
+            <TextInput
+              name='firstName'
+              placeholder='First Name'
+            />
+          </div>
+          <div className='col-span-2'>
+            <TextInput
+              name='lastName'
+              placeholder='Last Name'
+            />
+          </div>
+          <div className='col-span-2'>
+            <TextInput
+              name='jobTitle'
+              placeholder='Job Title'
+            />
+          </div>
+          <div className='col-span-2'>
+            <SelectInput
+              name='responsibility'
+              placeholder='Responsibility'
+              selectItems={selectAbleResponsibility}
+            />
+          </div>
+          <div className='col-span-4'>
+            <RadioInput
+              name='healthProvider'
+              items={healthProvider}
+            />
+          </div>
+          <div className='col-span-4'>
+            <SelectInput
+              name='implement'
+              placeholder='When do you like to implement?'
+              selectItems={selectAbleImplementTime}
+            />
+          </div>
+          <div className='col-span-4 sm:col-span-2'>
+            <TextInput
+              name='email'
+              placeholder='Email Address'
+            />
+          </div>
+          <div className='col-span-4 sm:col-span-2'>
+            <PhoneNumberInput
+              name='phoneNumber'
+              placeholder='Enter phone number'
+            />
+          </div>
+        </div>
+        <Button type='submit' className='rounded mt-3 lg:mt-0 py-5 px-7 bg-[#D01B23] hover:bg-[#e73939] float-right'>
+          <span className='font-semibold text-[15px] leading-5 text-white'>Submit</span>
+        </Button>
+      </form>
+    </Form>
   )
 }
 
