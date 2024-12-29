@@ -11,6 +11,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { nanoid } from 'nanoid'
 import { PhoneInput } from '@/components/ui/phone-input'
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group'
+import { CountryInput } from '@/components/ui/country-input';
 
 const selectAbleCountry = [
   { id: nanoid(), name: 'Singapore' },
@@ -86,11 +87,12 @@ export default function ContactForm() {
       <form onSubmit={form.handleSubmit(handleSubmit)} className='mb-20 md:mb-0 md:w-1/2'>
         <div className='grid grid-cols-4 gap-x-3 gap-y-8 my-3'>
           <div className='col-span-2'>
-            <SelectInput
+            {/* <SelectInput
               name='location'
               placeholder='Select location'
               selectItems={selectAbleCountry}
-            />
+            /> */}
+            <CountryInput />
           </div>
           <div className='col-span-2'>
             <TextInput
