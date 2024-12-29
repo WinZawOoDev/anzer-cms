@@ -4,7 +4,8 @@
   "info": {
     "singularName": "contact",
     "pluralName": "contacts",
-    "displayName": "Contact"
+    "displayName": "Contact",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -12,12 +13,19 @@
   "pluginOptions": {},
   "attributes": {
     "image": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
       "allowedTypes": [
         "images",
         "files"
-      ],
-      "type": "media",
-      "multiple": false
+      ]
+    },
+    "form": {
+      "displayName": "form",
+      "type": "component",
+      "repeatable": false,
+      "component": "shared.form"
     }
   }
 }

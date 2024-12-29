@@ -1,0 +1,15 @@
+{
+  "collectionName": "components_shared_honorifics",
+  "info": {
+    "displayName": "honorifics"
+  },
+  "options": {},
+  "attributes": {
+    "label": {
+      "type": "string"
+    },
+    "value": {
+      "type": "string"
+    }
+  }
+}

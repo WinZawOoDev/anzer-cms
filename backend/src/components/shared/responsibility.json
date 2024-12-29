@@ -1,0 +1,15 @@
+{
+  "collectionName": "components_shared_responsibilities",
+  "info": {
+    "displayName": "responsibility"
+  },
+  "options": {},
+  "attributes": {
+    "label": {
+      "type": "string"
+    },
+    "value": {
+      "type": "string"
+    }
+  }
+}
