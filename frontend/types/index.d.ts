@@ -249,3 +249,31 @@ type ImageFormat = {
     thumbnail?: Image;
   };
 };
+
+
+type CountryData = {
+  name: string;
+  full_name: string;
+  capital: string;
+  iso2: string;
+  iso3: string;
+  covid19: {
+    total_case: string;
+    total_deaths: string;
+    last_updated: string;
+  };
+  current_president?: null;
+  currency: string;
+  phone_code: string;
+  continent: string;
+  description?: null;
+  size: string;
+  independence_date?: null;
+  population: string;
+  href: {
+    self: string;
+    states: string;
+    presidents: string;
+    flag: string;
+  };
+}

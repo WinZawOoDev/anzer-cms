@@ -6,11 +6,20 @@ const resend = new Resend(process.env.RESEND_API_KEY)
 export async function POST(request: Request, response: Response) {
 
     const requestBody = await request.json() as ContactFormValue
+    const countryResponse = await fetch(`${process.env.RESTFUL_COUNTRY_API_URL}?iso2=${requestBody.location}`, {
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${process.env.RESTFUL_COUNTRY_API_TOKEN}`,
+        },
+        method: 'GET',
+    });
+
+    const country = (await countryResponse.json()).data as CountryData;
 
     try {
         const { data, error } = await resend.emails.send({
             from: 'Anzer CMS <onboarding@resend.dev>',
-            to: ['winzawoo.dev@gmail.com'],
+            to: ['winzawoo.dev@gmail.com', 'kyawlin@anzer.com'],
             subject: "Book a Demo or Equiry for partnerships",
             react: EmailTemplate({
                 jobTitle: requestBody.jobTitle,
@@ -22,7 +31,7 @@ export async function POST(request: Request, response: Response) {
                 phoneNumber: requestBody.phoneNumber,
                 email: requestBody.email,
                 organizationName: requestBody.organizationName,
-                location: requestBody.location
+                location: country.name
             }) as React.ReactElement,
         });
 

@@ -13,6 +13,7 @@ import { PhoneInput } from '@/components/ui/phone-input'
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group'
 import { CountryInput } from '@/components/ui/country-input';
 import { useState } from 'react';
+import { useToast } from '@/hooks/use-toast';
 
 const selectAbleCountry = [
   { id: nanoid(), name: 'Singapore' },
@@ -80,22 +81,31 @@ export default function ContactForm({ honorifics, healthCareType, responsibility
     resolver: zodResolver(FormSchema),
   });
 
-  const [sending, setSending] = useState(false)
+  const [sending, setSending] = useState(false);
+  const { toast } = useToast();
 
   async function handleSubmit(values: z.infer<typeof FormSchema>) {
-
-    console.log("🚀 ~ handleSubmit ~ values:", values);
+    // console.log("🚀 ~ handleSubmit ~ values:", values);
     setSending(true)
     const response = await fetch('/api/send-email', {
       method: 'POST',
       body: JSON.stringify(values)
     });
 
-    if (!response.ok) {
-      throw new Error('Unexpected errors');
-    }
     setSending(false)
-    console.log("🚀 ~ handleSubmit ~ response:", response)
+    if (response.status >= 500) {
+      toast({
+        description: 'Failed to send form. Please try again later.',
+        variant: "destructive"
+      });
+      return;
+    }
+
+    toast({
+      description: 'Your form has been submitted successfully !',
+    });
+    form.reset();
+    // console.log("🚀 ~ handleSubmit ~ response:", response)
   }
 
   return (

@@ -40,26 +40,32 @@ export const EmailTemplate = ({
         <Text style={{ ...text, fontWeight: 'bold', fontSize: '16px' }}>
           {jobTitle}
         </Text>
-        <Text style={{ ...text, marginBottom: "14px" }}>
-          <span style={{ fontWeight: 'bold', paddingRight: '5px' }}>Responsibility: </span> {responsipility}
+        <Text style={{ ...text }}>
+          <span style={{ paddingRight: '5px' }}>Responsibility: </span>
+          <span style={{ fontWeight: 'bold' }}>{responsipility}</span>
         </Text>
-        <Text style={{ ...text, marginBottom: "14px" }}>
-          <span style={{ fontWeight: 'bold', paddingRight: '5px' }}>When to implement: </span> {whenToImplement}
+        <Text style={{ ...text, }}>
+          <span style={{ paddingRight: '5px' }}>When to implement: </span>
+          <span style={{ fontWeight: 'bold' }}>{whenToImplement}</span>
         </Text>
-        <Text style={{ ...text, marginBottom: "14px" }}>
-          <span style={{ fontWeight: 'bold', paddingRight: '5px' }}>{honorific}</span> {firstName} {lastName}
+        <Text style={{ ...text, }}>
+          <span style={{ fontWeight: 'bold' }}>{honorific} {firstName} {lastName}</span>
         </Text>
         <Text style={{ ...text }}>
-          <span style={{ fontWeight: 'bold', paddingRight: '10px' }}>PhoneNumber:</span>{phoneNumber}
+          <span style={{ paddingRight: '5px' }}>PhoneNumber: </span>
+          <span style={{ fontWeight: 'bold' }}>{phoneNumber}</span>
         </Text>
         <Text style={{ ...text }}>
-          <span style={{ fontWeight: 'bold', paddingRight: '10px' }}>Email:</span> {email}
+          <span style={{ paddingRight: '5px' }}>Email: </span>
+          <span style={{ fontWeight: 'bold' }}> {email}</span>
         </Text>
         <Text style={{ ...text }}>
-          <span style={{ fontWeight: 'bold', paddingRight: '10px' }}>OrganizationName:</span> {organizationName}
+          <span style={{ paddingRight: '5px' }}>OrganizationName: </span>
+          <span style={{ fontWeight: 'bold' }}>{organizationName}</span>
         </Text>
         <Text style={{ ...text }}>
-          <span style={{ fontWeight: 'bold', paddingRight: '10px' }}>Location:</span> {location}
+          <span style={{ paddingRight: '5px' }}>Location: </span>
+          <span style={{ fontWeight: 'bold' }}>{location}</span>
         </Text>
       </Container>
     </Body>
