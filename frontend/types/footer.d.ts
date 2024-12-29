@@ -1,15 +1,3 @@
-// type Country = {
-//     id: string;
-//     countryName: string;
-//     CountryFlag: React.JSX;
-//     address: string;
-//     phoneNumber: string;
-//     latLong?: {
-//         lat: number,
-//         lng: number,
-//     }
-// }
-
 type SelectedCountry = Country
 
 type FooterContextType = {
