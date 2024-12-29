@@ -57,7 +57,7 @@ export function CountryInput() {
                 >
                     {value
                         ? frameworks.find((framework) => framework.value === value)?.label
-                        : "Select Country..."}
+                        : <span className="text-muted-foreground">Select Country...</span>}
                     <ChevronsUpDown className="opacity-50" />
                 </Button>
             </PopoverTrigger>
