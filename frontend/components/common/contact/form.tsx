@@ -264,7 +264,7 @@ function PhoneNumberInput({ name, placeholder }: { name: string, placeholder: st
             <PhoneInput
               placeholder={placeholder}
               {...field}
-              defaultCountry='MM'
+            // defaultCountry='MM'
             />
           </FormControl>
           <FormMessage className='absolute -bottom-5' />
