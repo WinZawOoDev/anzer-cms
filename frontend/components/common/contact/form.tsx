@@ -44,14 +44,21 @@ const honorifices = [
   { id: nanoid(), label: 'Other.', value: 'Other.' }
 ]
 
+const healthProvider = [
+  { id: nanoid(), label: 'Hospital', value: 'Hospital' },
+  { id: nanoid(), label: 'Clinic.', value: 'Clinic' },
+  { id: nanoid(), label: 'Other', value: 'Other' },
+];
+
 const FormSchema = z.object({
   location: z.string({ required_error: 'location is required' }).min(1, 'Location is required'),
-  hospitalName: z.string().min(1, 'HospitalName is required'),
+  organizationName: z.string().min(1, 'OrganizationName is required'),
   honorific: z.string().min(1, 'Honorific is required'),
   firstName: z.string().min(1, 'FirstName is required'),
   lastName: z.string().min(1, 'LastName is required'),
   jobTitle: z.string().min(1, 'JobTitle is required'),
   responsibility: z.string().min(1, 'Responsibility is required'),
+  healthProvider: z.string().min(1, 'Health Provider is required'),
   implement: z.string().min(1, 'When to implement is required'),
   email: z.string().min(1, 'Email is required').email(),
   phoneNumber: z.string().min(1, 'Phone Number is required'),
@@ -64,12 +71,13 @@ export default function ContactForm() {
   const form = useForm<z.infer<typeof FormSchema>>({
     defaultValues: {
       location: '',
-      hospitalName: '',
+      organizationName: '',
       honorific: '',
       firstName: '',
       lastName: '',
       jobTitle: '',
       responsibility: '',
+      healthProvider: '',
       implement: '',
       email: '',
       phoneNumber: '',
@@ -92,8 +100,8 @@ export default function ContactForm() {
           </div>
           <div className='col-span-2'>
             <TextInput
-              name='hospitalName'
-              placeholder='HospitalName'
+              name='organizationName'
+              placeholder='Organization Name'
             />
           </div>
           <div className='col-span-4'>
@@ -125,6 +133,12 @@ export default function ContactForm() {
               name='responsibility'
               placeholder='Responsibility'
               selectItems={selectAbleResponsibility}
+            />
+          </div>
+          <div className='col-span-4'>
+            <RadioInput
+              name='healthProvider'
+              items={healthProvider}
             />
           </div>
           <div className='col-span-4'>
