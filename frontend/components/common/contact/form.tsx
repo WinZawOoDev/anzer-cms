@@ -38,7 +38,7 @@ const selectAbleImplementTime = [
 ]
 
 
-const healthProvider = [
+const healthCareType = [
   { id: nanoid(), label: 'Hospital', value: 'Hospital' },
   { id: nanoid(), label: 'Clinic.', value: 'Clinic' },
   { id: nanoid(), label: 'Other', value: 'Other' },
@@ -52,7 +52,7 @@ const FormSchema = z.object({
   lastName: z.string().min(1, 'LastName is required'),
   jobTitle: z.string().min(1, 'JobTitle is required'),
   responsibility: z.string().min(1, 'Responsibility is required'),
-  healthProvider: z.string().min(1, 'Health Provider is required'),
+  healthCareType: z.string().min(1, 'Health Care Type is required'),
   implement: z.string().min(1, 'When to implement is required'),
   email: z.string().min(1, 'Email is required').email(),
   phoneNumber: z.string().min(1, 'Phone Number is required'),
@@ -71,7 +71,7 @@ export default function ContactForm({ honorifics, healthCareType, responsibility
       lastName: '',
       jobTitle: '',
       responsibility: '',
-      healthProvider: '',
+      healthCareType: '',
       implement: '',
       email: '',
       phoneNumber: '',
@@ -129,7 +129,7 @@ export default function ContactForm({ honorifics, healthCareType, responsibility
           </div>
           <div className='col-span-4'>
             <RadioInput
-              name='healthProvider'
+              name='healthCareType'
               items={healthCareType}
             />
           </div>
