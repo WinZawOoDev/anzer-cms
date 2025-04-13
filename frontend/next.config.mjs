@@ -10,10 +10,6 @@ const nextConfig = {
   images: {
     remotePatterns: [
       {
-        protocol: "https",
-        hostname: "tranquil-badge-60175d2313.media.strapiapp.com",
-      },
-      {
         protocol: "http",
         hostname: "localhost",
         port: "1337", // Optional: specify the port
@@ -21,7 +17,7 @@ const nextConfig = {
       },
       {
         protocol: "https",
-        hostname: "tranquil-badge-60175d2313.strapiapp.com",
+        hostname: "cms.anzer.com",
         pathname: "/**", // Optional: specify the path patterns
       },
     ],
