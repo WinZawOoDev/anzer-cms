@@ -1,7 +1,7 @@
 import Image from "next/image";
 import ButtonRed from "../common/button";
 import { oswald } from "@/lib/font";
-import { imgHostUrl } from "@/lib/constants";
+// import { imgHostUrl } from "@/lib/constants";
 import { getAvailableImgFirst } from "@/lib/utils";
 const HighInter: React.FC<{
   data: Pick<ProductSectionsType, "third_section">;

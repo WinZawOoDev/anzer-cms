@@ -25,7 +25,7 @@ export default function RootLayout({
         {/* <Transition> */}
         {children}
         {/* </Transition> */}
-        <Footer />
+        {/* <Footer /> */}
       </body>
     </html>
   );

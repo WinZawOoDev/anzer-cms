@@ -9,6 +9,8 @@ export default async function Home() {
   const res = await fetch(homeDataUrl);
 
   const data = (await res.json()).data as HomeSectionsType;
+
+  console.log("hoem date ", JSON.stringify(data));
   return (
     <Container>
       <BannerSlider data={{ first_section: data.first_section }} />

@@ -11,3 +11,100 @@ export const managementPerspectiveDataUrl = `${backendUrl}/api/management-perspe
 export const patientEngagementDataUrl = `${backendUrl}/api/patient-engagement?populate[first_section][populate][text]=*&&populate[second_section][populate][text]=*&&populate[third_section][populate][text]=*`;
 
 export const footerDataUrl = `${backendUrl}/api/footer?populate=*`;
+
+// export const imgHostUrl = "";
+
+// const backendUrl: string | undefined = process.env.NEXT_PUBLIC_DATA_URL;
+
+// console.log('NEXT_PUBLIC_DATA_URL value:', backendUrl);
+
+// if (!backendUrl) {
+//   throw new Error('NEXT_PUBLIC_DATA_URL environment variable is not set');
+// }
+
+// const validatedBackendUrl: string = backendUrl;
+
+// function buildUrl(path: string, params: Record<string, string>) {
+//   try {
+//     const baseUrl = validatedBackendUrl.endsWith('/') ? validatedBackendUrl.slice(0, -1) : validatedBackendUrl;
+//     console.log('Base URL:', baseUrl);
+//     console.log('Path:', path);
+//     const url = new URL(`/api/${path}`, baseUrl);
+//     Object.entries(params).forEach(([key, value]) => {
+//       url.searchParams.append(key, value);
+//     });
+//     const finalUrl = url.toString();
+//     console.log('Final URL:', finalUrl);
+//     return finalUrl;
+//   } catch (error: unknown) {
+//     const errorMessage = error instanceof Error ? error.message : 'Unknown error';
+//     console.error('Error building URL:', errorMessage);
+//     console.error('Base URL:', validatedBackendUrl);
+//     console.error('Path:', path);
+//     throw new Error(`Invalid URL configuration: ${errorMessage}`);
+//   }
+// }
+
+// // Home
+// export const homeDataUrl = buildUrl("home", {
+//   "populate[first_section][populate]": "image",
+//   "populate[second_section][populate][contents][populate][image]": "*",
+//   "populate[third_section][populate][contents][populate][image]": "*",
+// });
+
+// // About
+// export const aboutDataUrl = buildUrl("about", {
+//   "populate[first_section_content][populate][image]": "*",
+//   "populate[first_section_info_list][populate][list]": "*",
+//   "populate[second_section][populate][infos]": "*",
+//   "populate[third_section][populate][infos]": "*",
+// });
+
+// // Product
+// export const productDataUrl = buildUrl("product", {
+//   "populate[first_section][populate][first][populate][list]": "true",
+//   "populate[first_section][populate][second][populate][list]": "true",
+//   "populate[first_section][populate][third][populate][list]": "true",
+//   "populate[third_section][populate][list]": "*",
+//   "populate[third_section][populate][image]": "*",
+// });
+
+// // New
+// export const newDataUrl = buildUrl("new", {
+//   "populate[first_section][populate][image]": "*",
+//   "populate[first_section][populate][infos]": "*",
+//   "populate[second_section][populate][image]": "*",
+//   "populate[second_section][populate][infos]": "*",
+//   "populate[third_section][populate][blogs][populate][image]": "*",
+// });
+
+// // Clinical Management
+// export const clinicalManagementDataUrl = buildUrl("clinical-management", {
+//   "populate[first_section][populate][text]": "*",
+//   "populate[second_section][populate][text]": "*",
+//   "populate[second_section][populate][image]": "*",
+//   "populate[third_section][populate][text]": "*",
+//   "populate[third_section][populate][image]": "*",
+// });
+
+// // Management Perspective
+// export const managementPerspectiveDataUrl = buildUrl("management-perspective", {
+//   "populate[first_section][populate][infos]": "*",
+//   "populate[first_section][populate][image]": "*",
+//   "populate[second_section][populate][contents][populate][image]": "*",
+//   "populate[third_section][populate][contents][populate][image]": "*",
+// });
+
+// // Patient Engagement
+// export const patientEngagementDataUrl = buildUrl("patient-engagement", {
+//   "populate[first_section][populate][text]": "*",
+//   "populate[second_section][populate][text]": "*",
+//   "populate[third_section][populate][text]": "*",
+// });
+
+// // Footer
+// export const footerDataUrl = buildUrl("footer", {
+//   populate: "*",
+// });
+
+// console.log("Backend URL", backendUrl);
