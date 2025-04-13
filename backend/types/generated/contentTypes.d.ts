@@ -595,7 +595,8 @@ export interface ApiFooterFooter extends Struct.SingleTypeSchema {
     draftAndPublish: true;
   };
   attributes: {
-    locations: Schema.Attribute.Component<'shared.address', true>;
+    Country: Schema.Attribute.Component<'shared.country', true>;
+    FollowUp: Schema.Attribute.Component<'shared.follow-up', true>;
     createdAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
     publishedAt: Schema.Attribute.DateTime;
@@ -774,30 +775,6 @@ export interface ApiProductProduct extends Struct.SingleTypeSchema {
       'oneToMany',
       'api::product.product'
     >;
-  };
-}
-
-export interface ApiTestTest extends Struct.SingleTypeSchema {
-  collectionName: 'tests';
-  info: {
-    singularName: 'test';
-    pluralName: 'tests';
-    displayName: 'test';
-    description: '';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    createdAt: Schema.Attribute.DateTime;
-    updatedAt: Schema.Attribute.DateTime;
-    publishedAt: Schema.Attribute.DateTime;
-    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-    locale: Schema.Attribute.String;
-    localizations: Schema.Attribute.Relation<'oneToMany', 'api::test.test'>;
   };
 }
 
@@ -1185,7 +1162,6 @@ declare module '@strapi/strapi' {
       'api::new.new': ApiNewNew;
       'api::patient-engagement.patient-engagement': ApiPatientEngagementPatientEngagement;
       'api::product.product': ApiProductProduct;
-      'api::test.test': ApiTestTest;
       'admin::permission': AdminPermission;
       'admin::user': AdminUser;
       'admin::role': AdminRole;

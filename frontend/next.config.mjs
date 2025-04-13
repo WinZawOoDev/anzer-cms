@@ -24,6 +24,11 @@ const nextConfig = {
         hostname: "tranquil-badge-60175d2313.strapiapp.com",
         pathname: "/**", // Optional: specify the path patterns
       },
+      {
+        protocol: "https",
+        hostname: "cms.anzer.com",
+        pathname: "/**", // Optional: specify the path patterns
+      },
     ],
   },
 };
