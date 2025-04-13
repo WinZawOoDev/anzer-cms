@@ -1,0 +1,40 @@
+{
+  "collectionName": "components_shared_forms",
+  "info": {
+    "displayName": "form",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "helpDeskPhone": {
+      "type": "string"
+    },
+    "projectTeamPhone": {
+      "type": "string"
+    },
+    "honorifics": {
+      "displayName": "honorifics",
+      "type": "component",
+      "repeatable": true,
+      "component": "shared.honorifics"
+    },
+    "responsibility": {
+      "displayName": "responsibility",
+      "type": "component",
+      "repeatable": true,
+      "component": "shared.responsibility"
+    },
+    "healthCareType": {
+      "displayName": "healthCareType",
+      "type": "component",
+      "repeatable": true,
+      "component": "shared.health-care-type"
+    },
+    "whenToImplement": {
+      "displayName": "whenToImplement",
+      "type": "component",
+      "repeatable": true,
+      "component": "shared.when-to-implement"
+    }
+  }
+}

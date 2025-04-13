@@ -1,6 +1,7 @@
 import { Stethoscope, Users, Lightbulb, Handshake } from "lucide-react";
 import SectionTitle from "../common/sec-ttl";
 import ButtonRed from "../common/button";
+import Link from "next/link";
 
 const Icons = [
   {
@@ -51,7 +52,9 @@ const WhatDriveUs: React.FC<{
           })}
         </div>
         <div className="mt-12 flex items-center justify-center text-center">
-          <ButtonRed>Find out more</ButtonRed>
+          <Link href={"/contact"} className="block">
+            <ButtonRed>Find out more</ButtonRed>
+          </Link>
         </div>
       </div>
     </section>

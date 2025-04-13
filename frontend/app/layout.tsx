@@ -5,6 +5,7 @@ import Footer from "@/components/common/footer";
 
 import { nuinto, oswald } from "@/lib/font";
 import Transition from "./components/common/animation/transition";
+import { Toaster } from "@/components/ui/toaster";
 
 export const metadata: Metadata = {
   title:
@@ -26,6 +27,9 @@ export default function RootLayout({
         {children}
         {/* </Transition> */}
         {/* <Footer /> */}
+
+        <Footer />
+
       </body>
     </html>
   );

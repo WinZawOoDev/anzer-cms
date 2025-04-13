@@ -1,0 +1,26 @@
+{
+  "collectionName": "components_shared_countries",
+  "info": {
+    "displayName": "Country",
+    "icon": "pinMap",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "countryName": {
+      "type": "string"
+    },
+    "address": {
+      "type": "text"
+    },
+    "phoneNumber": {
+      "type": "string"
+    },
+    "mapAddress": {
+      "displayName": "mapAddress",
+      "type": "component",
+      "repeatable": false,
+      "component": "shared.map-address"
+    }
+  }
+}

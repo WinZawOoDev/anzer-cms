@@ -11,6 +11,9 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { nanoid } from 'nanoid'
 import { PhoneInput } from '@/components/ui/phone-input'
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group'
+import { CountryInput } from '@/components/ui/country-input';
+import { useState } from 'react';
+import { useToast } from '@/hooks/use-toast';
 
 const selectAbleCountry = [
   { id: nanoid(), name: 'Singapore' },
@@ -36,21 +39,22 @@ const selectAbleImplementTime = [
   { id: nanoid(), name: 'other' },
 ]
 
-const honorifices = [
-  { id: nanoid(), label: 'Dr.', value: 'Dr.' },
-  { id: nanoid(), label: 'Mr.', value: 'Mr.' },
-  { id: nanoid(), label: 'Ms.', value: 'Ms.' },
-  { id: nanoid(), label: 'Other.', value: 'Other.' }
-]
+
+const healthCareType = [
+  { id: nanoid(), label: 'Hospital', value: 'Hospital' },
+  { id: nanoid(), label: 'Clinic.', value: 'Clinic' },
+  { id: nanoid(), label: 'Other', value: 'Other' },
+];
 
 const FormSchema = z.object({
   location: z.string({ required_error: 'location is required' }).min(1, 'Location is required'),
-  hospitalName: z.string().min(1, 'HospitalName is required'),
+  organizationName: z.string().min(1, 'OrganizationName is required'),
   honorific: z.string().min(1, 'Honorific is required'),
   firstName: z.string().min(1, 'FirstName is required'),
   lastName: z.string().min(1, 'LastName is required'),
   jobTitle: z.string().min(1, 'JobTitle is required'),
   responsibility: z.string().min(1, 'Responsibility is required'),
+  healthCareType: z.string().min(1, 'Health Care Type is required'),
   implement: z.string().min(1, 'When to implement is required'),
   email: z.string().min(1, 'Email is required').email(),
   phoneNumber: z.string().min(1, 'Phone Number is required'),
@@ -58,17 +62,18 @@ const FormSchema = z.object({
 
 
 
-export default function ContactForm() {
+export default function ContactForm({ honorifics, healthCareType, responsibility, whenToImplement }: ContactFormProps) {
 
   const form = useForm<z.infer<typeof FormSchema>>({
     defaultValues: {
       location: '',
-      hospitalName: '',
+      organizationName: '',
       honorific: '',
       firstName: '',
       lastName: '',
       jobTitle: '',
       responsibility: '',
+      healthCareType: '',
       implement: '',
       email: '',
       phoneNumber: '',
@@ -76,32 +81,50 @@ export default function ContactForm() {
     resolver: zodResolver(FormSchema),
   });
 
-  function handleSubmit(values: z.infer<typeof FormSchema>) {
-    console.log("🚀 ~ handleSubmit ~ values:", values);
-  }
+  const [sending, setSending] = useState(false);
+  const { toast } = useToast();
 
+  async function handleSubmit(values: z.infer<typeof FormSchema>) {
+    // console.log("🚀 ~ handleSubmit ~ values:", values);
+    setSending(true)
+    const response = await fetch('/api/send-email', {
+      method: 'POST',
+      body: JSON.stringify(values)
+    });
+
+    setSending(false)
+    if (response.status >= 500) {
+      toast({
+        description: 'Failed to send form. Please try again later.',
+        variant: "destructive"
+      });
+      return;
+    }
+
+    toast({
+      description: 'Your form has been submitted successfully !',
+    });
+    form.reset();
+    // console.log("🚀 ~ handleSubmit ~ response:", response)
+  }
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(handleSubmit)} className='mb-20 md:mb-0 md:w-1/2'>
+      <form onSubmit={form.handleSubmit(handleSubmit)} className='mb-20 md:mb-0 mt-5'>
         <div className='grid grid-cols-4 gap-x-3 gap-y-8 my-3'>
           <div className='col-span-2'>
-            <SelectInput
-              name='location'
-              placeholder='Select location'
-              selectItems={selectAbleCountry}
-            />
+            <CountrySelectInput />
           </div>
           <div className='col-span-2'>
             <TextInput
-              name='hospitalName'
-              placeholder='HospitalName'
+              name='organizationName'
+              placeholder='Organization Name'
             />
           </div>
           <div className='col-span-4'>
             <RadioInput
               name='honorific'
-              items={honorifices}
+              items={honorifics}
             />
           </div>
           <div className='col-span-2'>
@@ -126,14 +149,20 @@ export default function ContactForm() {
             <SelectInput
               name='responsibility'
               placeholder='Responsibility'
-              selectItems={selectAbleResponsibility}
+              selectItems={responsibility}
+            />
+          </div>
+          <div className='col-span-4'>
+            <RadioInput
+              name='healthCareType'
+              items={healthCareType}
             />
           </div>
           <div className='col-span-4'>
             <SelectInput
               name='implement'
               placeholder='When do you like to implement?'
-              selectItems={selectAbleImplementTime}
+              selectItems={whenToImplement}
             />
           </div>
           <div className='col-span-4 sm:col-span-2'>
@@ -149,7 +178,7 @@ export default function ContactForm() {
             />
           </div>
         </div>
-        <Button type='submit' className='rounded mt-3 lg:mt-0 py-5 px-7 bg-[#D01B23] hover:bg-[#e73939] float-right'>
+        <Button type='submit' disabled={sending} className={`rounded mt-3 lg:mt-0 py-5 px-7 bg-[#D01B23] hover:bg-[#e73939] float-right ${sending && 'cursor-not-allowed'}`}>
           <span className='font-semibold text-[15px] leading-5 text-white'>Submit</span>
         </Button>
       </form>
@@ -160,7 +189,7 @@ export default function ContactForm() {
 function SelectInput({ name, placeholder, selectItems }: {
   name: string,
   placeholder: string,
-  selectItems: { id: string, name: string }[]
+  selectItems: FormLabelValue[]
 }) {
 
   const { control } = useFormContext();
@@ -182,7 +211,7 @@ function SelectInput({ name, placeholder, selectItems }: {
             </FormControl>
             <SelectContent>
               {selectItems.map(item => (
-                <SelectItem key={item.id} value={item.name}>{item.name}</SelectItem>
+                <SelectItem key={item.id} value={item.value}>{item.label}</SelectItem>
               ))}
             </SelectContent>
           </Select>
@@ -250,7 +279,7 @@ function CheckBoxInput({ name, placeholder }: { name: string, placeholder: strin
 
 function PhoneNumberInput({ name, placeholder }: { name: string, placeholder: string }) {
 
-  const { control } = useFormContext();
+  const { control, formState, getValues } = useFormContext();
 
   return (
     <FormField
@@ -262,7 +291,7 @@ function PhoneNumberInput({ name, placeholder }: { name: string, placeholder: st
             <PhoneInput
               placeholder={placeholder}
               {...field}
-              defaultCountry='MM'
+              defaultCountry={getValues('location')}
             />
           </FormControl>
           <FormMessage className='absolute -bottom-5' />
@@ -273,7 +302,7 @@ function PhoneNumberInput({ name, placeholder }: { name: string, placeholder: st
 
 }
 
-function RadioInput({ name, items }: { name: string, items: { id: string, label: string, value: string }[] }) {
+function RadioInput({ name, items }: { name: string, items: FormLabelValue[] }) {
   const { control } = useFormContext();
   return (
     <FormField
@@ -304,4 +333,18 @@ function RadioInput({ name, items }: { name: string, items: { id: string, label:
       )}
     />
   )
+}
+
+function CountrySelectInput() {
+
+  const { formState } = useFormContext();
+
+  return (
+    <div className='relative'>
+      <CountryInput />
+      {formState.errors.location && <span className='text-[0.8rem] absolute -bottom-5 font-medium text-destructive'>{String(formState.errors.location.message)}</span>}
+    </div>
+
+  )
+
 }

@@ -12,6 +12,7 @@ import { Button } from "@/components/ui/button";
 import ButtonRed from "../common/button";
 import { imgHostUrl } from "@/lib/constants";
 import { getAvailableImgFirst } from "@/lib/utils";
+import Link from "next/link";
 
 type CarouselApi = {
   scrollNext: () => void;
@@ -84,7 +85,9 @@ const BannerSlider: React.FC<{
               </div>
               <div className="absolute bottom-0 left-0 h-[min(200px,80%)] w-full space-y-5 bg-transparent p-5 px-12 text-white md:h-[min(200px,60%)] md:bg-black md:bg-opacity-25">
                 <p>{item.description}</p>
-                <ButtonRed>Book Demo</ButtonRed>
+                <Link href={"/contact"} className="block">
+                  <ButtonRed>Book Demo</ButtonRed>
+                </Link>
               </div>
             </CarouselItem>
           ))}

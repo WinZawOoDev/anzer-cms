@@ -3,6 +3,7 @@ import ButtonRed from "../common/button";
 import { oswald } from "@/lib/font";
 // import { imgHostUrl } from "@/lib/constants";
 import { getAvailableImgFirst } from "@/lib/utils";
+import Link from "next/link";
 const HighInter: React.FC<{
   data: Pick<ProductSectionsType, "third_section">;
 }> = ({ data }) => {
@@ -29,7 +30,9 @@ const HighInter: React.FC<{
               return <li key={item.text}>{item.text}</li>;
             })}
           </ul>
-          <ButtonRed>Book Demo</ButtonRed>
+          <Link className="block" href={"/contact"}>
+            <ButtonRed>Book Demo</ButtonRed>
+          </Link>
         </div>
       </div>
     </div>

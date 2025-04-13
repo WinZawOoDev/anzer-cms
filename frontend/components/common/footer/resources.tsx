@@ -5,7 +5,7 @@ import React from 'react'
 const resources = [
     { id: 1, href: '/products', name: 'Products' },
     { id: 2, href: '/about', name: 'About Us' },
-    { id: 3, href: '/what-new', name: `News` },
+    { id: 3, href: '/news', name: `News` },
     { id: 4, href: '/contact', name: 'Contact Us' }
 ]
 

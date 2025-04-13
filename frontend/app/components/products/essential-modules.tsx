@@ -14,6 +14,7 @@ import {
   Package,
   Syringe,
   Network,
+  Map,
 } from "lucide-react";
 import SectionTitle from "../common/sec-ttl";
 import Link from "next/link";
@@ -34,6 +35,7 @@ const modules = [
   { icon: Package, label: "Porter" },
   { icon: Syringe, label: "Infection Prevention and Control" },
   { icon: Network, label: "Social Work" },
+  { icon: Map, label: "Many More" },
 ];
 
 const EssentialModules = () => {
