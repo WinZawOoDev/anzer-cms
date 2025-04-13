@@ -26,8 +26,10 @@ export default function RootLayout({
         {/* <Transition> */}
         {children}
         {/* </Transition> */}
+        {/* <Footer /> */}
+
         <Footer />
-        <Toaster />
+
       </body>
     </html>
   );
