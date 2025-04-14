@@ -23,7 +23,7 @@ const FinancialDashboards: React.FC<{
             <div
               style={{
                 // @ts-ignore
-                backgroundImage: `url(${secData.contents[currentIdx].image.url})`,
+                backgroundImage: `url(${process.env.NEXT_PUBLIC_DATA_URL}${secData.contents[currentIdx].image.url})`,
                 backgroundSize: isMobile ? "200% 200%" : "400% 100%",
                 backgroundPosition: isMobile
                   ? `${(idx % 2) * 100}% ${Math.floor(idx / 2) * 100}%`
@@ -53,7 +53,7 @@ const FinancialDashboards: React.FC<{
               key={idx}
               style={{
                 // @ts-ignore
-                backgroundImage: `url(${item.image.url})`,
+                backgroundImage: `url(${process.env.NEXT_PUBLIC_DATA_URL}${item.image.url})`,
                 backgroundSize: "100% 100%",
                 backgroundPosition: "center",
               }}
