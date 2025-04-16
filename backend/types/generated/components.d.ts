@@ -1,5 +1,16 @@
 import type { Struct, Schema } from '@strapi/strapi';
 
+export interface SharedWhenToImplement extends Struct.ComponentSchema {
+  collectionName: 'components_shared_when_to_implements';
+  info: {
+    displayName: 'whenToImplement';
+  };
+  attributes: {
+    label: Schema.Attribute.String;
+    value: Schema.Attribute.String;
+  };
+}
+
 export interface SharedText extends Struct.ComponentSchema {
   collectionName: 'components_shared_texts';
   info: {
@@ -59,6 +70,17 @@ export interface SharedRichText extends Struct.ComponentSchema {
   };
 }
 
+export interface SharedResponsibility extends Struct.ComponentSchema {
+  collectionName: 'components_shared_responsibilities';
+  info: {
+    displayName: 'responsibility';
+  };
+  attributes: {
+    label: Schema.Attribute.String;
+    value: Schema.Attribute.String;
+  };
+}
+
 export interface SharedQuote extends Struct.ComponentSchema {
   collectionName: 'components_shared_quotes';
   info: {
@@ -93,6 +115,18 @@ export interface SharedMedia extends Struct.ComponentSchema {
   };
   attributes: {
     file: Schema.Attribute.Media<'images' | 'files' | 'videos'>;
+  };
+}
+
+export interface SharedMapAddress extends Struct.ComponentSchema {
+  collectionName: 'components_shared_map_addresses';
+  info: {
+    displayName: 'mapAddress';
+    icon: 'pinMap';
+  };
+  attributes: {
+    latitude: Schema.Attribute.Decimal;
+    longitude: Schema.Attribute.Decimal;
   };
 }
 
@@ -146,6 +180,58 @@ export interface SharedInfoList extends Struct.ComponentSchema {
   };
 }
 
+export interface SharedHonorifics extends Struct.ComponentSchema {
+  collectionName: 'components_shared_honorifics';
+  info: {
+    displayName: 'honorifics';
+  };
+  attributes: {
+    label: Schema.Attribute.String;
+    value: Schema.Attribute.String;
+  };
+}
+
+export interface SharedHealthCareType extends Struct.ComponentSchema {
+  collectionName: 'components_shared_health_care_types';
+  info: {
+    displayName: 'healthCareType';
+  };
+  attributes: {
+    label: Schema.Attribute.String;
+    value: Schema.Attribute.String;
+  };
+}
+
+export interface SharedForm extends Struct.ComponentSchema {
+  collectionName: 'components_shared_forms';
+  info: {
+    displayName: 'form';
+    description: '';
+  };
+  attributes: {
+    helpDeskPhone: Schema.Attribute.String;
+    projectTeamPhone: Schema.Attribute.String;
+    honorifics: Schema.Attribute.Component<'shared.honorifics', true>;
+    responsibility: Schema.Attribute.Component<'shared.responsibility', true>;
+    healthCareType: Schema.Attribute.Component<'shared.health-care-type', true>;
+    whenToImplement: Schema.Attribute.Component<
+      'shared.when-to-implement',
+      true
+    >;
+  };
+}
+
+export interface SharedFollowUp extends Struct.ComponentSchema {
+  collectionName: 'components_shared_follow_ups';
+  info: {
+    displayName: 'FollowUp';
+  };
+  attributes: {
+    socialName: Schema.Attribute.Text;
+    socialLink: Schema.Attribute.Text;
+  };
+}
+
 export interface SharedEssentialModules extends Struct.ComponentSchema {
   collectionName: 'components_shared_essential_modules';
   info: {
@@ -154,6 +240,21 @@ export interface SharedEssentialModules extends Struct.ComponentSchema {
   attributes: {
     title: Schema.Attribute.String;
     labels: Schema.Attribute.Component<'shared.text', true>;
+  };
+}
+
+export interface SharedCountry extends Struct.ComponentSchema {
+  collectionName: 'components_shared_countries';
+  info: {
+    displayName: 'Country';
+    icon: 'pinMap';
+    description: '';
+  };
+  attributes: {
+    countryName: Schema.Attribute.String;
+    address: Schema.Attribute.Text;
+    phoneNumber: Schema.Attribute.String;
+    mapAddress: Schema.Attribute.Component<'shared.map-address', false>;
   };
 }
 
@@ -232,20 +333,6 @@ export interface SharedBlog extends Struct.ComponentSchema {
   };
 }
 
-export interface SharedAddress extends Struct.ComponentSchema {
-  collectionName: 'components_shared_addresses';
-  info: {
-    displayName: 'Address';
-  };
-  attributes: {
-    country: Schema.Attribute.String;
-    address: Schema.Attribute.Text;
-    phone: Schema.Attribute.String;
-    lat: Schema.Attribute.Decimal;
-    lng: Schema.Attribute.Decimal;
-  };
-}
-
 export interface SharedAccorSec extends Struct.ComponentSchema {
   collectionName: 'components_shared_accor_secs';
   info: {
@@ -261,26 +348,33 @@ export interface SharedAccorSec extends Struct.ComponentSchema {
 declare module '@strapi/strapi' {
   export module Public {
     export interface ComponentSchemas {
+      'shared.when-to-implement': SharedWhenToImplement;
       'shared.text': SharedText;
       'shared.test': SharedTest;
       'shared.slider': SharedSlider;
       'shared.seo': SharedSeo;
       'shared.rich-text': SharedRichText;
+      'shared.responsibility': SharedResponsibility;
       'shared.quote': SharedQuote;
       'shared.pie-chart': SharedPieChart;
       'shared.media': SharedMedia;
+      'shared.map-address': SharedMapAddress;
       'shared.infos-with-image': SharedInfosWithImage;
       'shared.info': SharedInfo;
       'shared.info-with-title': SharedInfoWithTitle;
       'shared.info-list': SharedInfoList;
+      'shared.honorifics': SharedHonorifics;
+      'shared.health-care-type': SharedHealthCareType;
+      'shared.form': SharedForm;
+      'shared.follow-up': SharedFollowUp;
       'shared.essential-modules': SharedEssentialModules;
+      'shared.country': SharedCountry;
       'shared.conversation-with-benefits': SharedConversationWithBenefits;
       'shared.content': SharedContent;
       'shared.content-with-title': SharedContentWithTitle;
       'shared.commercial-features': SharedCommercialFeatures;
       'shared.blogs-with-title': SharedBlogsWithTitle;
       'shared.blog': SharedBlog;
-      'shared.address': SharedAddress;
       'shared.accor-sec': SharedAccorSec;
     }
   }

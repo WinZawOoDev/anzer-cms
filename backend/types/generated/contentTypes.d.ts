@@ -562,12 +562,14 @@ export interface ApiContactContact extends Struct.SingleTypeSchema {
     singularName: 'contact';
     pluralName: 'contacts';
     displayName: 'Contact';
+    description: '';
   };
   options: {
     draftAndPublish: true;
   };
   attributes: {
     image: Schema.Attribute.Media<'images' | 'files'>;
+    form: Schema.Attribute.Component<'shared.form', false>;
     createdAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
     publishedAt: Schema.Attribute.DateTime;
@@ -595,7 +597,8 @@ export interface ApiFooterFooter extends Struct.SingleTypeSchema {
     draftAndPublish: true;
   };
   attributes: {
-    locations: Schema.Attribute.Component<'shared.address', true>;
+    Country: Schema.Attribute.Component<'shared.country', true>;
+    FollowUp: Schema.Attribute.Component<'shared.follow-up', true>;
     createdAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
     publishedAt: Schema.Attribute.DateTime;
