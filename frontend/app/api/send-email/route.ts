@@ -19,7 +19,7 @@ export async function POST(request: Request, response: Response) {
     try {
         const { data, error } = await resend.emails.send({
             from: 'Anzer CMS <onboarding@resend.dev>',
-            to: ['winzawoo.dev@gmail.com', 'kyawlin@anzer.com'],
+            to: ['info@anzer.com', 'winzawoo.dev@gmail.com'],
             subject: "Book a Demo or Equiry for partnerships",
             react: EmailTemplate({
                 jobTitle: requestBody.jobTitle,
