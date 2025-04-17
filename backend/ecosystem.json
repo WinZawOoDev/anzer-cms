@@ -1,0 +1,15 @@
+{
+  "apps": [
+    {
+      "name": "cms-be",
+      "script": "./server.js",
+      "exec_mode": "cluster",
+      "autorestart": true,
+      "error_file": "./logs/errors.txt",
+      "out_file": "./logs/logs.txt",
+      "env_production": {
+        "NODE_ENV": "production"
+      }
+    }
+  ]
+}
