@@ -277,3 +277,16 @@ type CountryData = {
     flag: string;
   };
 }
+
+type RestCountery = {
+  name: {
+    common: string;
+    official: string;
+    nativeName: {
+      [langCode: string]: {
+        official: string;
+        common: string;
+      };
+    };
+  };
+};
