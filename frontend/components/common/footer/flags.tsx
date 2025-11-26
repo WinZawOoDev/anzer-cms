@@ -2,7 +2,7 @@
 
 import { useContext } from 'react'
 import { FooterContext } from '@/context/footer-context'
-import { IN, KH, MM, MY, PH, SG, TH } from 'country-flag-icons/react/3x2'
+import { IN, KH, MM, MY, PH, SG, TH, CA } from 'country-flag-icons/react/3x2'
 
 
 export default function Flags({ countries }: { countries: Country[] }) {
@@ -24,8 +24,10 @@ export default function Flags({ countries }: { countries: Country[] }) {
             return <TH title={country.countryName} />
         } else if (country.countryName.toLocaleLowerCase().includes('cambodia')) {
             return <KH title={country.countryName} />
+        } else if (country.countryName.toLocaleLowerCase().includes('canada')) {
+            return <CA title={country.countryName} />
         } else {
-            return <span className='text-yellow-500'>Invalid Country Name</span>
+            return <span className='text-yellow-500'>Unsupported Country</span>
         }
     }
 
