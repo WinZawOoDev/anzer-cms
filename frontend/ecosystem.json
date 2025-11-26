@@ -1,0 +1,16 @@
+{
+  "apps": [
+    {
+      "name": "cms-fe",
+      "script": "./.next/standalone/server.js",
+      "exec_mode": "fork",
+      "autorestart": true,
+      "error_file": "./logs/errors.txt",
+      "out_file": "./logs/logs.txt",
+      "env_production": {
+        "NODE_ENV": "production",
+        "PORT": "3000"
+      }
+    }
+  ]
+}
