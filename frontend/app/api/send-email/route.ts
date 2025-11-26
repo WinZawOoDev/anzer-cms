@@ -6,20 +6,16 @@ const resend = new Resend(process.env.RESEND_API_KEY)
 export async function POST(request: Request, response: Response) {
 
     const requestBody = await request.json() as ContactFormValue
-    const countryResponse = await fetch(`https://restfulcountries.com/api/v1/countries?iso2=${requestBody.location}`, {
-        headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${process.env.RESTFUL_COUNTRY_API_TOKEN}`,
-        },
-        method: 'GET',
-    });
 
-    const country = (await countryResponse.json()).data as CountryData;
+    const countryResponse = await fetch(`https://restcountries.com/v3.1/alpha/${requestBody.location.toLocaleLowerCase()}?fields=name`)
+    const country = (await countryResponse.json()) as RestCountery;
+
 
     try {
         const { data, error } = await resend.emails.send({
             from: 'Anzer CMS <onboarding@resend.dev>',
-            to: ['info@anzer.com', 'winzawoo.dev@gmail.com'],
+            to: ['info@anzer.com'],
+            // to: ['winzawoo.dev@gmail.com'],
             subject: "Book a Demo or Equiry for partnerships",
             react: EmailTemplate({
                 jobTitle: requestBody.jobTitle,
@@ -31,7 +27,7 @@ export async function POST(request: Request, response: Response) {
                 phoneNumber: requestBody.phoneNumber,
                 email: requestBody.email,
                 organizationName: requestBody.organizationName,
-                location: country.name
+                location: country.name.common
             }) as React.ReactElement,
         });
 
