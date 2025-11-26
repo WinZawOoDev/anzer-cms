@@ -1,7 +1,10 @@
 "use client";
+
 import { useMediaQuery } from "usehooks-ts";
 import SectionTitle from "../common/sec-ttl";
-import { useEffect, useState } from "react";
+import { useState } from "react";
+
+const bgImgBaseURL = 'https://cms.anzer.com'
 
 const FinancialDashboards: React.FC<{
   data: Pick<ManagementPerspectiveSectionsType, "second_section">;
@@ -9,10 +12,6 @@ const FinancialDashboards: React.FC<{
   const isMobile = useMediaQuery("(max-width: 768px)");
   const [currentIdx, setCurrentIdx] = useState(0);
   const secData = data.second_section;
-
-  console.log("sec", JSON.stringify(secData.contents, null, 2));
-
-  useEffect(() => {}, []);
 
   return (
     <div className="space-y-5 md:space-y-10" key={currentIdx}>
@@ -23,7 +22,7 @@ const FinancialDashboards: React.FC<{
             <div
               style={{
                 // @ts-ignore
-                backgroundImage: `url(${process.env.NEXT_PUBLIC_DATA_URL}${secData.contents[currentIdx].image.url})`,
+                backgroundImage: `url(${bgImgBaseURL}${secData.contents[currentIdx].image.url})`,
                 backgroundSize: isMobile ? "200% 200%" : "400% 100%",
                 backgroundPosition: isMobile
                   ? `${(idx % 2) * 100}% ${Math.floor(idx / 2) * 100}%`
@@ -53,7 +52,7 @@ const FinancialDashboards: React.FC<{
               key={idx}
               style={{
                 // @ts-ignore
-                backgroundImage: `url(${process.env.NEXT_PUBLIC_DATA_URL}${item.image.url})`,
+                backgroundImage: `url(${bgImgBaseURL}${item.image.url})`,
                 backgroundSize: "100% 100%",
                 backgroundPosition: "center",
               }}
