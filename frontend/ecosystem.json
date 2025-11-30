@@ -3,7 +3,7 @@
     {
       "name": "cms-fe",
       "script": "./.next/standalone/server.js",
-      "exec_mode": "fork",
+      "exec_mode": "cluster",
       "autorestart": true,
       "error_file": "./logs/errors.txt",
       "out_file": "./logs/logs.txt",
@@ -14,3 +14,4 @@
     }
   ]
 }
+
