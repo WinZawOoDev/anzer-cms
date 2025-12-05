@@ -110,6 +110,57 @@ If you see connection errors, verify the DB is running (`pg_isready`) and that t
 - Frontend: `npm run build` then `npm run start` with the same API base URL configured.
 - For containerized prod, add real secrets to `backend/.env` and consider removing the wildcard CORS in `backend/config/middlewares.ts`.
 
+## Deployment with PM2 (Linux/Windows)
+Prereqs: Node 18-20, filled env files (`backend/.env`, `frontend/.env.local`). Build once, then run with PM2.
+
+Shared build steps
+```
+cd backend && npm ci && npm run build
+cd ../frontend && npm ci && npm run build
+```
+
+Using the existing PM2 ecosystem files
+- Backend: `backend/ecosystem.json` (runs `server.js`, name `cms-be`).
+- Frontend: `frontend/ecosystem.json` (runs Next.js standalone server, name `cms-fe`).
+
+Build first, then start each:
+```
+cd backend && npm ci && npm run build
+pm2 start ecosystem.json --env production   # inside backend/
+
+cd ../frontend && npm ci && npm run build
+pm2 start ecosystem.json --env production   # inside frontend/
+
+pm2 save
+pm2 startup ... # see platform steps below
+```
+Logs are under each app's `logs/` directory per the ecosystem files.
+
+Linux (systemd)
+```
+npm install -g pm2
+pm2 start npm --name strapi -- run start -- --port 1337 --cwd /home/USER/anzer-cms/backend
+pm2 start npm --name frontend -- run start -- --port 3000 --cwd /home/USER/anzer-cms/frontend
+pm2 save
+sudo env "PATH=$PATH" pm2 startup systemd -u USER --hp /home/USER
+```
+Replace `USER` and paths as needed. After `pm2 save`, processes auto-start after reboot.
+
+Windows (Command Prompt/PowerShell as Admin)
+```
+npm install -g pm2
+pm2 start npm --name strapi -- run start -- --port 1337 --cwd C:\\path\\to\\anzer-cms\\backend
+pm2 start npm --name frontend -- run start -- --port 3000 --cwd C:\\path\\to\\anzer-cms\\frontend
+pm2 save
+pm2 startup windows
+```
+Run `pm2 startup windows` in an elevated shell so PM2 installs the startup task.
+
+Notes
+- Ensure the ports (1337, 3000) are open in firewalls/security groups.
+- Adjust `NEXT_PUBLIC_API_BASE_URL` to the deployed backend URL.
+- For HTTPS/SSL, front with Nginx/Apache and proxy to PM2 processes.
+
 ## Useful Scripts
 Backend (`backend/package.json`): `develop`, `start`, `build`, `deploy`, `seed:example`.
 Frontend (`frontend/package.json`): `dev`, `build`, `start`, `lint`.
